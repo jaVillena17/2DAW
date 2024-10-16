@@ -2,7 +2,9 @@ try:
     month = int(input("Introduce tu mes de nacimiento"))
     day = int(input("Introduce tu día de nacimiento"))
     
-    if((month==3 and day >= 21) or (month==4 and day <= 19)):
+    if(day<1 or day > 31):
+        print("Fecha no válida, por lo que sea")
+    elif((month==3 and day >= 21) or (month==4 and day <= 19)):
         print("Eres Aries")
     elif((month==4 and day >= 20) or (month==5 and day <= 20)):
         print("Eres Tauro")

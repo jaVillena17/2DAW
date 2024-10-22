@@ -36,6 +36,16 @@
         //Función shuffle
         shuffle($array2);
         var_export($array2);
+
+        //Array_push   array_push($nombrearray, valor1, valor2) Nos sirve para meter varios valores del tiron
+
+        //array_shift Inserta en el primer elemento del array
+
+        //Array_pop    array_pop($nombreArray) Esto extrae el último elemento del array. Un unset del ultimo elemento
+
+        //array_merge  Fusiona arrays arrayDestino = array_merge($array1, $array2)
+
+        //array_slice corta el array por el indice que le digas hasta donde le digas array_slice($nombreArrau, indiceCOminedzo, [longitud], [preserve_keys])
     ?> 
 </body>
 </html>

@@ -1,5 +1,18 @@
-.cell{
-    background-color: blue;
+table{
+    border: 1px solid black;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+td{
+    background-color: aquamarine;
+    border: 1px solid black;
+}
+h3{
+    text-align: center;
+}
+button{
     display: block;
-    width: 10%;
+    margin: 20px auto;
 }

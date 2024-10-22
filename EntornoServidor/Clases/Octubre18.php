@@ -46,6 +46,24 @@
         //array_merge  Fusiona arrays arrayDestino = array_merge($array1, $array2)
 
         //array_slice corta el array por el indice que le digas hasta donde le digas array_slice($nombreArrau, indiceCOminedzo, [longitud], [preserve_keys])
+
+        //unshift añade en la primera posicion
+
+        //array_reverse le da la vuelta a un array
+
+        //array_unique($nombreArray) Este quita del array los elementos que sean iguales
+        $num = ["4",7,2,4,5,6,8,9,7,6,4,1,2,5,7,8,10];
+        var_export($num);
+        $num2 = array_unique($num);
+        echo "<br>";
+        var_export($num2);
+
+        //array_search(valorBuscado, array) Devuelve el indice
+
+        //array_keys(array), devuelve un array con las claves de un array asociativo
+
+        //array_values(array), devuelve un array con los valores de un array asociativo
+
     ?> 
 </body>
 </html>

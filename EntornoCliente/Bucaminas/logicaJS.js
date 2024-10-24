@@ -7,6 +7,8 @@ let counter = 0;
 //Imprimimos la Matriz al cargar la página
 printMatrix();
 
+
+
 //En la función juego solicitaremos las coordenadas y revelaremos el contenido
 function game(){
     //Iniciamos la variable botón
@@ -20,6 +22,10 @@ function game(){
         //Si estas coordenadas no están dentros de los valores válidas, mostramos el error
         if(x>2 || x<0 || y>2 || y<0){
             alert("Introduce una coordenada válida (Valores entre 0 y 2)");
+        }
+        //Si ya ha revelado esa casilla
+        else if (reveal[x][y] == true){
+            alert("Otra vez la misma casilla, ¿eres tonto?");
         }
         //Si no hay bomba
         else if(matriz[x][y]==0){

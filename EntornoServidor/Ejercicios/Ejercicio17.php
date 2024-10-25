@@ -53,7 +53,7 @@
     echo "<br><br>";
     //Función que elimina un artículo a partir de su nombre. NO ME FUNCIONA CON FOREACH
     function delete($arr, $key){
-        /*foreach ($arr as $k){
+       /*foreach ($arr as $k){
             if ($k[0] == $key){
                 echo $k[0];
                 echo $key;
@@ -61,7 +61,7 @@
                 unset($k);
                 var_export($arr);
             }
-        }*/
+        */
         for ($i=0; $i < count($arr); $i++) { 
             if ($arr[$i][0] == $key){
                 unset($arr[$i]);

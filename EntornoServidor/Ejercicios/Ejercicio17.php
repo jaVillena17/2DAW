@@ -20,12 +20,12 @@
     var_export($articulos);
     echo "<br>";
     //función agregar un valor a un array
-    function add ($arr, $key, $value){
+    function add (&$arr, $key, $value){
         $arr[] = [$key, $value];
         return $arr;
     }
     //Llamamos a la función
-    $art2 = add($articulos, "Mesa", 200);
+    add($articulos, "Mesa", 200);
 
     //Función que imprime los artículos
     function printArray ($arr){
@@ -37,7 +37,7 @@
     }
     printArray($articulos);
     echo "<br>";
-    printArray($art2);
+    printArray($articulos);
 
     //Función que calcula la media de los precios
     function mean ($arr){
@@ -52,7 +52,7 @@
     echo "La media del precio es ".mean($articulos)." euros";
     echo "<br><br>";
     //Función que elimina un artículo a partir de su nombre. NO ME FUNCIONA CON FOREACH
-    function delete($arr, $key){
+    function delete(&$arr, $key){
        /*foreach ($arr as $k){
             if ($k[0] == $key){
                 echo $k[0];
@@ -70,8 +70,8 @@
         return $arr;
     }
     
-    $arr3 = delete($articulos, "Monitor");
-    printArray($arr3);
+    delete($articulos, "Monitor");
+    printArray($articulos);
 
     ?>
 </body>

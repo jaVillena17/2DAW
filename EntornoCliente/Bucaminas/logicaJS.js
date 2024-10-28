@@ -1,14 +1,14 @@
 //Creamos la matriz
-const matriz = [[0,0,0],[0,1,0],[0,0,0]];
+let matriz = [[0,0,true],[true,0,0],[0,0,true]];
 //Creamos un array en la que cada posicion guardamos si esa casilla ha sido revelada o no
 let reveal = [[false, false, false],[false, false, false],[false,false,false]]
+//Iniciamos la matriz para rellenar los 0 con las bombas que hay alrededor
+startMatrix();
 const wrapper = document.getElementById("wrapper");
-let counter = 0;
+let counter = countAir();
 //Imprimimos la Matriz al cargar la página
 printMatrix();
-
-
-
+console.log(matriz);
 //En la función juego solicitaremos las coordenadas y revelaremos el contenido
 function game(){
     //Iniciamos la variable botón
@@ -28,22 +28,25 @@ function game(){
             alert("Otra vez la misma casilla, ¿eres tonto?");
         }
         //Si no hay bomba
-        else if(matriz[x][y]==0){
-            //Revelamos la casilla
+        else if(matriz[x][y]!== true){
+            //Revelamos la casilla en el array de valores que enseñamos
             reveal[x][y]=true;
+            
             //Imprimimos la matriz de nuevo y aumentamos el contador
             printMatrix();
-            counter++;
-            //Si el cntador llega a 8, has completado el juego sin explotar la bomba
-            if (counter == 8){
+            counter--;
+            console.log(counter);
+            //Si el cntador llega a 0, has completado el juego sin explotar la bomba
+            if (counter == 0){
                 but.innerHTML = "🎉HAS GANADO🎉";
+                reveal = [[true, true, true],[true, true, true],[true,true,true]]
+                printMatrix();
             }
         }
-        //Si explotas la bomba
         else{
-            reveal[x][y]=true;
-            printMatrix();
+            reveal = [[true, true, true],[true, true, true],[true,true,true]]
             but.innerHTML = "😰HAS PERDIDO😰";
+            printMatrix();
         }
     }
 }
@@ -69,18 +72,64 @@ function printMatrix(){
             if (reveal[i][j]==false){
                 cad += `<td>❓</td>`
             }else{//Si están reveladas se muestra el contenido
-                if(matriz[i][j]==0){
-                    cad += `<td>🏳️</td>`
-                }else{
+                //Si la matriz es true (bomba), se imprime la bomba
+                if (matriz[i][j] === true){
+                    //Imprimimos bombita
                     cad += `<td>💣</td>`
+                }else{
+                    //Si no, imprimimos el número, que será el número de bombas a su alrededor
+                    cad += `<td>${matriz[i][j]}</td>`
                 }
             }
         }
         cad += "</tr>";
     }
     cad += "</table";
+    //Pasamos la cadena con la tabla al html
     wrapper.innerHTML = cad;
 };
 
+//Función que cuenta cuantas bombas tiene una casilla al rededor
+function surrounds(x, y){
+    //Iniciamos contador
+    let contador = 0;
+    //Recorremos las filas anterior, posterior y la misma fila revelada
+    for (let i = x-1; i <= x+1; i++) {
+        //En las posiciones (columnas, anterior posterior y igual, rodeando asi la casilla)
+        for (let j = y-1; j <= y+1; j++) {
+            //Si la fila existe y el valor de esa columna no es undefined
+            if(matriz[i] != undefined && matriz[i][j] === true)
+            //Si hay bomba, sumamos al contador
+            contador++;
+        } 
+    }//Retornamos el contador
+    return contador;
+}
 
+//Función que modifica la matrix cambiando los 0 por los números de bombas que tiene alrededor
+function startMatrix(){
+    //Recorremos la matriz
+    for (let i = 0; i < matriz.length; i++) {
+        for (let j = 0; j < matriz[i].length; j++) {
+            //Si no hay bomba, cambiamos su valor por el numero de bombas que hay alrededor
+            if (matriz[i][j] !== true){
+                matriz[i][j] = surrounds(i,j);
+            }
+        }
+    }
+}
 
+//Función que cuenta el número de casillas vacía que hay
+function countAir(){
+    contador = 0;
+    //Recorremos la matriz
+    for (let i = 0; i < matriz.length; i++) {
+        for (let j = 0; j < matriz[i].length; j++) {
+            //Si no hay bomba, cambiamos su valor por el numero de bombas que hay alrededor
+            if (matriz[i][j] !== true){
+                contador++;
+            }
+        }
+    }
+    return contador;
+}

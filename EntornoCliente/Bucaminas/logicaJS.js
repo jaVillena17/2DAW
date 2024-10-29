@@ -14,13 +14,13 @@ printMatrix();
 //En la función juego solicitaremos las coordenadas y revelaremos el contenido
 function game(){
     //Iniciamos la variable botón
-    but = document.getElementById("bot");
+    let but = document.getElementById("bot");
     //Si el juego no está finalizado
     if (but.innerHTML != "😰HAS PERDIDO😰"  && but.innerHTML != "🎉HAS GANADO🎉"){
         //Pedimos las coordenadas
         but.innerHTML="Siguiente Coordenada";
-        x = prompt("Introduce el número de la coordenada X");
-        y = prompt("Introduce el número de la coordenada Y");
+        let x = prompt("Introduce el número de la coordenada X");
+        let y = prompt("Introduce el número de la coordenada Y");
         //Si alguno no es un número, llamamos tonto al jugador
         if(isNaN(x) || isNaN(y)){
             alert("Qué haces?");
@@ -65,7 +65,7 @@ function game(){
 
 //Función que resetea la matriz
 function reset(){
-    but = document.getElementById("bot");
+    let but = document.getElementById("bot");
     but.innerHTML="COMENZAR EL JUEGO";
     reveal = [[false, false, false],[false, false, false],[false,false,false]];
     counter = countAir()

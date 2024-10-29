@@ -4,11 +4,13 @@ let matriz = [[0,0,true],[true,0,0],[0,0,true]];
 let reveal = [[false, false, false],[false, false, false],[false,false,false]]
 //Iniciamos la matriz para rellenar los 0 con las bombas que hay alrededor
 startMatrix();
+console.log(matriz);
 const wrapper = document.getElementById("wrapper");
 let counter = countAir();
 //Imprimimos la Matriz al cargar la página
 printMatrix();
-console.log(matriz);
+
+
 //En la función juego solicitaremos las coordenadas y revelaremos el contenido
 function game(){
     //Iniciamos la variable botón
@@ -19,8 +21,12 @@ function game(){
         but.innerHTML="Siguiente Coordenada";
         x = prompt("Introduce el número de la coordenada X");
         y = prompt("Introduce el número de la coordenada Y");
+        //Si alguno no es un número, llamamos tonto al jugador
+        if(isNaN(x) || isNaN(y)){
+            alert("Qué haces?");
+        }
         //Si estas coordenadas no están dentros de los valores válidas, mostramos el error
-        if(x>2 || x<0 || y>2 || y<0){
+        else if(x>2 || x<0 || y>2 || y<0){
             alert("Introduce una coordenada válida (Valores entre 0 y 2)");
         }
         //Si ya ha revelado esa casilla
@@ -36,17 +42,23 @@ function game(){
             printMatrix();
             counter--;
             console.log(counter);
-            //Si el cntador llega a 0, has completado el juego sin explotar la bomba
+            //Si el contador llega a 0, has completado el juego sin explotar la bomba
             if (counter == 0){
+                //Revelamos todas las casillas e imprimimos el tablero final
+                reveal = [[true, true, true],[true, true, true],[true,true,true]];
                 but.innerHTML = "🎉HAS GANADO🎉";
-                reveal = [[true, true, true],[true, true, true],[true,true,true]]
                 printMatrix();
             }
-        }
+        }//Si hay bomba
         else{
+            //Cambiamos el contenido se esa celda a boomba explotada
+            matriz[x][y] = "loser";
+            //Revelamos todas las casillas e imprimimos el tablero final
             reveal = [[true, true, true],[true, true, true],[true,true,true]]
             but.innerHTML = "😰HAS PERDIDO😰";
             printMatrix();
+            //Reiniciamos la celda para que vuelva a haber una bomba en caso de que se reinicie la partida
+            matriz[x][y] = true;
         }
     }
 }
@@ -55,7 +67,8 @@ function game(){
 function reset(){
     but = document.getElementById("bot");
     but.innerHTML="COMENZAR EL JUEGO";
-    reveal = [[false, false, false],[false, false, false],[false,false,false]]
+    reveal = [[false, false, false],[false, false, false],[false,false,false]];
+    counter = countAir()
     printMatrix();
 }
 
@@ -76,8 +89,12 @@ function printMatrix(){
                 if (matriz[i][j] === true){
                     //Imprimimos bombita
                     cad += `<td>💣</td>`
-                }else{
-                    //Si no, imprimimos el número, que será el número de bombas a su alrededor
+                }//Si es la bomba que hemos explotado, explosion
+                else if(matriz[i][j] == "loser"){
+                    cad += `<td>💥</td>`
+                }//Si no, imprimimos el número, que será el número de bombas a su alrededor
+                else{
+
                     cad += `<td>${matriz[i][j]}</td>`
                 }
             }

@@ -7,7 +7,13 @@
 </head>
 <body>
     <?php
-    
+        if(empty($_GET["num1"]) || empty($_GET["num2"])){
+            echo "Error. Faltan parámetros";
+        }elseif(!is_numeric($_GET["num1"]) || !is_numeric($_GET["num2"])){
+            echo "Error, ambos números deben ser numéricos";
+        }else{
+            echo "El resultado de la suma es:  ".$_GET["num1"] + $_GET["num2"];
+        }
     ?>
 </body>
 </html>

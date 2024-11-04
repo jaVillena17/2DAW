@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+
+            width: 72%;
+            margin: 0 auto;;
+        }
+        .midText{
+           text-align: center;
+        }
+        .banner{
+            text-align: center;
+            height: 69px;
+        }
+        .left{
+            width: 150px;
+        }
+        .short{
+            width: 95px;
+        }
+        .long{
+            width: 370px;
+        }
+        .line{
+            background-color: grey;
+        }
+        .instalaciones{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="midText">CENTRO DE ESTUDIOS</h1>
+    <div class="banner">
+        <img src="./imag_formulario/imagen1.PNG" class="banner">
+        <img src="./imag_formulario/AVANZA.PNG" class="banner">
+        <img src="./imag_formulario/imagen1.PNG" class="banner">
+    </div>
+    <form action="">
+    <table>
+        <tr>
+            <td class="midText" colspan="3"><h3><u>IDENTIFICACIÓN</u></h3></td>
+        </tr>
+
+        <tr>
+            <td class="left">Tipo de documento:</td>
+            <td colspan="2">
+                <input type="radio" name="only" id="1">
+                <label for="1">DNI</label>
+                <input type="radio" name="only" id="2">
+                <label for="2">NIE</label>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="left">Documento</td>
+            <td colspan="2"><input type="text" placeholder="DNI o NIE" class="short"></td>
+        </tr>
+
+        <tr>
+            <td class="left">Nombre y Apellidos</td>
+            <td colspan="2"><input type="text" class="long"></td>
+        </tr>
+
+        <tr>
+            <td class="midText" colspan="3">
+                <h3><u>Cursos Disponibles</u></h3>
+                <select name="ursos" id="">
+                    <option value="empty"></option>
+                    <option value="ProFun">Programación Funcional</option>
+                    <option value="AI">Inteligencia Artificial</option>
+                    <option value="BigData">Iniciación al BIGDATA</option>
+                    <option value="SEO">Posicionamiento SEO</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="midText" colspan="3"><h3><u>Elegir Opciones</u></h3>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <u>Matrícula</u><br>
+                <input type="radio" name="only2" id="rad1">
+                <label for="rad1">Completa</label><br>
+                <input type="radio" name="only2" id="rad2">
+                <label for="rad2">Parcial</label>
+            </td>
+
+            <td>
+                <u>Turno</u><br>
+                <input type="radio" name="only3" id="rad3">
+                <label for="rad3">Mañana</label><br>
+                <input type="radio" name="only3" id="rad4">
+                <label for="rad4">Tarde</label>
+            </td>
+
+            <td>
+                <u>Modalidad</u><br>
+                <input type="radio" name="only3" id="rad5">
+                <label for="rad5">Presencial</label><br>
+                <input type="radio" name="only3" id="rad6">
+                <label for="rad6">Semipresencial</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="line"></td>
+        </tr>
+        <tr>
+            <td class="midText" colspan="3"><b>NUESTRAS INSTALACIONES</b></td>
+        </tr>
+        <tr>
+            <td colspan="2"><img src="./imag_formulario/aula1.PNG" class="instalaciones"></td>
+            <td><img src="./imag_formulario/aula2.PNG" class="instalaciones"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 220px
+        }
+        li{
+            list-style-type: square;
+        }
+        .left{
+            width: 120px;
+        }
+        .long{
+            width: 380px;
+        }
+        .short{
+            width: 75px;
+        }
+        .mid{
+            width: 330px;
+        }
+        .lowerMid{
+            width: 220px;
+        }
+       .ar{
+        width: 425px;
+       }
+       .icon{
+        width: 36px;
+       }
+    </style>
+</head>
+<body>
+    <h1>"TECNOLOGÍA DOMÓTICA"</h1>
+    <img src="DOMOTICA-Y-KNX-CASTELLON-768x495.jpg">
+    <img src="dmotica-iot-itop.jpg">
+    <h2><b>Oferta de subscripción durante un año</b></h2>
+    <h4>Precios hasta el 15 de diciembre:</h4>
+    <ul>
+        <li>Pago mensual...... 4,50 € al mes</li>
+        <li>Pago semestral.... 25,00 € al semestre</li>
+        <li>Pago anual........ 50,00 € al año</li>
+    </ul>
+    <h3>FORMULARIO DE SUBSCRIPCIÓN</h3>
+    <form>
+        <table>
+            <tr>
+                <td class="left"><b>Nombre:</b></td>
+                <td><input type="text"></textarea></td>
+                <td>F.Nac.: <input type="date"></td>
+                <td>DNI:<input type="text"></td>
+            </tr>
+
+            <tr>
+                <td class="left"><b>Apellidos:</b></td>
+                <td colspan="3"><input type="text" class="long"></td>
+            </tr>
+
+            <tr>
+                <td class="left"><b>Calle y número:</b></td>
+                <td colspan="3"><input type="text" class="long"></td>
+            </tr>
+
+            <tr>
+                <td class="left"><b>Código Postal:</b></td>
+                <td colspan="3">
+                    <input type="text" class="short">
+                    Ciudad: <input type="text" class="mid">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="left"><b>Provincia:</b></td>
+                <td><input type="text"></td>
+                <td colspan="2">Teléfono: <input type="text" class="lowerMid"></td>
+            </tr>
+
+            <tr>
+                <td class="left"><b>Opción:</b></td>
+                <td colspan="3">
+                    Escoja una opción de subscripción<br>
+                    <select class="higherLow">
+                        <option></option>
+                        <option>Patata</option>
+                        <option>Aguacate</option>
+                        <option>AAAAAAAAA</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="left"><b>Forma de Pago:</b></td>
+                <td colspan="3">
+                    <input type="radio" id="1" name="only">
+                    <label for="1">Tarjeta de crédito</label>
+
+                    <input type="radio" id="2" name="only">
+                    <label for="2">Paypal</label>
+
+                    <input type="radio" id="3" name="only">
+                    <label for="3">Bizum</label>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="left"><b>Comentarios personales</b></td>
+                <td colspan="3"><textarea name="" class="ar"></textarea></td>
+            </tr>
+        </table>
+
+        <p>Pulse para Verificar
+            <button> <img class="icon" src="pngtree-verified-symbol-icon-green-png-image_15205112.png"></button>
+        </p>
+        <button> <p> <img class="icon" src="png-clipart-red-x-button-icon-error-http-404-icon-red-cross-mark-file-miscellaneous-trademark.png">Anular</p></button>
+    </form>
+</body>
+</html>

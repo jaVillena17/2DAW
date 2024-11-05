@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        .but, .r{
+            text-align: center;
+        }
+        fieldset{
+            width: 30%;
+            margin: 0 auto;
+            border-radius: 10px;
+            background-color: rgb(212, 172, 248);
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejercicio 22. Javier Villena Fernández</h1>
+    <hr>
+    <fieldset>
+        <legend>Formulario</legend>
+            <form action="Ejercicio22.php" method="get" autocomplete="off">
+                <table>
+                    <tr>
+                        <td><label for="num1"><b>Seleccione el primer número:</b></label></td>
+                        <td class="r"><input type="number" id="num1" name="num1"></td>
+                    </tr>
+                    <tr>  
+                        <td><label for="num2"><b>Seleccione el segundo número:</b></label></td>
+                        <td class="r"><input type="number" id="num2" name="num2"></td>
+                    </tr>
+                    <tr>
+                        <td class="but">
+                            <button type="reset">Reiniciar</button>
+                        </td>
+                        <td  class="but">
+                            <button type="submit">Enviar</button>
+                        </td>
+                        
+                    </tr>
+                </table>
+            </form>
+    </fieldset>
+    
+</body>
+</html>

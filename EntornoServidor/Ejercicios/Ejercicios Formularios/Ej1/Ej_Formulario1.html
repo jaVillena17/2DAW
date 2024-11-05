@@ -46,44 +46,44 @@
         <li>Pago anual........ 50,00 € al año</li>
     </ul>
     <h3>FORMULARIO DE SUBSCRIPCIÓN</h3>
-    <form>
+    <form action="" method="post">
         <table>
             <tr>
-                <td class="left"><b>Nombre:</b></td>
-                <td><input type="text"></textarea></td>
-                <td>F.Nac.: <input type="date"></td>
-                <td>DNI:<input type="text"></td>
+                <td class="left"><label for="name"><b>Nombre:</b></label></td>
+                <td><input type="text" id="name"></textarea></td>
+                <td><label for="date">F.Nac.:</label> <input type="date" id="date"></td>
+                <td><label for="dni">DNI:</label><input type="text" id="dni"></td>
             </tr>
 
             <tr>
-                <td class="left"><b>Apellidos:</b></td>
-                <td colspan="3"><input type="text" class="long"></td>
+                <td class="left"><label for="ape"><b>Apellidos:</b></label></td>
+                <td colspan="3"><input type="text" class="long" id="ape"></td>
             </tr>
 
             <tr>
-                <td class="left"><b>Calle y número:</b></td>
-                <td colspan="3"><input type="text" class="long"></td>
+                <td class="left"><label for="dire"><b>Calle y número:</b></label></td>
+                <td colspan="3"><input type="text" class="long" id="dire"></td>
             </tr>
 
             <tr>
-                <td class="left"><b>Código Postal:</b></td>
+                <td class="left"><label for="pos"><b>Código Postal:</b></label></td>
                 <td colspan="3">
-                    <input type="text" class="short">
-                    Ciudad: <input type="text" class="mid">
+                    <input type="text" class="short" id="pos">
+                    <label for="ciu">Ciudad</label> <input type="text" class="mid" id="ciu">
                 </td>
             </tr>
 
             <tr>
-                <td class="left"><b>Provincia:</b></td>
-                <td><input type="text"></td>
-                <td colspan="2">Teléfono: <input type="text" class="lowerMid"></td>
+                <td class="left"><label for="pro"><b>Provincia:</b></label></td>
+                <td><input type="text" id="pro"></td>
+                <td colspan="2"><label for="tel">Teléfono:</label> <input type="text" class="lowerMid" id="tel"></td>
             </tr>
 
             <tr>
-                <td class="left"><b>Opción:</b></td>
+                <td class="left"><label for="op"><b>Opción:</b></label></td>
                 <td colspan="3">
                     Escoja una opción de subscripción<br>
-                    <select class="higherLow">
+                    <select class="higherLow" id="op">
                         <option></option>
                         <option>Patata</option>
                         <option>Aguacate</option>
@@ -107,15 +107,15 @@
             </tr>
             
             <tr>
-                <td class="left"><b>Comentarios personales</b></td>
-                <td colspan="3"><textarea name="" class="ar"></textarea></td>
+                <td class="left"><label for="com"><b>Comentarios personales</b></label></td>
+                <td colspan="3"><textarea name="" class="ar" id="com"></textarea></td>
             </tr>
         </table>
 
         <p>Pulse para Verificar
-            <button> <img class="icon" src="pngtree-verified-symbol-icon-green-png-image_15205112.png"></button>
+            <button type="submit"> <img class="icon" src="pngtree-verified-symbol-icon-green-png-image_15205112.png"></button>
         </p>
-        <button> <p> <img class="icon" src="png-clipart-red-x-button-icon-error-http-404-icon-red-cross-mark-file-miscellaneous-trademark.png">Anular</p></button>
+        <button type="reset"> <p> <img class="icon" src="png-clipart-red-x-button-icon-error-http-404-icon-red-cross-mark-file-miscellaneous-trademark.png">Anular</p></button>
     </form>
 </body>
 </html>

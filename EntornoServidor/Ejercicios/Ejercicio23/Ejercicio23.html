@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        .but, .r{
+            text-align: center;
+        }
+        fieldset{
+            width: 30%;
+            margin: 0 auto;
+            border-radius: 10px;
+            border: 1px solid black;
+            background-color: aquamarine;
+            padding: 20px;
+        }
+        legend{
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid black;
+            padding: 5px;
+            background-color: rgb(255, 194, 255);
+        }
+        #idname{
+            width: 75%;
+            margin-left: 30px;
+        }
+        button{
+            margin-left: 25%;
+            background-color: rgb(255, 194, 255);
+            color : black;
+        }
+        button:hoveR{
+            background-color: rgb(212, 162, 212);
+        }        
+    </style>
+</head>
+<body>
+    <h1>Ejercicio 23. Javier Villena Fernández</h1>
+    <hr>
+    <fieldset>
+        <legend>Formulario</legend>
+            <form action="Ejercicio23.php" method="post" autocomplete="off">
+                <label for="idname"><b>- Nombre:</b></label>
+                <input type="text" name="nombre" id="idname" placeholder="Nombre" required>
+
+                <p><b>- ¿Cuál es tu lenguaje de programación favorito?</b></p>
+                <input type="radio" name="leng" id="len1" value="PHP" required>
+                <label for="len1">PHP</label><br>
+
+                <input type="radio" name="leng" id="len2" value="JavaScript">
+                <label for="len2">JavaScript</label><br>
+
+                <input type="radio" name="leng" id="len3" value="Python">
+                <label for="len3">Python</label><br>
+
+                <input type="radio" name="leng" id="len4" value="JAVA">
+                <label for="len4">Java</label><br><br>
+
+                <label for="idexp"><b>Nivel de Experiencia</b></label>
+                <select name="exp" id="idexp">
+                    <option value="empty">            </option>
+                    <option value="Principiante">Principiante</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Avanzado">Avanzado</option>
+                </select><br><br>
+
+                <input type="checkbox" name="publi" id="publi">
+                <label for="publi">Deseo recibir más información y noticias</label><br><br>
+
+                <button type="submit">Enviar</button>
+                <button type="reset">Reiniciar</button>
+            </form>
+    </fieldset>
+    
+</body>
+</html>

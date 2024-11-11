@@ -4,7 +4,7 @@ function verEnunciado(){
     let boton = document.getElementById("botonEnun");
     //Si es parrafo está vacio, imprimos el enunciado y cambiamos que el boton muestre Ocultar Resultado
     if(p.innerHTML.length==0){
-        p.innerHTML = "Realiza la lógica de programación para que el usuario introduzca tres valores por teclado. Si al menos uno de ellos es mayor de 10, mostrar en una ventana emergente \"Alguno mayor que 10\". En caso contrario mostrar \"Ninguno es mayor que 10'\"";
+        p.innerHTML = "Introduce un email y yo te comento si es válido no";
         console.log("Mensaje de prueba en consola")
         boton.value = "Ocultar Enunciado"
     }
@@ -22,16 +22,13 @@ function verResultado(){
     //Si el parrafo está vacio, realizamos el ejercicio
     if(p.innerHTML.length==0){
         //Iniciamos la cadena
-        let str = "pe.p-Guardiola@gmail.site";
-        //Iniciamos la reges
-        const regex = /^\w*\.?-?\w*\.?-?\w*@gmail(.com)?(.com.es)?(.site)?$/;
-
-        p.innerHTML =""+ regex.test(str);
+        let str = "pepGuardiola@hotmail.org";
+        //Iniciamos la regex
+        const regex = /^\w*\.?-?\w*\.?-?\w*@\w*-?\w*((.com)|(.com.es)|(.site))?$/;
         
-        //do{
-            //str = prompt("Introduce du e-Mail");
+        str = prompt("Introduce tu e-Mail");
 
-        //}while(!regex.test(str))
+        p.innerHTML = (regex.test(str)) ? "El correo introducido ha sido almacenado correctamente" : "El correo introducido no tiene un formato válido"
 
         //Cambioamos el texto que muestra el boton
         boton.value = "Ocultar Resultado";

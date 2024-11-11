@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            margin: 0 auto;
+        }
+        .but, .r{
+            text-align: center;
+        }
+        fieldset{
+            width: 30%;
+            margin: 0 auto;
+            border-radius: 10px;
+            border: 1px solid black;
+            background-color: aquamarine;
+            padding: 20px;
+        }
+        legend{
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid black;
+            padding: 5px;
+            background-color: rgb(255, 194, 255);
+        }
+        #idname{
+            width: 50%;
+            margin-left: 44px;
+        }
+        #idSegSo{
+            margin-left: 30px;
+            width: 90px;
+        }
+        #consul{
+            margin-left: 59px;
+        }
+        button{
+            margin-left: 25%;
+            background-color: rgb(255, 194, 255);
+            color : black;
+        }
+        button:hoveR{
+            background-color: rgb(212, 162, 212);
+        }
+        input[type=date]{
+            margin-left: 10px;
+        }        
+    </style>
+</head>
+<body>
+    <h1>Ejercicio 24. Javier Villena Fernández</h1>
+    <hr>
+    <fieldset>
+        <legend>Cita Seguridad Social</legend>
+            <form action="Ejercicio24.php" method="post" autocomplete="off">
+                <label for="idname"><b>- Nombre completo:</b></label>
+                <input type="text" name="nombre" id="idname" placeholder="Nombre" required><br><br>
+
+                <label for="idSegSo"><b>- Nº Seguridad Social:</b></label>
+                <input type="text" name="SegSo" id="idSegSo" placeholder="000000000000" required maxlength="12" pattern="[0-9]{12}"><br><br>
+
+                <label for="consul"><b>- Tipo de consulta</b></label>
+                <select name="consulname" id="consul" required>
+                    <option value="empty" hidden>-----Consulta-----</option>
+                    <option value="Medicina General">Medicina General</option>
+                    <option value="Pediatría">Pediatría</option>
+                </select><br>
+
+                <p><b>- Fecha de la cita</b></p>
+                <input type="date" id="fecha" name="fecha" required>
+
+
+
+                <p><b>- Horario preferido</b></p>
+                <input type="radio" name="hor" id="hor1" value="Mañana" required>
+                <label for="hor1">Mañana (09:00 - 12:300)</label><br>
+
+                <input type="radio" name="hor" id="hor2" value="Tarde">
+                <label for="hor2">Tarde (13:00 - 16:00)</label><br>
+
+                <input type="radio" name="hor" id="hor3" value="Noche">
+                <label for="hor3">Noche (16:00 - 20:00)</label><br><br>
+
+                <button type="submit">Enviar</button>
+                <button type="reset">Reiniciar</button>
+            </form>
+    </fieldset>
+    
+</body>
+</html>

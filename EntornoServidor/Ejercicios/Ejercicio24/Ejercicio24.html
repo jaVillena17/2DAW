@@ -60,22 +60,22 @@
                 <input type="text" name="nombre" id="idname" placeholder="Nombre" required><br><br>
 
                 <label for="idSegSo"><b>- Nº Seguridad Social:</b></label>
-                <input type="text" name="SegSo" id="idSegSo" placeholder="000000000000" required maxlength="12" pattern="[0-9]{12}"><br><br>
+                <input type="text" name="SegSo" id="idSegSo" placeholder="000000000000" required maxlength="12" pattern="[0-9]{12}" title="Deben de ser 12 dígitos"><br><br>
 
                 <label for="consul"><b>- Tipo de consulta</b></label>
-                <select name="consulname" id="consul" required>
-                    <option value="empty" hidden>-----Consulta-----</option>
+                <select name="consulname" id="consul">
+                    <option value="" hidden>Seleccione una opción</option>
                     <option value="Medicina General">Medicina General</option>
                     <option value="Pediatría">Pediatría</option>
                 </select><br>
 
                 <p><b>- Fecha de la cita</b></p>
-                <input type="date" id="fecha" name="fecha" required>
+                <input type="date" id="fecha" name="fecha">
 
 
 
                 <p><b>- Horario preferido</b></p>
-                <input type="radio" name="hor" id="hor1" value="Mañana" required>
+                <input type="radio" name="hor" id="hor1" value="Mañana">
                 <label for="hor1">Mañana (09:00 - 12:300)</label><br>
 
                 <input type="radio" name="hor" id="hor2" value="Tarde">

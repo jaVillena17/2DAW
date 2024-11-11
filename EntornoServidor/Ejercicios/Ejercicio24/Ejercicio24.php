@@ -30,11 +30,19 @@
         //Fecha del día metido por el usuario
         $fecha = strtotime($_POST["fecha"]);
 
-        
-        if ($fecha > strtotime("-1 day") && $fecha < strtotime("+1 month") && is_numeric($_POST["SegSo"])){
+        if(empty($_POST["consulname"])){
+            echo "<b>Eror</b>. Debes introducir un tipo de consulta";
+        }
+        else if(empty($_POST["fecha"])){
+            echo "<b>Error</b>, debes introducir una fecha";
+        }
+        else if(empty($_POST["hor"])){
+            echo "<b>Error</b>, debes introducir un horario";
+        }
+        else if ($fecha > strtotime("-1 day") && $fecha < strtotime("+1 month") && is_numeric($_POST["SegSo"])){
             echo "<div><h3>Su cita:</h3><hr>";
             echo "<table>";
-            echo "<tr><td><b>Paciente:</b></td><td>$_POST[nombre]<br></td></tr> ";
+            echo "<tr><td><b>Paciente:</b></td><td>".htmlspecialchars($_POST["nombre"])."<br></td></tr> ";
             echo "<tr><td><b>Numero Seg.Social:</b></td><td>$_POST[SegSo]<br></td></tr> ";
             echo "<tr><td><b>Tipo de Consulta:</b></td><td>$_POST[consulname]<br></td></tr> ";
             echo "<tr><td><b>Fecha:</b></td><td>$_POST[fecha]<br></td></tr> ";
@@ -45,10 +53,6 @@
             echo "<div><h3>Operación no completada</h3><hr>";
             echo "<p>Introduzca una fecha válida</p>";
         }
-        
-
-
-
     ?>
 </body>
 </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <h1>Formulario Javier Villena Fernández</h1>
+    <hr>
+    <form action="">
+        <label for="idNombre">Nombre: </label>
+        <input type="text" name="nombre" id="idNombre" placeholder="Nombre" maxlength="40" pattern="[A-Za-z ]{1,40}" required autofocus><br><br>
+
+        <label for="idCodPost">Código Postal: </label>
+        <input type="text" name="codPost" id="idCodPost" maxlength="5" placeholder="Código Postal" pattern="\d{5}"  title="Deben ser 5 números"required><br><br>
+
+
+        <label for="idEdad">Edad:</label>
+        <input type="text" name="edad" id="idEdad" placeholder="Edad" pattern="\d{2}" maxlength="2" title="Deben ser dos cifras" required><br><br>
+
+        <button type="submit">Enviar</button>
+        <button type="reset">Reiniciar</button>
+    </form>
+    
+</body>
+</html>

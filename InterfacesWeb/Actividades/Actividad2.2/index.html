@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 2.2</title>
+    <style>
+        fieldset{
+            width: 60%;
+            margin: 10px auto;
+            border-radius: 10px;
+        }
+        input{
+            width: 90%;
+        }
+        input[type=radio], input[type=checkbox]{
+            width: auto;
+        }
+        table{
+            width: 100%;
+        }
+        .left{
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Actividad 2.2 Javier Villena Fernández</h1>
+    <hr>
+    <form action="" method="POST">
+        <fieldset>
+            <legend>Información Personal</legend>
+            <table>
+                <tr>
+                    <td class="left"><label for="idName"></label>Nombre:</td>
+                    <td><input type="text" name="nombre "id="idName" placeholder="Nombre" required></td>
+                </tr>
+
+                <tr>
+                    <td class="left"><label for="idApe">Apellidos:</label></td>
+                    <td><input type="text" name="ape" id="idApe" placeholder="Apellidos" required></td>
+                </tr>
+
+                <tr>
+                    <td class="left"><label for="idDate">Fecha de nacimiento:</label></td>
+                    <td><input type="date" name="fecha" id="idDate" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="izq">
+                        <p>Género</p>
+                        <input type="radio" name="genero" id="gen1" required>
+                        <label for="gen1">Masculino</label><br>
+
+                        <input type="radio" name="genero" id="gen2">
+                        <label for="gen2">Femenino</label><br>
+
+                        <input type="radio" name="genero" id="gen3">
+                        <label for="gen3">Otro</label><br>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Información de Contacto</legend>
+            <table>
+                <tr>
+                    <td class="left"><label for="idMail">Correo Electrónico:</label></td>
+                    <td><input type="email" name="mail" id="idMail" required placeholder="ejemplo@gmail.es"></td>
+                </tr>
+
+                <tr>
+                    <td class="left"><label for="idTLF">Nº Teléfono:</label></td>
+                    <td><input type="tel" name="tel" id="idTel" required placeholder="+34"></td>
+                </tr>
+                <tr>
+                    <td class="left"><label for="idDir">Dirección:</label></td>
+                    <td><textarea name="dir" id="idDir" rows="3"  cols="27" placeholder=""></textarea></td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Información de la cuenta</legend>
+            <table>
+                <tr>
+                    <td class="left"><label for="idUser">Usuario:</label></td>
+                    <td><input type="text" name="user" id="idUser" required></td>
+                </tr>
+                <tr>
+                    <td class="left"><label for="idPass">Contraseña:</label></td>
+                    <td><input type="password" name="pass" id="idPass" required></td>
+                </tr>
+                <tr>
+                    <td class="left"><label for="idPass2">Confimación de Contraseña:</label></td>
+                    <td><input type="password" name="pass2" id="idPass2" required></td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Preferencias</legend>
+            <label for="idColor">Seleccione su color favorito</label>
+            <select name="color" id="idColor" required>
+                <option value="Rojo">Rojo</option>
+                <option value="Azul">Azul</option>
+                <option value="Verde">Verde</option>
+                <option value="Amarillo">Amarillo</option>
+            </select><br><br>
+            <input type="checkbox" name="cookies" id="idCookies" required>
+            <label for="idCookies">Aceptar Términos y Condiciones</label>
+        </fieldset>
+        <button type="submit">Enviar</button>
+        <button type="reset">Reiniciar</button>
+    </form>
+</body>
+</html>

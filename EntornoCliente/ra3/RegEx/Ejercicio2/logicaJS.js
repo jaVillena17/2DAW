@@ -21,20 +21,16 @@ function verResultado(){
     let boton = document.getElementById("botonRes");
     //Si el parrafo está vacio, realizamos el ejercicio
     if(p.innerHTML.length==0){
-        /*
-        //Iniciamos nuestro usuario como predeterminado
-        let usuario = "undefined";
-        //Mediante un while, pedimos usuarios hasta que sea valido e introduzca la comprobación
-        while (usuario == "undefined"){
-            usuario = userCreation();
-            //Si la comprobación no es correcta, se devuelve el usuario al valor por defecto para continuar el bucle
-            if (!userValidator(usuario)) usuario == "undefined"
-        }*/
-        //Iniciamos la contraseña con el valor por defecto
-        let password = "undefined";
-        password = passCreation();
+        //Pedimos usuario y contraseña
+        let user = userCreation();
+        let pass = passCreation();
 
-        //p.innerHTML = `Usuario: ${usuario} \nContraseña: ${password}`;
+        if(pass == 0){
+            p.innerHTML = "La contraseña no coincide, vuelva a intentarlo"
+        }else{
+            p.innerHTML = `Usuario: ${user} <br>\nContraseña: ${pass}`;
+        }
+        
 
         //Cambioamos el texto que muestra el boton
         boton.value = "Ocultar Resultado";
@@ -66,6 +62,14 @@ function userValidator(email){
 
 function passCreation(){
     const passRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#$@!%&?])(?!.*? ).{8,16}$/;
-    let pass = "2!cArmel0";
-    alert(passRegex.test(pass))
+    let pass = "";
+    while(!passRegex.test(pass)){
+        pass = prompt("Introduzca su contraseña");
+        if(!passRegex.test(pass)){
+            alert("Formato de contraseña incorrecta, vuelva a intentarlo")
+        }
+    }
+    let pass2 = prompt("Vuelva a introducir la contraseña0");
+    if (pass == pass2) return pass
+    else return 0;
 }

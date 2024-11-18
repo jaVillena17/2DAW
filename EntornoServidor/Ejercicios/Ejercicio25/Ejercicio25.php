@@ -46,7 +46,7 @@
                 echo "<input type='file' name='imagen'><button type='submit'>Enviar</button></form>";
             }
         }else{
-            if($_FILES["imagen"]["type"] != "image/JPG" && $_FILES["imagen"]["type"] != "image/png"){
+            if($_FILES["imagen"]["type"] != "image/jpg" && $_FILES["imagen"]["type"] != "image/png" &&$_FILES["imagen"]["type"] != "image/jpeg"){
                 echo "Formato de extensión no permitido";
             }elseif($_FILES["imagen"]["size"] > 1024*1024*2){
                 echo "El tamaño del archivo supera el permitido";

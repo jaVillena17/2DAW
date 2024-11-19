@@ -4,8 +4,7 @@ function verEnunciado(){
     let boton = document.getElementById("botonEnun");
     //Si es parrafo está vacio, imprimos el enunciado y cambiamos que el boton muestre Ocultar Resultado
     if(p.innerHTML.length==0){
-        p.innerHTML = "Realiza la lógica de programación para que el usuario introduzca tres valores por teclado. Si al menos uno de ellos es mayor de 10, mostrar en una ventana emergente \"Alguno mayor que 10\". En caso contrario mostrar \"Ninguno es mayor que 10'\"";
-        console.log("Mensaje de prueba en consola")
+        p.innerHTML = "Realiza una aplicación web dónde se solicite por pantalla, mediante una ventana emergente, al usuario una lista de palabras separadas por coma. Crea una función que reciba como parámetro dicha lista. La función deberá agrupar las palabras que comienzan por la misma letra en objetos de la forma inicial: lista de palabras. No se debe distinguir entre mayúsculas y minúsculas. Las palabras deben mantener su tipo de mayúsculas o minúsculas."
         boton.value = "Ocultar Enunciado"
     }
     //En el caso de que el parrafo tenga algo, lo reiniciamos
@@ -21,19 +20,13 @@ function verResultado(){
     let boton = document.getElementById("botonRes");
     //Si el parrafo está vacio, realizamos el ejercicio
     if(p.innerHTML.length==0){
-        //Iniciamos la cadena
-        let str = "pe.p-Guardiola@gmail.site";
-        //Iniciamos la reges
-        const regex = /^\w*\.?-?\w*\.?-?\w*@gmail(.com)?(.com.es)?(.site)?$/;
+        //Solicitamos que introduzca un código de cliente
+        let cad = prompt("Introduce una serie de palabras separadas por comas");
 
-        p.innerHTML =""+ regex.test(str);
-        
-        //do{
-            //str = prompt("Introduce du e-Mail");
 
-        //}while(!regex.test(str))
+        p.innerHTML = "";
 
-        //Cambioamos el texto que muestra el boton
+        //Cambiamos el texto que muestra el boton
         boton.value = "Ocultar Resultado";
     }
     //Si el ejercicio ya está resuelto y en pantalla, lo reiniciamos
@@ -41,5 +34,4 @@ function verResultado(){
         p.innerHTML="";
         boton.value = "Ver Enunciado";
     }
-    
 }

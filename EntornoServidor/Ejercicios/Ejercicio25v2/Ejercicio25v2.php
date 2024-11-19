@@ -7,7 +7,6 @@
 </head>
 <body>
     <?php
-
         //Comprobamos que se ha hecho post
         if($_SERVER["REQUEST_METHOD"] === "POST"){
             //Si no hay imagen es porque estams en el formulario de acceso de usuario
@@ -15,7 +14,10 @@
                 $nombre = $_POST["user"];
                 //Si verificamos que usuario y contraseña son correctos
                 if($_POST["user"] == "user1" && $_POST["pass"] == "1234"){
-                    header("Location:form_bienve25.php?user=$nombre");
+                    session_start();
+                    $_SESSION["user"] = $_POST["user"];
+                    header("Location:form_bienve25.php");
+                    //header("Location:form_bienve25.php?user=$nombre");
                 }
             }else{
                 //Si no, estamos en el segundo formulario, en el de subida de imagen

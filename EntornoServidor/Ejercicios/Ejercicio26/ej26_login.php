@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -26,9 +34,22 @@
     </style>
 </head>
 <body>
-    <h1>Ejercicio 25v2. Javier Villena Fernández</h1>
+    <h1>Ejercicio 26. Javier Villena Fernández</h1>
     <hr>
-    <form action="Ejercicio25v2.php" method="POST">
+    <?php 
+        //Comprobamos que se ha hecho post
+        if($_SERVER["REQUEST_METHOD"] === "POST"){
+            //Si verificamos que usuario y contraseña son correctos
+            if($_POST["user"] == "user1" && $_POST["pass"] == "1234"){
+                //Iniciamos la sesión
+                session_start();
+                $_SESSION["user"] = $_POST["user"];
+                //Enviamos a la web de bienvenida
+                header("location:ej26_bienvenida.php");
+            }
+        }
+    ?>
+    <form action="ej26_login.php" method="POST">
         <fieldset>
             <legend>Login</legend>
             <label for="userID">Usuario</label><br>
@@ -39,7 +60,7 @@
             <button type="submit">Enviar</button>
         </fieldset>
     </form>
-
-    
+</body>
+</html>
 </body>
 </html>

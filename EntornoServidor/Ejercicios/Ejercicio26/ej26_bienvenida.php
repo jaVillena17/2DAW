@@ -22,24 +22,33 @@
             width: 80%;
             border: 1px solid black;
         }
+        a{
+            display: block;
+            border: 1px solid black;
+            background-color: aquamarine;
+            border-radius: 10px;
+            margin: 0 auto;
+            width: 70%;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
-    <h1>Ejercicio 25v2. Javier Villena Fernández</h1>
+    <h1>Ejercicio 26. Javier Villena Fernández</h1>
     <hr>
-    <form action="Ejercicio25v2.php" method="POST" enctype="multipart/form-data">
+    <form action="Ejercicio26.php" method="POST" enctype="multipart/form-data">
         <fieldset>
-            <legend>Login</legend>
-    <!-- Código php para que salga el nombre del usuario-->
+            <legend>Hola!</legend>
             <?php
-            session_start();
-            echo "Bienvenido,<b> ".$_SESSION["user"]."</b><hr>";
+                session_start();
+                echo "Bienvenido, <b>".$_SESSION["user"]."</b><hr>"
             ?>
-            <label for="imgID">Subir imagen:</label><br><br>
-            <input type="file" name="imagen" id="imgID" required><br><br>
-            <button type="submit">Enviar</button>
+            <a href="ej26_datos_personales.php">Datos Personales</a><br>
+            <a href="ej26_pag_adicional">Página Adicional</a>
         </fieldset>
-        
     </form>
 </body>
 </html>

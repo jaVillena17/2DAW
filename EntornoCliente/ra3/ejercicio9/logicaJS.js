@@ -77,9 +77,9 @@ function verResultado(){
                 p.innerHTML = `La cadena de caracteres del primero al quinto es: ${cadena.substring(0,5)}`;
                 break;
             case 16:
-                let array = cadena.split("  ");
+                let array = cadena.split(" ");
 
-                p.innerHTML = `El arra: ${cadena.lastIndexOf("a")}`;
+                p.innerHTML = `${formato(cadena)}`;
                 break;
             
         }
@@ -94,4 +94,25 @@ function verResultado(){
         p.innerHTML="";
         boton.value = "Ver Enunciado";
     }
+}
+//Función que le formatea una cadena dejandolo solo con un espacio entre palabras
+function formato(cadena){
+    //Creamos la nueva cadena donde meteremos los valores y un contador de especios
+    let nueva = "";
+    let contadorEspacios = 0;
+
+    //Recorremos el array 
+    for(let i = 0; i < cadena.length; i++){
+        //Si es una letra, la metemos en la nueva cadena y ponemos el contador a 0 otra vez por si acaso
+        if(cadena.charAt(i) != " "){
+            nueva += cadena.charAt(i);
+            contadorEspacios=0;
+        }//Si es un espacio y el contador de espacio es 0, entonces significa que que no se ha metido ningun espacio ates, asi que lo metemos y aumentamos
+        //el contador. Si el contador fuera 1 y hubiese más espacios, no haría nada hasta que encontrase la siguiente letra
+        else if(cadena.charAt(i) == " " && contadorEspacios == 0){
+            nueva += cadena.charAt(i);
+            contadorEspacios++;
+        }
+    }
+    return nueva;
 }

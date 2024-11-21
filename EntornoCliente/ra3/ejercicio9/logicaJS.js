@@ -69,7 +69,18 @@ function verResultado(){
             case 13:
                 p.innerHTML = `La cadena resultante de sustituir 'lanzar' por 'coger' es: ${cadena.replace("lanzar", "coger")}`;
                 break;
-            
+            case 14:
+                //Si no hubiese coincidencia, devolvería -1
+                p.innerHTML = `El índice de los caracteres 'ste' en la cadena es: ${cadena.search("ste")}`;
+                break;
+            case 15:
+                p.innerHTML = `La cadena de caracteres del primero al quinto es: ${cadena.substring(0,5)}`;
+                break;
+            case 16:
+                let array = cadena.split("  ");
+
+                p.innerHTML = `El arra: ${cadena.lastIndexOf("a")}`;
+                break;
             
         }
 

@@ -39,8 +39,14 @@
     <?php 
         //Comprobamos que se ha hecho post
         if($_SERVER["REQUEST_METHOD"] === "POST"){
+            if(isset($_POST["close"])){
+                session_start();
+                session_destroy();
+                session_unset();
+                echo "Sesión cerrada con éxito";
+            }
             //Si verificamos que usuario y contraseña son correctos
-            if($_POST["user"] == "user1" && $_POST["pass"] == "1234"){
+            elseif($_POST["user"] == "user1" && $_POST["pass"] == "1234"){
                 //Iniciamos la sesión
                 session_start();
                 $_SESSION["user"] = $_POST["user"];

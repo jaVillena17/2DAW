@@ -47,8 +47,13 @@
                 echo "Bienvenido, <b>".$_SESSION["user"]."</b><hr>"
             ?>
             <a href="ej26_datos_personales.php">Datos Personales</a><br>
-            <a href="ej26_pag_adicional">Página Adicional</a>
+            <a href="ej26_pag_adicional.php">Página Adicional</a>
         </fieldset>
+    </form>
+
+    <form action="ej26_login.php" method="POST">
+        <input type="checkbox" name="close" id="closeid" value="cerrar" checked style="display: none">
+        <button type="submit">Cerrar sesión</button>
     </form>
 </body>
 </html>

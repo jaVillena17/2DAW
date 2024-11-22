@@ -47,8 +47,25 @@
             <input type="text" name="pro" id="proID"><br><br>
 
             <button type="submit">Enviar</button>
+            <?php 
+                session_start();
+                if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nombre"])){
+                    $_SESSION["nombre"] = htmlspecialchars($_POST["nombre"]);
+                    $_SESSION["apellido"] = htmlspecialchars($_POST["ape"]);
+                    $_SESSION["edad"] = htmlspecialchars($_POST["edad"]);
+                    $_SESSION["email"] = htmlspecialchars($_POST["email"]);
+                    $_SESSION["provincia"] = htmlspecialchars($_POST["pro"]);
+                    echo "<p style='text-align: center'>Datos subidos con éxito</p>";
+                }
+
+            ?>
         </fieldset>
     </form>
-
+    <a href="ej26_bienvenida.php">Pagina Principal</a><br>
+    <a href="ej26_pag_adicional.php">Página Adicional</a>
+    <form action="ej26_login.php" method="POST">
+        <input type="checkbox" name="close" id="closeid" value="cerrar" checked style="display: none">
+        <button type="submit">Cerrar sesión</button>
+    </form>
 </body>
 </html>

@@ -1,0 +1,29 @@
+p{
+    font-size: 16px;
+    line-height: 1.5;
+}
+main h1, main h2{
+    color: #336699;
+}
+a{
+    color: #CC3300;
+    text-decoration: none;
+}
+ul .destacado{
+    list-style-type: square;
+}
+button{
+    background-color: #FF9900;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    border: none;
+
+}
+button:hover{
+    background-color: #CC3300;
+}
+li{
+    font-weight: bold;
+}

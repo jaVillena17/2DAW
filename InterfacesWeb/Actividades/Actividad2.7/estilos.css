@@ -1,0 +1,47 @@
+p + p{
+    color: green;
+}
+p.text-indent{
+    text-indent: 30px;
+}
+p.text-align{
+    text-align: right;
+}
+p.text-decoration{
+    text-decoration: underline;
+}
+p.letter-spacing{
+    letter-spacing: 3px;
+}
+p.word-spacing{
+    word-spacing: 10px;
+}
+p.text-transform{
+    text-transform: uppercase;
+}
+p.line-height{
+    line-height: 70px;
+}
+td{
+    height: 100px;
+    border: 1px solid grey;
+}
+td:nth-child(1){
+    vertical-align: top;
+}
+td:nth-child(2){
+    vertical-align: middle;
+}
+td:nth-child(3){
+    vertical-align: bottom;
+}
+/* Mismo alineamiento pero haciendo uso de las clases a b y c en lugar de nth-child() que creo que no está en los apuntes
+td.a{
+    vertical-align: top;
+}
+td.b{
+    vertical-align: middle;
+}
+td.c{
+    vertical-align: bottom;
+}*/

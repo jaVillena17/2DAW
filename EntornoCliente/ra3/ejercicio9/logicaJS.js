@@ -77,15 +77,31 @@ function verResultado(){
                 p.innerHTML = `La cadena de caracteres del primero al quinto es: ${cadena.substring(0,5)}`;
                 break;
             case 16:
-                let array = cadena.split(" ");
-
-                p.innerHTML = `${formato(cadena)}`;
+                let array = formato(cadena).split(" ");
+                p.innerHTML = `El array con cada palabra de la cadena es: ${array}`;
                 break;
-            
+            case 17:
+                //Si String.search encuentra la coindicencia y devuelve 0, significa que esa coincidencia empieza en el indice 0
+                p.innerHTML = (cadena.search("Consiste en") == 0) ? `La cadena comienza por 'Consiste en'` : `La cadena no comienza por 'Consiste en'`;
+                break;
+            case 18:
+                p.innerHTML = `Los siete caracteres a partir del segundo caracter son: ${cadena.substring(1,8)}`;
+                break;
+            case 19:
+                p.innerHTML = `Todos los caracteres de la cadena a partir del cuarto caracter son: ${cadena.substring(3)}`;
+                break;
+            case 20:
+                p.innerHTML = `Todos los caracteres de la cadena en mayúscula son: ${cadena.toUpperCase()}`;
+                break;
+            case 21:
+                p.innerHTML = `Todos los caracteres de la cadena en minúscula son: ${cadena.toLowerCase()}`;
+                break;
+            case 22:
+                p.innerHTML = `<b>Cadena Original:</b>${cadena} <br><b>Cadena formateada:</b> ${formato(cadena)}<br>HTML de base ignora los espacios de la cadena original, así que al imprimirlo sale igual, pero es diferente. Dejo un console.log como prueba`;
+                console.log("Cadena original: "+cadena);
+                console.log("Cadena modificada: "+formato(cadena));
+                break;
         }
-
-        
-
         //Cambiamos el texto que muestra el boton
         boton.value = "Ocultar Resultado";
     }

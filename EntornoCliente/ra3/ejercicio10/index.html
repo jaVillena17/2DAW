@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 9</title>
+    <title>Ejercicio 10</title>
     <script type="text/JavaScript" src="logicaJS.js"></script>
+    <style>
+        input{
+            display: inline-block;
+        }
+    </style>
+
 </head>
 <body>
     <!-- Esto solo se muestra si no funciona JavaScript-->
@@ -23,6 +29,7 @@
         <legend>Resolución</legend>
         <p id="resolucionID"></p>
     </fieldset>
-    <input type="button" name="botonEnunciado" value="Ver Resultado" id="botonRes" onclick="verResultado();"><br>
+    <input type="button" name="botonEnunciado" value="Codificar" id="botonRes" onclick="verResultado(0);">
+    <input type="button" name="botonEnunciado" value="Descodificar" id="botonRes" onclick="verResultado(1);"><br>
 </body>
 </html>

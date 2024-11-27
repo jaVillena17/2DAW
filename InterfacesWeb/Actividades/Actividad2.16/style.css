@@ -27,15 +27,21 @@ img{
     margin-top: -10px;
     margin-left: 10px;
 }
+/*Lo que comenté en clase, en el microsoft preview sale bien, como en la imagen del ejercicio, pero ni en el navegador ni en codepen sale asi. Lo único que he conseguido que se vea parecido es quitando el float y reduciendo el tamaño de la letra, dejo esa versión comentada*/
 .nombre{
     float: right;
     font-weight: bold;
 }
+/*
+.nombre{
+    float: none;
+    font-size: 13px;
+}*/
 .precio{
     float: right;
     color: #666;
     font-size: 14px;
-    margin: 10px 0px;
+    margin: 5px 0px;
     clear: both;
 }
 .colores{

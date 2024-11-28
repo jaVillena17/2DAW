@@ -24,3 +24,6 @@ p.partido{
 div.combo{
     margin: 0px 20px;
 }
+p.partido:nth-child(even){
+    background-color: rgb(250, 214, 225);
+}

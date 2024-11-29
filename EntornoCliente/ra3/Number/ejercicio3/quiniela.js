@@ -1,21 +1,5 @@
-function verEnunciado(){
-    //Creamos una variable donde señalamos el parrafo y el boton que modificaremos
-    let p = document.getElementById("enunciadoID");
-    let boton = document.getElementById("botonEnun");
-    //Si es parrafo está vacio, imprimos el enunciado y cambiamos que el boton muestre Ocultar Resultado
-    if(p.innerHTML.length==0){
-        p.innerHTML = "Realiza una aplicación web que simule el comportamiento del juego de La Primitiva propiedad de Loterías y Apuestas del Estado.";
-        console.log("Mensaje de prueba en consola")
-        boton.value = "Ocultar Enunciado"
-    }
-    //En el caso de que el parrafo tenga algo, lo reiniciamos
-    else{
-        p.innerHTML="";
-        boton.value = "Ver Enunciado"
-    }
-}
-
-function verResultado(){
+let quinielaGenerada;
+function verResultadoQuiniela(){
     //Creamos una variable donde señalamos el parrafo y el boton que modificaremos
     let p = document.getElementById("resolucionID");
     let boton = document.getElementById("botonRes");
@@ -26,9 +10,10 @@ function verResultado(){
         //Definimos un array con los partidos
         const partidos = ["Valencia-Betis","At.Madrid-Alavés","Las Palmas-Mallorca","Girona-Espanyol","Celta-Barcelona","Osasuna-Villarreal","Sevilla-Rayo Vallecano","Leganés-Real Madrid", "Granada-Cádiz","Córdoba-R.Zaragoza","Málaga-Racing de Santander","Deportivo-Sporting","Huesca-Castellón","Elche-Oviedo", "Athletic Club-Real Sociedad"];
         //Llamamos a la función que genera la quiniela con un numero x de bloques
-        const quiniela = generarQuiniela(numero);
+        quinielaGenerada = generarQuiniela(numero);
         //Imprimimos la quiniela
-        p.innerHTML = printQuiniela(quiniela, partidos)
+        p.innerHTML = printQuiniela(quinielaGenerada, partidos);
+        resultado();
 
         //Cambiamos el texto que muestra el boton
         boton.value = "Ocultar Resultado";
@@ -77,11 +62,11 @@ function printCombo(combo, index){
         for(let i = 0; i < combo.length; i++) {
             cadena +="<p>"
             if(combo[i] == 1){
-                cadena += "<span class='marked'>1</span><span>X</span><span>2</span>"
+                cadena += "<span class='marked'>1</span><span class='quiniela'>X</span><span class='quiniela'>2</span>"
             }else if(combo[i] == 2){
-                cadena += "<span>1</span><span>X</span><span class='marked'>2</span>"
+                cadena += "<span class='quiniela'>1</span><span class='quiniela'>X</span><span class='marked'>2</span>"
             }else if(combo[i] == 3){
-                cadena += "<span>1</span><span class='marked'>X</span><span>2</span>"
+                cadena += "<span class='quiniela'>1</span><span class='marked'>X</span><span class='quiniela'>2</span>"
             }
             cadena += "</p>"
         }
@@ -121,13 +106,13 @@ function printPleno15(quiniela, partidos){
     for (let i = 0; i < quiniela[quiniela.length-1].length; i++) {
         cadena += "<p>"
         if(quiniela[quiniela.length-1][i] == 0){
-            cadena += "<span class='marked'>0</span><span>1</span><span>2</span><span>M</span>"
+            cadena += "<span class='marked'>0</span><span class='quiniela'>1</span><span class='quiniela'>2</span><span class='quiniela'>M</span>"
         }else if(quiniela[quiniela.length-1][i] == 1){
-            cadena += "<span>0</span><span class='marked'>1</span><span>2</span><span>M</span>"
+            cadena += "<span class='quiniela'>0</span><span class='marked'>1</span><span class='quiniela'>2</span><span class='quiniela'>M</span>"
         }else if(quiniela[quiniela.length-1][i] == 2){
-            cadena += "<span>0</span><span>1</span><span class='marked'>2</span><span>M</span>"
+            cadena += "<span class='quiniela'>0</span><span class='quiniela'>1</span><span class='marked'>2</span><span class='quiniela'>M</span>"
         }else if(quiniela[quiniela.length-1][i] == 3){
-            cadena += "<span>0</span><span>1</span><span>2</span><span class='marked'>M</span>"
+            cadena += "<span class='quiniela'>0</span><span class='quiniela'>1</span><span class='quiniela'>2</span><span class='marked'>M</span>"
         }
         cadena += "</p>";
     }
@@ -140,4 +125,25 @@ function pedirNumero(){
     let numero = prompt("Introduzca el número de combinaciones del boleto");
     if(numero >= 1 && numero <= 8) return numero
     else return pedirNumero();
+}
+
+//De aqui para abajo las funciones correspondientes al ejercicio 3
+function resultado(){
+    //Creamos un array con los resultados de la jornadad que representa la quiniela
+    let resultados = [1,1,2,1,3,3,1,2,3,3,3,3,3,1,1,0];
+    //Creamos el array donde guardaremos los aciertos de cada bloque
+    let aciertos = [];
+    
+    //Recorremos la matriz con la quiniela y sumamos los aciertos, sin contar el pleno al 15
+    //Preguntar como se suma el pleno al 15
+    for (let i = 0; i < quinielaGenerada.length; i++) {
+        let contadorAciertos = 0;
+        for (let j = 0; j < quinielaGenerada[i].length; j++) {
+            if(quinielaGenerada[i][j] == resultados[j]){
+                contadorAciertos++;
+            }
+        }
+        aciertos.push(contadorAciertos);
+    }
+    console.log(aciertos);
 }

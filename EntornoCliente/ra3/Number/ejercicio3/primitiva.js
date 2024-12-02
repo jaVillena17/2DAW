@@ -1,7 +1,8 @@
+let boleto;
 function verEnunciado(){
     //Creamos una variable donde señalamos el parrafo y el boton que modificaremos
     let p = document.getElementById("enunciadoID");
-    let boton = document.getElementById("botonEnun");
+    let boton = document.getElementById("botPrimitiva");
     //Si es parrafo está vacio, imprimos el enunciado y cambiamos que el boton muestre Ocultar Resultado
     if(p.innerHTML.length==0){
         p.innerHTML = "Realiza una aplicación web que simule el comportamiento del juego de La Primitiva y la Quiniela propiedad de Loterías y Apuestas del Estado.";
@@ -18,19 +19,19 @@ function verEnunciado(){
 function verResultadoPrimitiva(){
     //Creamos una variable donde señalamos el parrafo y el boton que modificaremos
     let p = document.getElementById("resolucionID");
-    let boton = document.getElementById("botonRes");
+    let boton = document.getElementById("botPrimitiva");
     //Si el parrafo está vacio, realizamos el ejercicio
     if(p.innerHTML.length==0){
         //Solicitamos el número de combinaciones
         let numero = pedirNumero();
 
         //Llamamo a la función
-        const boleto = generarBoleto(numero);
+        boleto = generarBoleto(numero);
 
         p.innerHTML = printBoleto(boleto);
 
         //Cambioamos el texto que muestra el boton
-        boton.value = "Ocultar Resultado";
+        boton.outerHTML = `<input type="button" name="botonEnunciado" value="Comprobar Boletos" id="botPrimitiva" onclick="testPrimitiva();"><input type="button" name="botonEnunciado" value="Introducir a manita" id="botPrimitiva2" onclick="verBoletoManual();">`
     }
     //Si el ejercicio ya está resuelto y en pantalla, lo reiniciamos
     else{
@@ -90,4 +91,27 @@ function pedirNumero(){
 }
 
 //De aqui para abajo las funciones correspondientes al ejercicio 3
-
+function testPrimitiva(){
+    //Generamos la combinación aleatoria
+   let winner = combinacion();
+   let reWinner = reintegro();
+   //Contamos el numero de coincidencias de cada combinacion y lo guardamos en un array en orden
+   let contadores = [];
+   for (let i = 0; boleto[i] != undefined; i++) {
+        let contador = 0;
+        
+        for (let j = 0; boleto[i][j] != undefined; j++) {
+            if(boleto[i][j] == winner[j]){
+                contador++;
+            }
+        }        
+        contadores.push(contador);
+   }
+    let p = document.getElementById("resolucionID");
+    p.innerHTML += `Combinación Ganadora: ${winner} Reintegro: ${reWinner}<br>Numero de aciertos por bloque:<br>`
+    for (let i = 0;contadores[i] != undefined; i++) {
+        p.innerHTML += `Combinación ${i+1}. Aciertos: ${contadores[i]}<br>`
+   }
+   let boton = document.getElementById("botPrimitiva");
+   boton.outerHTML = "";
+}

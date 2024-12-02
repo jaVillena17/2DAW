@@ -2,7 +2,7 @@ let quinielaGenerada;
 function verResultadoQuiniela(){
     //Creamos una variable donde señalamos el parrafo y el boton que modificaremos
     let p = document.getElementById("resolucionID");
-    let boton = document.getElementById("botonRes");
+    let boton = document.getElementById("botQuiniela");
     //Si el parrafo está vacio, realizamos el ejercicio
     if(p.innerHTML.length==0){
         //Solicitamos el número de combinaciones
@@ -13,10 +13,10 @@ function verResultadoQuiniela(){
         quinielaGenerada = generarQuiniela(numero);
         //Imprimimos la quiniela
         p.innerHTML = printQuiniela(quinielaGenerada, partidos);
-        resultado();
 
         //Cambiamos el texto que muestra el boton
-        boton.value = "Ocultar Resultado";
+        boton.outerHTML = `<input type="button" name="botonEnunciado" value="Comprobar Resultado" id="botQuiniela" onclick="resultado();">
+        <input type="button" name="botonEnunciado" value="Introducir Resultado a Mano" id="botQuiniela" onclick="resultadoManual();">`
     }
     //Si el ejercicio ya está resuelto y en pantalla, lo reiniciamos
     else{
@@ -133,9 +133,10 @@ function resultado(){
     let resultados = [1,1,2,1,3,3,1,2,3,3,3,3,3,1,1,0];
     //Creamos el array donde guardaremos los aciertos de cada bloque
     let aciertos = [];
+
+    let cadena = "";
     
-    //Recorremos la matriz con la quiniela y sumamos los aciertos, sin contar el pleno al 15
-    //Preguntar como se suma el pleno al 15
+    //Recorremos la matriz con la quiniela y sumamos los aciertos
     for (let i = 0; i < quinielaGenerada.length; i++) {
         let contadorAciertos = 0;
         for (let j = 0; j < quinielaGenerada[i].length; j++) {
@@ -145,5 +146,71 @@ function resultado(){
         }
         aciertos.push(contadorAciertos);
     }
-    console.log(aciertos);
+    //Creamos un array con los premios de cada bloque
+    let Listapremios = premio(aciertos);
+    //Imprimimos  los resultados de cada bloque
+    for (let i = 0; i < aciertos.length-1; i++){
+        cadena += `Bloque ${i+1}: Nº de aciertos: ${aciertos[i]} <b>Premio</b>: ${Listapremios[i]}€<br>`
+    }
+    //Mostramos la solucion y quitamos el boton
+    let p = document.getElementById("resolucionID");
+    p.innerHTML += cadena;
+    let boton = document.getElementById("botQuiniela");
+    boton.outerHTML = "";
+}
+//Funcion que devuelve un array con los premios monetarios por cada acierto
+function premio(aciertos){
+    let pleno = false;
+    //Pimero comprobamos el pleno al 15
+    if(aciertos[aciertos.length-1] == 2) pleno = true;
+    //Creamos un array donde guardaremos la cantidad economica del premio segun el número de aciertos
+    let premios = [];
+    for (let i = 0; i < aciertos.length-1; i++) {
+        if(pleno) aciertos[i]++
+        //Hacemos un switch para asignar los valores
+        switch(aciertos[i]){
+            case 15:
+                premios.push("76.527.504")
+                break;
+            case 14:
+                premios.push("4.782.969")
+                break;
+            case 13:
+                premios.push("170.820")
+                break;
+            case 12:
+                premios.push("13.140")
+                break;
+            case 11:
+                premios.push("1.643")
+                break;
+            case 10:
+                premios.push("299")
+                break;
+            default:
+                premios.push("0")
+                break;
+        }
+    }
+    return premios;
+}
+//Función para ver el numero de aciertos de forma manual. No da el dinero ni cuenta el pleno al 15 como uno
+function resultadoManual(){
+    let resultados = [1,1,2,1,3,3,1,2,3,3,3,3,3,1,1,0];
+    let intro = [];
+    let contador = 0;
+
+    for (let i = 1; i < 17; i++) {
+        intro.push(parseInt(prompt("Introduce el resultado de los partidos en orden. 1 Vitcoria Local, 2 Visitante, 3 empate")));
+    }
+    for (let i = 0; i < resultados.length; i++) {
+        if (resultados[i] == intro[i]){
+            contador++;   
+        } 
+    }
+    
+    let p = document.getElementById("resolucionID");
+    p.innerHTML = `Numero de aciertos: ${contador}`
+    let boton = document.getElementById("botQuiniela");
+    boton.outerHTML = "";
 }

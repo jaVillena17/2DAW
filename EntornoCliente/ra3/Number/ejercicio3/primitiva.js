@@ -1,4 +1,6 @@
 let boleto;
+let winner;
+let reWinner;
 function verEnunciado(){
     //Creamos una variable donde señalamos el parrafo y el boton que modificaremos
     let p = document.getElementById("enunciadoID");
@@ -73,7 +75,6 @@ function printBoleto(boleto){
             cadena += `<span class='numero'>${boleto[i][j]}</span>`
         }
         cadena += "</div>";
-        
     }
     cadena+=`<div class='reintegro'>Reintegro:<span class='re'> `+reintegro()+`</span></div></div>`;
     return cadena;
@@ -93,8 +94,8 @@ function pedirNumero(){
 //De aqui para abajo las funciones correspondientes al ejercicio 3
 function testPrimitiva(){
     //Generamos la combinación aleatoria
-   let winner = combinacion();
-   let reWinner = reintegro();
+    winner = combinacion();
+    reWinner = reintegro();
    //Contamos el numero de coincidencias de cada combinacion y lo guardamos en un array en orden
    let contadores = [];
    for (let i = 0; boleto[i] != undefined; i++) {
@@ -114,4 +115,27 @@ function testPrimitiva(){
    }
    let boton = document.getElementById("botPrimitiva");
    boton.outerHTML = "";
+}
+
+function verBoletoManual(){
+    let numeros = [];
+    let reintegroTest = false;
+    for (let i = 0; i < 6; i++) {
+        numeros.push(parseInt(prompt("Introduce numero")));
+    }
+    numeros.push(prompt("Reintegro"));
+    let contador = 0;
+    for (let i = 0; i < numeros.length-1; i++) {
+        if(numeros[i] == winner[i]) contador++;
+    }
+    if(numeros[numeros.length-1] == reWinner){
+        reintegroTest = false;
+    }
+
+
+    let p = document.getElementById("resolucionID");
+    p.innerHTML = `Aciertos: ${contador}`;
+
+    let boton = document.getElementById("botPrimitiva2");
+    boton.outerHTML = "";
 }

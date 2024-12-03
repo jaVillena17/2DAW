@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+ul{
+    width: 33%;
+    float: left;
+}
+li{
+    margin-left: 40px;
+}
+ul.ul_avanzados b, ul.ul_how b{
+    color: purple;
+}
+
+@media (max-width:1200px){
+    ul.ul_grados{
+        width: 30%;
+        float: left;
+    }
+    ul.ul_avanzados, ul.ul_how{
+        display: inline-block;
+        width: 70%;
+    }
+    ul.ul_grados li, ul.ul_grados b{
+        display: block;
+    }
+}
+
+@media (max-width: 600px){
+    *{
+        font-family: 'Times New Roman', Times, serif;
+    }
+    h1{
+        font-size: 1.5em;
+    }
+    h2{
+        font-size: 1.2em;
+    }
+}

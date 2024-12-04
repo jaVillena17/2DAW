@@ -1,0 +1,21 @@
+ul{
+    display: block;
+}
+li{
+    width: 100px;
+    margin: 0 auto;
+}
+li[personalizado="fruta"]{
+    background-color: greenyellow;
+    color: white;
+}
+li[personalizado="verdura"]{
+    background-color: orange;
+    color: black;
+}
+ul{
+    list-style: inside;
+}
+li[personalizado="fruta"]::marker{
+    color: black;
+}

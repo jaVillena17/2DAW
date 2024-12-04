@@ -25,6 +25,9 @@ ul.ul_avanzados b, ul.ul_how b{
     ul.ul_grados li, ul.ul_grados b{
         display: block;
     }
+    ul.ul_how b{
+        text-decoration: underline;
+    }
 }
 
 @media (max-width: 600px){

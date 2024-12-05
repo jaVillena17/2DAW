@@ -1,5 +1,6 @@
 let boleto;
 let winner;
+let rein;
 let reWinner;
 function verEnunciado(){
     //Creamos una variable donde señalamos el parrafo y el boton que modificaremos
@@ -109,6 +110,7 @@ function testPrimitiva(){
         contadores.push(contador);
    }
     let p = document.getElementById("resolucionID");
+    p.innerHTML += `<hr><h3>Combinación Ganadora:</h3><br>`+printBoleto([winner]);
     p.innerHTML += `Combinación Ganadora: ${winner} Reintegro: ${reWinner}<br>Numero de aciertos por bloque:<br>`
     for (let i = 0;contadores[i] != undefined; i++) {
         p.innerHTML += `Combinación ${i+1}. Aciertos: ${contadores[i]}<br>`
@@ -134,7 +136,7 @@ function verBoletoManual(){
 
 
     let p = document.getElementById("resolucionID");
-    p.innerHTML = `Aciertos: ${contador}`;
+    p.innerHTML += `Aciertos: ${contador}`;
 
     let boton = document.getElementById("botPrimitiva2");
     boton.outerHTML = "";

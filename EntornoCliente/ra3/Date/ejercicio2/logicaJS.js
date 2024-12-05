@@ -51,7 +51,7 @@ function verResultado(){
 
 function askDate(){
     //Creamos la expresion regular con el formato de la fecha
-    const regEx = /^[\w]{4}\/[\w]{2}\/[\w]{2}\s[\w]{2}:[\w]{2}:[\w]{2}$/;
+    const regEx = /^[\d]{4}\/[\d]{2}\/[\d]{2}\s[\d]{2}:[\d]{2}:[\d]{2}$/;
     //Pedimos la fecha
     let fecha = prompt("Introduce la fecha en formato XXXX/YY/ZZ HH:MM:SS");
     let date;

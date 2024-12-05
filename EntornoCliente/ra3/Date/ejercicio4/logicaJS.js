@@ -23,18 +23,8 @@ function verResultado(){
     if(p.innerHTML.length==0){
         //Solicitamos una fecha
         const date = askDate();
-        //Creamos arrayscon el nombre del mes y el numero de dias
-        let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-        let dias = [31,28,31,30,31,30,31,31,30,31,30,31];
-        //Si es febrero y bisiesto, sumamos un dia
-        if(date.getMonth() == 1 && bisiesto(date)){
-            p.innerHTML = `El mes de ${meses[date.getMonth()]} tiene ${dias[date.getMonth()]+1} dias`
-        }else{
-            p.innerHTML = `El mes de ${meses[date.getMonth()]} tiene ${dias[date.getMonth()]} dias`
-        }
-
-        
-        
+        //Imprimimos el resultado
+        p.innerHTML= getWeek(date);
     }
     //Si el ejercicio ya está resuelto y en pantalla, lo reiniciamos
     else{
@@ -43,6 +33,59 @@ function verResultado(){
     }
     
 }
+function getWeek(date){
+    //Creamos una fecha con el dia 1 del año
+    let firstDay = new Date(date); 
+    firstDay.setDate(1);
+    firstDay.setMonth(0);
+    //Creamos un array con las posiciones de los dias en los que emepezaría la primera semana del año
+    const weekStart = [1,2,3,4]
+    //Si el primer dia del año es uno de esos dias, calculamos la distancia entre la fecha introducida y el primer dia
+    if(weekStart.includes(firstDay.getDay())){
+        let diff = Math.abs(date - firstDay);
+        const week = 1000 * 60 * 60 * 24 * 7;
+        return `El número de semana para la fecha introducida es ${Math.floor(diff / week)+1}`;
+    }else{
+        //Si no, tenemos que valorar si el dia es antes o despues del primer dia en el que empezaria el año
+        //Si es antes, lo contamos como una semana del año anterior
+        if(getFirstDayOfWeekYear(date) > date.getDate()){
+            firstDay.setFullYear(firstDay.getFullYear()-1);
+            let diff = Math.abs(date - firstDay);
+            const week = 1000 * 60 * 60 * 24 * 7;
+            return `El número de semana para la fecha introducida es ${Math.floor(diff / week)+1} (ya que corresponde al año anterior)`;
+        }
+        //Si es el mismo dia o posterior, comenzamos la semana hay y calculamos
+        else{
+            firstDay.setDate(getFirstDayOfWeekYear(firstDay));
+            let diff = Math.abs(date - firstDay);
+            const week = 1000 * 60 * 60 * 24 * 7;
+            return `El número de semana para la fecha introducida es ${Math.floor(diff / week)+1} (ya que corresponde al año anterior)`;
+        }   
+    }
+}
+//Obtenemos el que seria el primer dia de la semana a partir de una fecha que es el primer dia del año
+function getFirstDayOfWeekYear(date){
+    const weekStart = [1,2,3,4];
+    const day = date.getDay();
+        switch(day){
+            case 0: 
+                return date.getDate() + 1;
+                break;
+            case 1,2,3,4:
+                return day;
+                break;
+            case 5:
+                return date.getDate()+3
+                break;
+            case 6:
+                return date.getDate()+2
+                break;
+            default:
+                return "error";
+                break;
+        }
+}
+
 
 function askDate(){
     //Creamos la expresion regular con el formato de la fecha

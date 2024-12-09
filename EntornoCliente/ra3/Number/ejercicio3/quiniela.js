@@ -3,6 +3,8 @@ function verResultadoQuiniela(){
     //Creamos una variable donde señalamos el parrafo y el boton que modificaremos
     let p = document.getElementById("resolucionID");
     let boton = document.getElementById("botQuiniela");
+    let boton2 = document.getElementById("botPrimitiva");
+    boton2.outerHTML = "";
     //Si el parrafo está vacio, realizamos el ejercicio
     if(p.innerHTML.length==0){
         //Solicitamos el número de combinaciones
@@ -23,7 +25,6 @@ function verResultadoQuiniela(){
         p.innerHTML="";
         boton.value = "Ver Enunciado";
     }
-    
 }
 //Función que nos genera una quiniela con un numero x de bloques
 function generarQuiniela(numero){
@@ -199,18 +200,44 @@ function resultadoManual(){
     let resultados = [1,1,2,1,3,3,1,2,3,3,3,3,3,1,1,0];
     let intro = [];
     let contador = 0;
+    let premio = 0;
 
     for (let i = 1; i < 17; i++) {
         intro.push(parseInt(prompt("Introduce el resultado de los partidos en orden. 1 Vitcoria Local, 2 Visitante, 3 empate")));
     }
-    for (let i = 0; i < resultados.length; i++) {
+    for (let i = 0; i < resultados.length-2; i++) {
         if (resultados[i] == intro[i]){
             contador++;   
         } 
     }
+    if(intro[14] == resultados[14] && intro[15] == resultados[15]) contador++;
+
+    switch(contador){
+        case 10:
+            premio = 299;
+            break;
+        case 11:
+            premio = 1643;
+            break;
+        case 12:
+            premio = 13140;
+            break;
+        case 13:
+            premio = 170820;
+            break;
+        case 14:
+            premio = 4782969;
+            break;
+        case 15:
+            premio = 75527504;
+            break;  
+        default:
+            premio = 0;
+            break;   
+    }
     
     let p = document.getElementById("resolucionID");
-    p.innerHTML = `Numero de aciertos: ${contador}`
+    p.innerHTML += `Numero de aciertos: ${contador}, <b>Premio</b>: ${premio}€`
     let boton = document.getElementById("botQuiniela");
     boton.outerHTML = "";
 }

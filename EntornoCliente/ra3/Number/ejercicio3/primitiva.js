@@ -23,6 +23,8 @@ function verResultadoPrimitiva(){
     //Creamos una variable donde señalamos el parrafo y el boton que modificaremos
     let p = document.getElementById("resolucionID");
     let boton = document.getElementById("botPrimitiva");
+    let boton2 = document.getElementById("botQuiniela");
+    boton2.outerHTML = "";
     //Si el parrafo está vacio, realizamos el ejercicio
     if(p.innerHTML.length==0){
         //Solicitamos el número de combinaciones
@@ -31,7 +33,7 @@ function verResultadoPrimitiva(){
         //Llamamo a la función
         boleto = generarBoleto(numero);
 
-        p.innerHTML = printBoleto(boleto);
+        p.innerHTML = printBoleto(boleto,0);
 
         //Cambioamos el texto que muestra el boton
         boton.outerHTML = `<input type="button" name="botonEnunciado" value="Comprobar Boletos" id="botPrimitiva" onclick="testPrimitiva();"><input type="button" name="botonEnunciado" value="Introducir a manita" id="botPrimitiva2" onclick="verBoletoManual();">`
@@ -68,7 +70,7 @@ function combinacion(){
     return combo;
 }
 
-function printBoleto(boleto){
+function printBoleto(boleto, num){
     let cadena = "<div class='containerPrimitiva'>";
     for (let i = 0; i < boleto.length; i++) {
         cadena += `<div class='combinacion'>${(i+1)+"."}`;
@@ -77,7 +79,13 @@ function printBoleto(boleto){
         }
         cadena += "</div>";
     }
-    cadena+=`<div class='reintegro'>Reintegro:<span class='re'> `+reintegro()+`</span></div></div>`;
+    if(num == 0){
+        rein = reintegro();
+        cadena+=`<div class='reintegro'>Reintegro:<span class='re'>${rein}</span></div></div>`;
+    }else{
+        cadena+=`<div class='reintegro'>Reintegro:<span class='re'>${reWinner}</span></div></div>`;
+    }
+    
     return cadena;
 }
 
@@ -99,6 +107,8 @@ function testPrimitiva(){
     reWinner = reintegro();
    //Contamos el numero de coincidencias de cada combinacion y lo guardamos en un array en orden
    let contadores = [];
+   let premios = [];
+   let aciertoReitegro = false;
    for (let i = 0; boleto[i] != undefined; i++) {
         let contador = 0;
         
@@ -109,11 +119,30 @@ function testPrimitiva(){
         }        
         contadores.push(contador);
    }
+   if(rein == reWinner){
+        aciertoReitegro = true;
+   }
+
+   for (let i = 0; contadores[i] != undefined; i++) {
+        if(aciertoReitegro){
+            if(contadores[i] < 3) premios.push(57)
+            else if(contadores[i] = 3) premios.push(1032 + 57)
+            else if(contadores[i] = 4) premios.push(55491 + 57)
+            else if(contadores[i] = 5) premios.push(2330636 + 57);
+            else if(contadores[i] = 6) premios.push(139838160);
+        }else{
+            if(contadores[i] < 3) premios.push(0)
+            else if(contadores[i] = 3) premios.push(1032)
+            else if(contadores[i] = 4) premios.push(55491)
+            else if(contadores[i] = 5) premios.push(2330636);
+            else if(contadores[i] = 6) premios.push(13983816);
+        }
+    
+   }
     let p = document.getElementById("resolucionID");
-    p.innerHTML += `<hr><h3>Combinación Ganadora:</h3><br>`+printBoleto([winner]);
-    p.innerHTML += `Combinación Ganadora: ${winner} Reintegro: ${reWinner}<br>Numero de aciertos por bloque:<br>`
+    p.innerHTML += `<hr><h3>Combinación Ganadora:</h3><br>`+printBoleto([winner],1);
     for (let i = 0;contadores[i] != undefined; i++) {
-        p.innerHTML += `Combinación ${i+1}. Aciertos: ${contadores[i]}<br>`
+        p.innerHTML += `Combinación ${i+1}. Aciertos: ${contadores[i]}. Premio: ${premios[i]}€<br>`
    }
    let boton = document.getElementById("botPrimitiva");
    boton.outerHTML = "";
@@ -122,6 +151,7 @@ function testPrimitiva(){
 function verBoletoManual(){
     let numeros = [];
     let reintegroTest = false;
+    
     for (let i = 0; i < 6; i++) {
         numeros.push(parseInt(prompt("Introduce numero")));
     }
@@ -131,10 +161,8 @@ function verBoletoManual(){
         if(numeros[i] == winner[i]) contador++;
     }
     if(numeros[numeros.length-1] == reWinner){
-        reintegroTest = false;
+        reintegroTest = true;
     }
-
-
     let p = document.getElementById("resolucionID");
     p.innerHTML += `Aciertos: ${contador}`;
 

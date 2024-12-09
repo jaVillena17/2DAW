@@ -1,0 +1,28 @@
+.containerPrimitiva{
+    width: 268px;
+    margin: 0 auto;
+}
+span.numero, span.re{
+    text-align: center;
+    display: inline-block;
+    border: 1px solid rgb(12, 105, 35);
+    color: rgb(12, 105, 35);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    margin: 5px;
+}
+span.re{
+    background-color: rgb(166, 230, 182);
+}
+.combinacion{
+    display: block;
+    width: 268px;
+    color: rgb(12, 105, 35);
+}
+.reintegro{
+    display: block;
+    color: rgb(12, 105, 35);
+    text-align: right;
+}

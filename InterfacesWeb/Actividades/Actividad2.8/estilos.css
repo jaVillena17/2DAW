@@ -1,0 +1,27 @@
+div.cta-container{
+    background-image: url(Windows-Xp-Wallpaper-1080P-66239.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 60px;
+    border: 1px solid black;
+}
+.cta-text{
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+button.cta-button{
+    background-color: #626bb2;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+button.cta-button:hover{
+    cursor: pointer;
+}

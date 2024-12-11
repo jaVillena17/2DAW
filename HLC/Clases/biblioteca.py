@@ -48,8 +48,6 @@ def printMenu():
     print("5.- Buscar libro")
     print("6.- Salir")
     
-
-
 op = 0
 
 while (op != 6):

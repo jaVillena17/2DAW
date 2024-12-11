@@ -1,0 +1,105 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+a{
+    text-decoration: none;
+    color :#FFF;
+}
+body{
+    margin: 0;
+}
+header{
+    height: 13vh;
+    background-color: #17ACD1;
+    padding-top: 10px;
+    padding-left: 40px;
+    display: flex;
+}
+a.header_logo{
+    height: 80%;
+    width: 65%;
+    display: flex;
+}
+img.header_logo{
+    height: 100%;
+}
+label.header_logo{
+    color: #FFF;
+    font-size: 60px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+nav.header_nav{
+    display: flex;
+}
+a.header_link{
+    font-weight: bold;
+    margin: 25px;
+    transition: 0.3s;
+}
+a.header_link:hover{
+    transform: scale(1.2);
+}
+section{
+    height: 72vh;
+}
+
+footer{
+    background-color: rgb(58, 56, 56);
+    height: 15vh;
+    display: flex;
+    color: white;
+}
+div.footer_mid{
+    width: 50%;
+    text-align: center;
+}
+div.footer_left, div.footer_right{
+    width: 25%;
+    
+}
+div.footer_left, div.footer_mid{
+    padding-top: 40px;
+    text-align: center;
+}
+div.footer_right{
+    padding: px 70px;
+}
+ul.social_links li img{
+    width: 19px;
+}
+ul.social_links{
+    list-style: none;
+}
+section.main_cta{
+    background-image: url(images/Main/landing/gastronomia_elMorche.gif);
+    background-size: cover;
+    background-position-y: -200px;
+    padding: 200px 150px;
+}
+h1.cta_text{
+    font-size: 30px;
+    margin: 0px;
+    color: #FFF;
+}
+button.btn_lang{
+    border: none;
+    width: 150px;
+    margin:  10px 30px;
+    height: 30px;
+    border-radius: 2px;
+    background-color: #17ACD1;
+    border: 1px solid #FFF;
+    font-weight: bold;
+    transition: 0.2s;
+}
+button.lang_es::before{
+    content: "🇪🇸 ";
+}
+button.lang_en::before{
+    content: "🇬🇧 ";
+}
+button:hover{
+    transform: scale(1.1);
+}

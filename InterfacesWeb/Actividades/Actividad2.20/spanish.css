@@ -1,0 +1,50 @@
+h1{
+    height: 0px;
+    width: 100%;
+    text-align: center;
+    color: #FFF;
+    text-decoration: underline;
+}
+section.spanish_cta{
+    background-image: url(images/Main/Spanish/Grey-Wallpaper.jpg);
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+}
+section.spanish_cta div{
+    height: 75%;
+    width: 20%;
+    background-color: #17ACD1;
+    margin: 0px auto;
+    border: 1px solid white;
+    padding: 10px;
+}
+section.spanish_cta div h3{
+    text-align: center;
+    color: #FFF;
+}
+section.spanish_cta div img{
+    width: 65%;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+section.spanish_cta div img:hover{
+    /*filter: invert(67%) sepia(54%) saturate(6426%) hue-rotate(5deg) brightness(90%) contrast(89%);*/
+    filter: invert(100%) sepia(0%) saturate(7488%) hue-rotate(86deg) brightness(118%) contrast(96%);
+}
+div.menu_contacto:hover{
+    cursor: url(https://cdn-icons-png.flaticon.com/128/2662/2662003.png), pointer;
+}
+div.menu_vino:hover{
+    cursor: url(https://cdn-icons-png.flaticon.com/128/2662/2662078.png), pointer;
+}
+div.menu_carta:hover{
+    cursor: url(https://cdn-icons-png.flaticon.com/128/2662/2662517.png), pointer;
+}
+hr{
+    color: white;
+}
+p{
+    text-align: center;
+}
+

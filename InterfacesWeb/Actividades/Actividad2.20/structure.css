@@ -15,11 +15,17 @@ header{
     padding-top: 10px;
     padding-left: 40px;
     display: flex;
+    flex-wrap: wrap;
+    min-width: 600px;
 }
 a.header_logo{
     height: 80%;
-    width: 65%;
+    width: 150px;
     display: flex;
+    margin-right: 55%;
+}
+a.header_logo label:hover{
+    cursor: pointer;
 }
 img.header_logo{
     height: 100%;
@@ -44,7 +50,6 @@ a.header_link:hover{
 section{
     height: 72vh;
 }
-
 footer{
     background-color: rgb(58, 56, 56);
     height: 15vh;
@@ -74,6 +79,7 @@ ul.social_links{
 }
 section.main_cta{
     background-image: url(images/Main/landing/gastronomia_elMorche.gif);
+    background-repeat: no-repeat;
     background-size: cover;
     background-position-y: -200px;
     padding: 200px 150px;
@@ -84,6 +90,7 @@ section.spanish_cta{
     display: flex;
     flex-wrap: wrap;
 }
+
 h1.cta_text{
     font-size: 30px;
     margin: 0px;
@@ -108,4 +115,79 @@ button.lang_en::before{
 }
 button:hover{
     transform: scale(1.1);
+    cursor: pointer;
+}
+
+@media (min-width: 1400px){
+    footer{
+        height: 10%;
+    }
+    section{
+        height: 741px;
+    }
+    label.header_logo{
+        font-size: 90px;
+    }
+    h1.cta_text{
+        font-size: 50px;
+        margin: 100px 0 30px 0;
+        color: #FFF;
+    }
+    button.btn_lang{
+        width: 300px;
+        margin: 10px 30px;
+        height: 40px;
+        transition: 0.2s;
+        font-size: 20px;
+    }
+    nav.header_nav a{
+        margin-top: 35px;
+        font-size: 25px;
+    }
+    section.spanish_cta div img{
+        margin: 50px;
+    }
+    form{
+        font-size: 20px;
+        padding: 60px;
+    }
+    input{
+        padding: 10px;
+        margin-bottom: 30px;
+    }
+    form button{
+        width: 400px;
+        height: 60px;
+    }
+    form, iframe{
+        margin-top: 70px;
+    }
+}
+
+@media (max-width:720px){
+    section.main_cta{
+        height: auto;
+        background-size: cover;
+    }
+    section{
+        height: auto;
+    }
+    header{
+        height: 200px;
+        text-align: center;
+    }
+    a.header_logo{
+        width: 100%;
+        height: 100px;
+        margin: 0 auto;
+    }
+    a.header_logo label{
+        font-size: 100px;
+    }
+    a.header_logo img, a.header_logo label{
+        margin: 0 20px;
+    }
+    nav.header_nav a{
+       margin: 0 15px;
+    }
 }

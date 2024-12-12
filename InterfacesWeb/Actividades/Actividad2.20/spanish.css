@@ -8,20 +8,19 @@ h1{
     color: #FFF;
     text-decoration: underline;
 }
-section.spanish_cta{
-    background-image: url(images/Main/Spanish/Grey-Wallpaper.jpg);
-    background-size: cover;
-    display: flex;
-    flex-wrap: wrap;
-}
 section.spanish_cta div{
     height: 75%;
     width: 20%;
     background-color: #17ACD1;
-    margin: 0px auto;
+    margin: 39px auto;
     border: 1px solid white;
     padding: 10px;
     text-align: center;
+    transition: 0.3s;
+    min-width: 273px;
+}
+section.spanish_cta div:hover{
+    transform: scale(1.1);
 }
 section.spanish_cta div h3{
     text-align: center;

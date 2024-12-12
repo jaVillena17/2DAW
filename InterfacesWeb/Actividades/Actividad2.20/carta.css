@@ -33,4 +33,9 @@ article div{
     font-weight: bold;
     background-color: #FFF;
     border-radius: 5px;
+    min-width: 250px;
+    transition: 0.3s;
+}
+article div:hover{
+    transform: scale(1.1);
 }

@@ -11,9 +11,10 @@ h1{
 section{
     height: auto;
     padding: 20px;
+    margin: 0 auto;
 }
 article{
-    margin-top: 30px;
+    margin: 30px auto;
     padding: 30px;
     display: flex;
     flex-wrap: wrap;
@@ -23,7 +24,6 @@ article img{
     width: 200px;
     height: 200px;
     border-radius: 10px;
-    border: 1px solid black;
 }
 article div{
     width: 30%;
@@ -33,4 +33,5 @@ article div{
     font-weight: bold;
     background-color: #FFF;
     border-radius: 20px;
+    min-width: 250px;
 }

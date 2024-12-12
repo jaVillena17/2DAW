@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiosko Fernando - Español</title>
+    <title>Vinos - Kioso Fernando</title>
     <link rel="stylesheet" href="structure.css">
-    <link rel="stylesheet" href="spanish.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu_book" />
+    <link rel="stylesheet" href="contacto.css">
 </head>
 <body>
     <header>
@@ -24,26 +23,28 @@
 
     <main>
         <section class="spanish_cta">
-            <h1>!Bienvenido! </h1>
-            <div class="menu_carta">
-                <h3>Nuestro Menú</h3><hr>
-                <img src="images/Main/Spanish/menu.svg" alt="Imagen de Tenedor y Cuchara">
-                <p>Sienta el placer de la gastronomía propia del Morche, nuestros famosos platos caseros y marisco fresco</p>
-            </div>
-                
-            <div class="menu_vino">
-                <h3>Carta de Vinos</h3><hr>
-                <img src="images/Main/Spanish/vino.svg" alt="Imagen Vaso de Vino">
-                <p>Deleitese con nuestra amplia gama de vinos, entre los que destacamos nuestros Rioja y Frizzante</p>
-            </div>
-                
-            <div class="menu_contacto">
-                <h3>Contacto y Reservas</h3><hr>
-                <img src="images/Main/Spanish/contacto.svg" alt="Imagen de carta">
-                <p>Contáctenos con total libertad por su vía preferida: Teléfono, e-mail o formulario online</p>
-            </div>
+            <form action="contacto.html" method="GET">
+                <h1>Reserva tu barra</h1><hr>
+                <label for="idNombre">Nombre</label><br>
+                <input type="text" name="nombre" id="idNombre" required><br>
 
+                <label for="idTlf">Teléfono</label><br>
+                <input type="text" name="tlf" id="idTlf" required pattern="\d{9}"><br>
+
+                <label for="idDate">Fecha</label><br>
+                <input type="date" name="fecha" id="idDate"><br>
+
+                
+
+
+
+                <button type="submit">RESERVAR</button>
+            </form>
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.365118670071!2d-3.988604100000001!3d36.7378062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72398abb3f7737%3A0x318c8c3c56229057!2sKiosco%20Fernando!5e0!3m2!1ses!2ses!4v1734021784428!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            
         </section>
+
     </main>
 
 

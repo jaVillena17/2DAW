@@ -1,0 +1,44 @@
+form{
+    background-color: #17ACD1;
+    margin: 40px auto;
+    border: 1px solid #FFF;
+    border-radius: 10px;
+    padding: 20px;
+    height: 80%;
+}
+hr{
+    color: #FFF;
+}
+h1{
+    text-align: center;
+}
+
+input[type="text"]{
+    width: 400px;
+    margin: 10px 0px;
+    border-radius: 5px;
+}
+
+input[type="date"]{
+    width: 200px;
+    margin: 10px 0px;
+    border-radius: 5px;
+}
+button{
+    display: block;
+    margin: 0 auto;
+}
+section{
+    display: flex;
+    flex-wrap: wrap;
+}
+iframe{
+    height: 80%;
+    margin: 40px auto;
+}
+form button{
+    margin-top: 40px;
+    border: none;
+    width: 80%;
+    height: 35px;
+}

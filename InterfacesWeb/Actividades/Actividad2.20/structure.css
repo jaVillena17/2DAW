@@ -78,6 +78,12 @@ section.main_cta{
     background-position-y: -200px;
     padding: 200px 150px;
 }
+section.spanish_cta{
+    background-image: url(images/Main/Spanish/Grey-Wallpaper.jpg);
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+}
 h1.cta_text{
     font-size: 30px;
     margin: 0px;

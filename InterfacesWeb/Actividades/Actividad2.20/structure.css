@@ -16,13 +16,11 @@ header{
     padding-left: 40px;
     display: flex;
     flex-wrap: wrap;
-    min-width: 600px;
 }
 a.header_logo{
     height: 80%;
     width: 150px;
     display: flex;
-    margin-right: 55%;
 }
 a.header_logo label:hover{
     cursor: pointer;
@@ -34,10 +32,11 @@ label.header_logo{
     color: #FFF;
     font-size: 60px;
     font-weight: bold;
-    margin-left: 10px;
 }
 nav.header_nav{
     display: flex;
+    position: absolute;
+    right: 40px;
 }
 a.header_link{
     font-weight: bold;
@@ -81,10 +80,15 @@ section.main_cta{
     background-image: url(images/Main/landing/gastronomia_elMorche.gif);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-y: -200px;
     padding: 200px 150px;
 }
 section.spanish_cta{
+    background-image: url(images/Main/Spanish/Grey-Wallpaper.jpg);
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+}
+section.contacto_cta{
     background-image: url(images/Main/Spanish/Grey-Wallpaper.jpg);
     background-size: cover;
     display: flex;
@@ -119,6 +123,12 @@ button:hover{
 }
 
 @media (min-width: 1400px){
+    section.main_cta{
+        height: 100vh;
+        background-size: auto;
+        background-position-x: right;
+        background-position-y: -200px;
+    }
     footer{
         height: 10%;
     }
@@ -166,8 +176,11 @@ button:hover{
 
 @media (max-width:720px){
     section.main_cta{
-        height: auto;
-        background-size: cover;
+        height: 100vh;
+        background-size: auto;
+        background-position-x: right;
+        background-position-y: -200px;
+        padding: 200px 50px 0px 50px;
     }
     section{
         height: auto;
@@ -175,11 +188,19 @@ button:hover{
     header{
         height: 200px;
         text-align: center;
+        padding-left: 0px;
+    }
+    .header_landing{
+        height: 150px;
+    }
+    footer{
+        height: 100px;
+        font-size: 10px;
     }
     a.header_logo{
+        display: block;
         width: 100%;
         height: 100px;
-        margin: 0 auto;
     }
     a.header_logo label{
         font-size: 100px;
@@ -189,5 +210,23 @@ button:hover{
     }
     nav.header_nav a{
        margin: 0 15px;
+    }
+    nav.header_nav{
+        position: relative;
+        margin: 0 auto;
+        right: inherit;
+    }
+    form, iframe{
+        width: 80%;
+    }
+    input[type = "text"]{
+        width: 90%;
+    }
+    h1.cta_text{
+        text-align: center;
+    }
+    button.btn_lang{
+        width: 80%;
+        margin-top: 30px;
     }
 }

@@ -6,9 +6,9 @@ h1{
     width: 100%;
     text-align: center;
     color: #FFF;
-    text-decoration: underline;
+    font-weight: normal;
 }
-section.spanish_cta div{
+section.spanish_cta a{
     height: 75%;
     width: 20%;
     background-color: #17ACD1;
@@ -19,17 +19,17 @@ section.spanish_cta div{
     transition: 0.3s;
     min-width: 273px;
 }
-section.spanish_cta div:hover{
+section.spanish_cta a:hover{
     transform: scale(1.1);
 }
-section.spanish_cta div h3{
+section.spanish_cta a h3{
     text-align: center;
     color: #FFF;
 }
-section.spanish_cta div img{
+section.spanish_cta a img{
     width: 65%;
 }
-section.spanish_cta div img:hover{
+section.spanish_cta a img:hover{
     /*filter: invert(67%) sepia(54%) saturate(6426%) hue-rotate(5deg) brightness(90%) contrast(89%);*/
     filter: invert(100%) sepia(0%) saturate(7488%) hue-rotate(86deg) brightness(118%) contrast(96%);
 }

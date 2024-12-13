@@ -6,7 +6,7 @@ h1{
     width: 100%;
     text-align: center;
     color: #FFF;
-    text-decoration: underline;
+    font-weight: normal;
 }
 section{
     height: auto;

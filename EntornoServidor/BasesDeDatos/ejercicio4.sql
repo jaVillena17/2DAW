@@ -47,5 +47,14 @@ left join jugadores on torneos_jugad.IdJugador = jugadores.IdJugador
 inner join ciudades on torneos.IdCiudad = ciudades.IdCiudad
 group by IdTorneo;
 /*9*/
-
-
+select jugadores.dniJugador, jugadores.IdJugador, concat(jugadores.nombreJugador, jugadores.ap1Jug),jugadores.telfJug, count(torneos_jugad.IdTorneo)
+from jugadores 
+left join torneos_jugad on jugadores.IdJugador = torneos_jugad.IdJugador
+group by jugadores.dniJugador
+having count(torneos_jugad.IdTorneo) = 0;
+/*10*/
+select NombreCiudad, provincia, count(IdTorneo)
+from ciudades
+left join torneos on ciudades.IdCiudad = torneos.IdCiudad
+group by NombreCiudad
+having count(IdTorneo) = 0;

@@ -1,0 +1,16 @@
+:root{
+    --primary-color: #3498db;
+    --secondary-color: white;
+    --radio-value: 10px;
+}
+main{
+    border: 1px solid black;
+    padding: 5px;
+}
+p{
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: var(--radio-value);
+    padding: 20px;
+    font-size: 18px;
+}

@@ -1,0 +1,82 @@
+/*Ejercicio Propuesto 1*/
+
+*{
+    box-sizing: border-box;
+}
+section.ep1_section{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section.ep1_section div{
+    height: 180px;
+    width: 180px;
+    min-width: 180px;
+    border: 1px solid black;
+    margin: 10px auto;
+    text-align: center;
+    padding-top: 80px;
+    transition: 0.3s ease-in-out, font-size 5s;
+}
+section.ep1_section div.backgroundColor:hover{
+    background-color: aquamarine;
+}
+section.ep1_section div.fontSize:hover{
+    font-size: 0.1px;
+}
+section.ep1_section div.fontColor:hover{
+    color: blueviolet;
+}
+section.ep1_section div.interlineado:hover{
+    line-height: 50px;
+}
+section.ep1_section div.borderRadius:hover{
+    border-radius: 10px;
+}
+section.ep1_section div.boxShadow:hover{
+    box-shadow: 10px 10px 20px black;
+}
+section.ep1_section div.opacity:hover{
+    opacity: 0.4;
+}
+section.ep1_section div.fantasia:hover{
+    background-color: blueviolet;
+    width: 100%;
+    text-shadow: 2px 2px black;
+    margin-top: 30px;
+}
+
+/*Ejercicio Propuesto 2*/
+section.ep2_section ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+section.ep2_section ul li{
+    height: 60px;
+    width: 110px;
+    text-align: center;
+    padding-top: 20px;
+    background-color: rgb(19, 18, 18);
+    transition: 0.3s;
+    overflow: hidden;
+}
+section.ep2_section ul li:first-child{
+    border-top: 3px solid aquamarine;
+}
+section.ep2_section ul li:nth-child(2){
+    border-top: 3px solid rgb(162, 73, 170);
+}
+section.ep2_section ul li:nth-child(3){
+    border-top: 3px solid rgb(42, 160, 38);
+}
+section.ep2_section ul li:nth-child(4){
+    border-top: 3px solid rgb(170, 160, 73);
+}
+section.ep2_section ul a{
+    text-decoration: none;
+    color: white;
+}
+section.ep2_section ul li:first-child:hover{
+    border-top: 60px solid aquamarine;
+}

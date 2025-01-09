@@ -1,7 +1,7 @@
     function min_max(){
         //Sacamos la altura y anchura de la ventana
         let width = window.innerWidth;
-        let height = screen.innerHeight;
+        let height = window.innerHeight;
         //Boton
         let boton = document.getElementById("butID");
         console.log(height);
@@ -16,8 +16,8 @@
             //Cambiamos el contenido del boton
             boton.innerHTML = "Minimizar";
         }else{
-            window.resizeBy(-200, -200)
-            window.moveBy(200,200)
+            window.resizeBy(-100, -100)
+            window.moveBy(50,50)
             boton.innerHTML = "Maximizar";
         }
     }

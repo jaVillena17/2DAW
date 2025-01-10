@@ -1,0 +1,13 @@
+div{
+    height: 200px;
+    padding: 10px;
+    text-align: center;
+}
+div.fixed{
+    width: 300px;
+    background-color: #3498db;
+}
+
+div.variable{
+    background-color: #e74c3c;
+}

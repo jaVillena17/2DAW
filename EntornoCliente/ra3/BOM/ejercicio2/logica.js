@@ -17,8 +17,8 @@
             //Cambiamos el contenido del boton
             boton.innerHTML = "Minimizar";
         }else{
-            window.resizeBy(-200, -200)
-            window.moveBy(200,200)
+            window.resizeBy(-100, -100)
+            window.moveBy(50,50)
             boton.innerHTML = "Maximizar";
         }
     }

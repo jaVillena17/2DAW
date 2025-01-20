@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+}
+h1 img{
+    width: 50px;
+    margin-right: 28%;
+}
+div.barra{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 50%;
+    height: 10vh;
+    background-color: rgb(184, 119, 58);
+    border: 1px solid black;
+}
+
+div.terraza{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    
+}
+
+div.Asiento{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(145, 86, 28);
+    border-radius: 5px;
+}
+
+div.mesa{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(185, 145, 108);
+    height: 15vh;
+    width: 10vw;
+    margin: 40px auto;
+    border: 1px solid rgb(145, 86, 28);
+    border-radius: 5px;
+}

@@ -5,4 +5,5 @@ function cambiarEstilo(){
     let rules = stylesheet.cssRules;
     //En la posicion 0 tenemos la primera y unica, a la que modificamos el color
     rules[0].style.color = "blue";
+    rules[0].style.fontSize = "25px"
 }

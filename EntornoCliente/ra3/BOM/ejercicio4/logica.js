@@ -1,6 +1,8 @@
 function randomWebmail(){
     let opcion = azar();
         if(opcion == 0){
+            //Hacemos la redireccion con location.assign
+            //Por algunta razón, me da muchisimos errores, así que tengo que ponerle un alert antes y otro despues, esperar un momento y darle tiempo a la redirección, no lo entiendo
             alert("Opción 0. Login Hotmail")
             window.location.assign("https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=170&ct=1737217734&rver=7.5.2211.0&wp=MBI_SSL&wreply=https%3a%2f%2foutlook.live.com%2fowa%2f%3fnlp%3d1%26cobrandid%3dab0455a0-8d03-46b9-b18b-df2f57b9e44c%26RpsCsrfState%3de841f081-faf5-5929-3df8-a1dc08947211&id=292841&aadredir=1&CBCXT=out&lw=1&fl=dob%2cflname%2cwld&cobrandid=ab0455a0-8d03-46b9-b18b-df2f57b9e44c");
             alert("Opción . Login Servicio de Hotmail")

@@ -34,10 +34,20 @@ div.mesa{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(185, 145, 108);
+    background-color: rgb(233, 192, 155);
     height: 15vh;
     width: 10vw;
     margin: 40px auto;
     border: 1px solid rgb(145, 86, 28);
     border-radius: 5px;
+}
+
+span{
+    text-align: center;
+    background-color: #FFF;
+    font-weight: bold;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    padding-top: 20px;
 }

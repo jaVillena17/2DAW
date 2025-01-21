@@ -1,27 +1,40 @@
 *{
     box-sizing: border-box;
 }
+body{
+    padding: 0px 40px
+}
 h1 img{
     width: 50px;
     margin-right: 28%;
 }
 div.barra{
+    
+    float: left;
     display: flex;
     flex-wrap: nowrap;
-    width: 50%;
+    width: 92%;
     height: 10vh;
     background-color: rgb(184, 119, 58);
     border: 1px solid black;
 }
 
 div.terraza{
+    clear: both;
+    float: left;
     display: flex;
     flex-wrap: wrap;
-    width: 50%;
+    width: 92%;
     
 }
 
-div.Asiento{
+div.mesa:nth-child(9), div.mesa:nth-child(10){
+    border-radius: 50%;
+    width: 10vw;
+    height: 20vh;
+} 
+
+.Asiento{
     width: 20%;
     display: flex;
     justify-content: center;
@@ -50,4 +63,36 @@ span{
     height: 60px;
     width: 60px;
     padding-top: 20px;
+}
+
+div.opciones{
+    float: right;
+    background-color: rgb(163, 231, 172);
+    height: 85vh;
+    width: 45%;
+    border-radius: 20px;
+    border: 1px solid black;
+    left: 0;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+div.op{
+    border: 1px solid black;
+    width: 25%;
+    height: 180px;
+    margin: 30px;
+    background-color: rgb(213, 238, 216);
+    border-radius: 20px;
+}
+div.opciones h1{
+    padding-top: 50px;
+    text-align: center;
+    width: 25%;
+    margin: 30px;
+}
+
+div.restaurante{
+    width: 50%;
+    float: left;
 }

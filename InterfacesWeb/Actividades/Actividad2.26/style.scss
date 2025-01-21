@@ -1,0 +1,24 @@
+$colores :#3498db #27ae60 #e74c3c #9b59b6 #f1c40f #2ecc71 #e67e22 #1abc9c #34495e #d35400;
+
+div.caja{
+    display: flex;
+    flex-wrap: wrap;
+}
+div.cuadro{
+    border: 1px solid black;
+    width: 7%;
+    height: 100px;
+    margin: 10px;
+
+    &:hover{
+        filter: brightness(0.9);
+    }
+}
+
+@for $i from 1 through 10 {
+    div.cuadro#{$i} {
+      background-color: nth($colores, $i);
+    }   
+}
+
+

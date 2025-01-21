@@ -40,6 +40,7 @@ div.mesa:nth-child(9), div.mesa:nth-child(10){
     justify-content: center;
     align-items: center;
     border: 1px solid rgb(145, 86, 28);
+    background-color: rgb(184, 119, 58);
     border-radius: 5px;
 }
 
@@ -55,7 +56,7 @@ div.mesa{
     border-radius: 5px;
 }
 
-span{
+.terraza span{
     text-align: center;
     background-color: #FFF;
     font-weight: bold;
@@ -63,6 +64,10 @@ span{
     height: 60px;
     width: 60px;
     padding-top: 20px;
+}
+div.com:hover, div.op:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 div.opciones{
@@ -73,23 +78,31 @@ div.opciones{
     border-radius: 20px;
     border: 1px solid black;
     left: 0;
-    padding: 30px;
+    padding-left: 5%;
+    padding-top: 5%;
     display: flex;
     flex-wrap: wrap;
 }
 div.op{
     border: 1px solid black;
     width: 25%;
-    height: 180px;
-    margin: 30px;
+    height: 20%;
+    margin: 15px;
     background-color: rgb(213, 238, 216);
     border-radius: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
 }
 div.opciones h1{
-    padding-top: 50px;
     text-align: center;
     width: 25%;
-    margin: 30px;
+    height: 20%;
+    margin: 15px;
+    padding-top: 30px;
+    text-decoration: underline;
 }
 
 div.restaurante{

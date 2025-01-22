@@ -135,3 +135,22 @@ function anadirProducto(){
     restaurante[indexMesa].addProducto(producto, idCliente);
 }
 
+function iniciarMesa(){
+    //Pedimos el número de clientes que se sientan en la mesa
+    let numClientes = parseInt(prompt("Introduce el número de clientes que se han sentado en la mesa"));
+
+    //Sacamos la ubicación de la mesa
+    let boton = document.querySelector("start");
+    let idMesa = boton.getAttribute("target");
+
+    //Mediante un bucle for, creamos tantos clientes como haya introducido y lo metemos en un array de clientes
+    let listaClientes = [];
+    for (let i = 0; i < numClientes; i++) {
+        let clicli = new Cliente(i+1);
+        listaClientes.push(clicli);
+    }
+    //Sacamos la posicion de la mesa en el array restaurante
+    let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
+
+    restaurante[indexMesa].clientes = listaClientes;
+}

@@ -30,16 +30,9 @@ class Mesa{
         //Creamos un nuevo array con la lista de los cliente
         let lista = this._clientes;
         //Buscamos la posicion del cliente con esa id dentro del array de clientes
-        let indexCliente = -1;
-        //Bucle for para buscar el indice
-        for (let i = 0; i < lista.length; i++) {
-            if(lista[i].idCliente == idCliente){
-                indexCliente = i;
-                break
-            }
-        }
+        let indexCliente = lista.map(cliente => cliente.idCliente).indexOf(idCliente)
         //Sacamos la lista de productos de ese cliente
-        let productosCliente = lista[i].productos;
+        let productosCliente = lista[indexCliente].productos;
 
         //Añadimos el producto a su array de productos, dependiendo de su nombre
         switch(nombreP){
@@ -47,18 +40,25 @@ class Mesa{
                 productosCliente.push(p_zamburinas);
                 break;
             case "mejillones":
-                productosCliente.push(p_zamburinas);
+                productosCliente.push(p_mejillones);
                 break;
             case "gambas":
-                productosCliente.push(p_zamburinas);
+                productosCliente.push(p_gambas);
                 break;
             case "vino blanco":
-                productosCliente.push(p_zamburinas);
+                productosCliente.push(p_vinoBlanco);
                 break;
             case "cerveza Victoria":
-                productosCliente.push(p_zamburinas);
+                productosCliente.push(p_cerveVictoria);
                 break;
+            default:
+                alert("Ese producto no existe, coño");
+                return 0;
         }
+
+        lista[indexCliente].productos = productosCliente;
+        this._clientes = lista;
+        console.log(this._clientes);
     }    
 }
 
@@ -120,4 +120,18 @@ function addEvents(){
 let restaurante = crearMesas();
 console.log(restaurante)
 addEvents();
+
+
+function anadirProducto(){
+    //Pedimos el nombre del producto y el id del cliente al que va asignado
+    let producto = prompt("nombre del producto");
+    let idCliente = parseInt("id del cliente");
+    //Sacamos el número de la mesa
+    let boton = document.querySelector(".addPro");
+    let idMesa = boton.getAttribute("target");
+    //Buscamos en qué indice de nuestro restaurante está la mesa con esa ubicación
+    let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
+    //Llamamos a la función y le metemos el producto
+    restaurante[indexMesa].addProducto(producto, idCliente);
+}
 

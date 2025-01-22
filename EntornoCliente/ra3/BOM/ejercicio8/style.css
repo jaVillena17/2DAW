@@ -1,0 +1,51 @@
+*{
+    box-sizing: border-box;
+}
+h1{
+    text-align: center;
+    margin: 50px;
+    font-family: 'Courier New', Courier, monospace;
+}
+h2{
+    font-weight: lighter;
+    text-align: center;
+}
+div{
+    width: 400px;
+    display: block;
+    margin: 0 auto;
+    clear: both;
+}
+button{
+    border: 1px solid grey;
+    padding: 20px;
+    width: 180px;
+    border-radius: 20px;
+}
+button.right{
+    float: right;
+}
+button.left{
+    float: left;
+}
+button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+button.disabled{
+    filter: brightness(0.7);
+}
+button.disabled:hover{
+    cursor: default;
+    transform: scale(1);
+}
+img{
+    display: block;
+    margin: 10px auto;
+}
+button.play{
+    clear: both;
+    display: block;
+    margin: 100px auto;
+}

@@ -1,0 +1,26 @@
+$botones: (
+    primary: #3498db,
+    accept: #27ae60,
+    cancel: #e74c3c
+);
+
+button{
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 5px;
+    transition: 0.5s;
+    &:hover{
+        cursor: pointer;
+        filter: brightness(0.9);
+    }
+    &:nth-child(1){
+        background-color: map-get($botones , primary);
+    }
+    &:nth-child(2){
+        background-color: map-get($botones , accept);
+    }
+    &:nth-child(3){
+        background-color: map-get($botones , cancel);
+    }
+    
+}

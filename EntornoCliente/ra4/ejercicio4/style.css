@@ -1,0 +1,111 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    padding: 0px 40px
+}
+h1 img{
+    width: 50px;
+    margin-right: 28%;
+}
+div.barra{
+    
+    float: left;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 92%;
+    height: 10vh;
+    background-color: rgb(184, 119, 58);
+    border: 1px solid black;
+}
+
+div.terraza{
+    clear: both;
+    float: left;
+    display: flex;
+    flex-wrap: wrap;
+    width: 92%;
+    
+}
+
+div.mesa:nth-child(9), div.mesa:nth-child(10){
+    border-radius: 50%;
+    width: 10vw;
+    height: 20vh;
+} 
+
+.Asiento{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(145, 86, 28);
+    background-color: rgb(184, 119, 58);
+    border-radius: 5px;
+}
+
+div.mesa{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(233, 192, 155);
+    height: 15vh;
+    width: 10vw;
+    margin: 40px auto;
+    border: 1px solid rgb(145, 86, 28);
+    border-radius: 5px;
+}
+
+.terraza span{
+    text-align: center;
+    background-color: #FFF;
+    font-weight: bold;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    padding-top: 20px;
+}
+div.com:hover, div.op:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+div.opciones{
+    float: right;
+    background-color: rgb(163, 231, 172);
+    height: 85vh;
+    width: 45%;
+    border-radius: 20px;
+    border: 1px solid black;
+    left: 0;
+    padding-left: 5%;
+    padding-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+}
+div.op{
+    border: 1px solid black;
+    width: 25%;
+    height: 20%;
+    margin: 15px;
+    background-color: rgb(213, 238, 216);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+div.opciones h1{
+    text-align: center;
+    width: 25%;
+    height: 20%;
+    margin: 15px;
+    padding-top: 30px;
+    text-decoration: underline;
+}
+
+div.restaurante{
+    width: 50%;
+    float: left;
+}

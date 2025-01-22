@@ -1,0 +1,20 @@
+table{
+    border: 1px solid black;
+    margin: 0 auto;
+    text-align: center;
+}
+td{
+    background-color: aquamarine;
+    border: 1px solid black;
+    color: rgb(31, 0, 209);
+    font-weight: bold;
+    width: 75px;
+    height: 75px;
+}
+h3{
+    text-align: center;
+}
+button{
+    display: block;
+    margin: 20px auto;
+}

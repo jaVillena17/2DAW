@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+}
+img.logo{
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
+h1{
+    text-align: center;
+}
+label{
+    background-color: rgb(161, 216, 186);
+    color: rgb(32, 92, 59);
+    padding: 10px;
+    border-radius: 30px;
+    position: relative;
+    font-weight: lighter;
+    font-family: Arial, Helvetica, sans-serif;
+}
+label img{
+    position: absolute;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    filter: invert(27%) sepia(6%) saturate(4456%) hue-rotate(94deg) brightness(101%) contrast(87%);
+}
+label label{
+    left: 40px;
+}
+button{
+    display: block;
+    margin: 0 auto;
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+}
+button img{
+    width: 15px;
+    filter: invert(100%) sepia(2%) saturate(8%) hue-rotate(313deg) brightness(102%) contrast(105%);
+    margin-right: 10px;
+}
+button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    filter: brightness(0.9);
+}

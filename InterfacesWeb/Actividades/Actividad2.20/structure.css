@@ -1,0 +1,232 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+a{
+    text-decoration: none;
+    color :#FFF;
+}
+body{
+    margin: 0;
+}
+header{
+    height: 13vh;
+    background-color: #17ACD1;
+    padding-top: 10px;
+    padding-left: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+a.header_logo{
+    height: 80%;
+    width: 150px;
+    display: flex;
+}
+a.header_logo label:hover{
+    cursor: pointer;
+}
+img.header_logo{
+    height: 100%;
+}
+label.header_logo{
+    color: #FFF;
+    font-size: 60px;
+    font-weight: bold;
+}
+nav.header_nav{
+    display: flex;
+    position: absolute;
+    right: 40px;
+}
+a.header_link{
+    font-weight: bold;
+    margin: 25px;
+    transition: 0.3s;
+}
+a.header_link:hover{
+    transform: scale(1.2);
+}
+section{
+    height: 72vh;
+}
+footer{
+    background-color: rgb(58, 56, 56);
+    height: 15vh;
+    display: flex;
+    color: white;
+}
+div.footer_mid{
+    width: 50%;
+    text-align: center;
+}
+div.footer_left, div.footer_right{
+    width: 25%;
+    
+}
+div.footer_left, div.footer_mid{
+    padding-top: 40px;
+    text-align: center;
+}
+div.footer_right{
+    padding: px 70px;
+}
+ul.social_links li img{
+    width: 19px;
+}
+ul.social_links{
+    list-style: none;
+}
+section.main_cta{
+    background-image: url(images/Main/landing/gastronomia_elMorche.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 200px 150px;
+}
+section.spanish_cta{
+    background-image: url(images/Main/Spanish/Grey-Wallpaper.jpg);
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+}
+section.contacto_cta{
+    background-image: url(images/Main/Spanish/Grey-Wallpaper.jpg);
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h1.cta_text{
+    font-size: 30px;
+    margin: 0px;
+    color: #FFF;
+}
+button.btn_lang{
+    border: none;
+    width: 150px;
+    margin:  10px 30px;
+    height: 30px;
+    border-radius: 2px;
+    background-color: #17ACD1;
+    border: 1px solid #FFF;
+    font-weight: bold;
+    transition: 0.2s;
+}
+button.lang_es::before{
+    content: "🇪🇸 ";
+}
+button.lang_en::before{
+    content: "🇬🇧 ";
+}
+button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+@media (min-width: 1400px){
+    section.main_cta{
+        height: 100vh;
+        background-size: auto;
+        background-position-x: right;
+        background-position-y: -200px;
+    }
+    footer{
+        height: 10%;
+    }
+    section{
+        height: 741px;
+    }
+    label.header_logo{
+        font-size: 90px;
+    }
+    h1.cta_text{
+        font-size: 50px;
+        margin: 100px 0 30px 0;
+        color: #FFF;
+    }
+    button.btn_lang{
+        width: 300px;
+        margin: 10px 30px;
+        height: 40px;
+        transition: 0.2s;
+        font-size: 20px;
+    }
+    nav.header_nav a{
+        margin-top: 35px;
+        font-size: 25px;
+    }
+    section.spanish_cta div img{
+        margin: 50px;
+    }
+    form{
+        font-size: 20px;
+        padding: 60px;
+    }
+    input{
+        padding: 10px;
+        margin-bottom: 30px;
+    }
+    form button{
+        width: 400px;
+        height: 60px;
+    }
+    form, iframe{
+        margin-top: 70px;
+    }
+}
+
+@media (max-width:720px){
+    section.main_cta{
+        height: 100vh;
+        background-size: auto;
+        background-position-x: right;
+        background-position-y: -200px;
+        padding: 200px 50px 0px 50px;
+    }
+    section{
+        height: auto;
+    }
+    header{
+        height: 200px;
+        text-align: center;
+        padding-left: 0px;
+    }
+    .header_landing{
+        height: 150px;
+    }
+    footer{
+        height: 100px;
+        font-size: 10px;
+    }
+    a.header_logo{
+        display: block;
+        width: 100%;
+        height: 100px;
+    }
+    a.header_logo label{
+        font-size: 100px;
+    }
+    a.header_logo img, a.header_logo label{
+        margin: 0 20px;
+    }
+    nav.header_nav a{
+       margin: 0 15px;
+    }
+    nav.header_nav{
+        position: relative;
+        margin: 0 auto;
+        right: inherit;
+    }
+    form, iframe{
+        width: 80%;
+    }
+    input[type = "text"]{
+        width: 90%;
+    }
+    h1.cta_text{
+        text-align: center;
+    }
+    button.btn_lang{
+        width: 80%;
+        margin-top: 30px;
+    }
+}

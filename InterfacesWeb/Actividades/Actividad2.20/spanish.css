@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Carattere&family=Playwrite+BE+VLG+Guides&family=Playwrite+NL+Guides&display=swap');
+h1{
+    font-family: "Carattere", cursive;
+    font-size: 2.5em;
+    height: 0px;
+    width: 100%;
+    text-align: center;
+    color: #FFF;
+    font-weight: normal;
+}
+section.spanish_cta a{
+    height: 75%;
+    width: 20%;
+    background-color: #17ACD1;
+    margin: 39px auto;
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+    transition: 0.3s;
+    min-width: 273px;
+}
+section.spanish_cta a:hover{
+    transform: scale(1.1);
+}
+section.spanish_cta a h3{
+    text-align: center;
+    color: #FFF;
+}
+section.spanish_cta a img{
+    width: 65%;
+}
+section.spanish_cta a img:hover{
+    /*filter: invert(67%) sepia(54%) saturate(6426%) hue-rotate(5deg) brightness(90%) contrast(89%);*/
+    filter: invert(100%) sepia(0%) saturate(7488%) hue-rotate(86deg) brightness(118%) contrast(96%);
+}
+div.menu_contacto:hover{
+    cursor: url(https://cdn-icons-png.flaticon.com/128/2662/2662003.png), pointer;
+}
+div.menu_vino:hover{
+    cursor: url(https://cdn-icons-png.flaticon.com/128/2662/2662078.png), pointer;
+}
+div.menu_carta:hover{
+    cursor: url(https://cdn-icons-png.flaticon.com/128/2662/2662517.png), pointer;
+}
+hr{
+    color: white;
+}

@@ -25,6 +25,8 @@ class Mesa{
     set clientes(num){
         this._clientes = num;
     }
+
+    
     //Función que nos añade un producto al cliente correspondiente
     addProducto(nombreP, idCliente){
         //Creamos un nuevo array con la lista de los cliente
@@ -76,6 +78,10 @@ class Cliente{
     get productos(){
         return this._productos
     }
+
+    set productos(productos){
+        this._productos = productos;
+    }
 }
 
 
@@ -111,7 +117,6 @@ function addEvents(){
             //Recorremos la opciones y a cada opcion le damos la id de la mesa seleccionada
             opciones.forEach(op => {
                 op.setAttribute("target", mesa.getAttribute("id"));
-                console.log("target boton borrar mesa: "+op.getAttribute("target"));
             })
         })
     })
@@ -125,7 +130,7 @@ addEvents();
 function anadirProducto(){
     //Pedimos el nombre del producto y el id del cliente al que va asignado
     let producto = prompt("nombre del producto");
-    let idCliente = parseInt("id del cliente");
+    let idCliente = parseInt(prompt("id del cliente"));
     //Sacamos el número de la mesa
     let boton = document.querySelector(".addPro");
     let idMesa = boton.getAttribute("target");
@@ -133,6 +138,7 @@ function anadirProducto(){
     let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
     //Llamamos a la función y le metemos el producto
     restaurante[indexMesa].addProducto(producto, idCliente);
+    console.log(restaurante);
 }
 
 function iniciarMesa(){
@@ -140,7 +146,7 @@ function iniciarMesa(){
     let numClientes = parseInt(prompt("Introduce el número de clientes que se han sentado en la mesa"));
 
     //Sacamos la ubicación de la mesa
-    let boton = document.querySelector("start");
+    let boton = document.querySelector(".start");
     let idMesa = boton.getAttribute("target");
 
     //Mediante un bucle for, creamos tantos clientes como haya introducido y lo metemos en un array de clientes
@@ -151,6 +157,6 @@ function iniciarMesa(){
     }
     //Sacamos la posicion de la mesa en el array restaurante
     let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
-
     restaurante[indexMesa].clientes = listaClientes;
+    console.log(restaurante);
 }

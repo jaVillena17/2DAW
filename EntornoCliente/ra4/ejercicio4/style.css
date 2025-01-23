@@ -56,7 +56,7 @@ div.mesa{
     border-radius: 5px;
 }
 
-.terraza span{
+.terraza span, .Asiento Span{
     text-align: center;
     background-color: #FFF;
     font-weight: bold;

@@ -110,13 +110,14 @@ function addEvents(){
         mesa.addEventListener("click", () => {
             //Imprimimos en las opciones el numero de la mesa
             let h1 = document.querySelector(".opciones h1")
-            h1.innerHTML = "Mesa " + mesa.getAttribute("id");
+            h1.innerHTML = `${mesa.innerHTML}`;
 
             //Sacamos una lista con las opciones
             let opciones = document.querySelectorAll("div.op");
             //Recorremos la opciones y a cada opcion le damos la id de la mesa seleccionada
             opciones.forEach(op => {
                 op.setAttribute("target", mesa.getAttribute("id"));
+                console.log(op.getAttribute("target"))
             })
         })
     })
@@ -138,25 +139,40 @@ function anadirProducto(){
     let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
     //Llamamos a la función y le metemos el producto
     restaurante[indexMesa].addProducto(producto, idCliente);
-    console.log(restaurante);
+    //Sacamos el output
+    let output = document.querySelector("h2.output");
+    output.innerHTML=`El cliente nº ${idCliente} de la mesa ${idMesa} ha pedido: ${producto}`
 }
 
 function iniciarMesa(){
-    //Pedimos el número de clientes que se sientan en la mesa
-    let numClientes = parseInt(prompt("Introduce el número de clientes que se han sentado en la mesa"));
-
     //Sacamos la ubicación de la mesa
     let boton = document.querySelector(".start");
     let idMesa = boton.getAttribute("target");
 
-    //Mediante un bucle for, creamos tantos clientes como haya introducido y lo metemos en un array de clientes
-    let listaClientes = [];
-    for (let i = 0; i < numClientes; i++) {
-        let clicli = new Cliente(i+1);
-        listaClientes.push(clicli);
+    let mesaHTML = document.querySelector(`#${idMesa}`);
+
+    if(mesaHTML.getAttribute("started") == "false"){
+        //Pedimos el número de clientes que se sientan en la mesa
+        let numClientes = parseInt(prompt("Introduce el número de clientes que se han sentado en la mesa"));
+
+        //Mediante un bucle for, creamos tantos clientes como haya introducido y lo metemos en un array de clientes
+        let listaClientes = [];
+        for (let i = 0; i < numClientes; i++) {
+            let clicli = new Cliente(i+1);
+            listaClientes.push(clicli);
+        }
+        //Sacamos la posicion de la mesa en el array restaurante
+        let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
+        restaurante[indexMesa].clientes = listaClientes;
+        console.log(restaurante);
+
+        //Imprimimos el resultado
+        let output = document.querySelector("h2.output");
+        output.innerHTML=`Se han sentado ${numClientes} personas en la mesa ${idMesa.substring(2)}`
+        mesaHTML.setAttribute("started","true")
+    }else{
+        //Imprimimos el resultado
+        let output = document.querySelector("h2.output");
+        output.innerHTML=`<b>Error</b> ya hay gente en la mesa ${idMesa.substring(2)}`
     }
-    //Sacamos la posicion de la mesa en el array restaurante
-    let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
-    restaurante[indexMesa].clientes = listaClientes;
-    console.log(restaurante);
 }

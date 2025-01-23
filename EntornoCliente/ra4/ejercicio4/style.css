@@ -92,6 +92,7 @@ div.op{
     border-radius: 20px;
     display: flex;
     align-items: center;
+    justify-content: center;
     font-size: 24px;
     font-weight: bold;
     text-align: center;

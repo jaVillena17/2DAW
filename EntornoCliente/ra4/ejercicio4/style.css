@@ -65,6 +65,7 @@ div.mesa{
 .terraza span, .Asiento Span{
     text-align: center;
     background-color: #FFF;
+    border: 2px solid grey;
     font-weight: bold;
     border-radius: 50%;
     height: 60px;
@@ -115,4 +116,15 @@ div.opciones h1{
 div.restaurante{
     width: 50%;
     float: left;
+}
+div.com{
+    position: relative;
+}
+div.com div{
+    position: absolute;
+    top: 0;
+    right: 0px;
+    background-color: rgb(51, 50, 50);
+    color: #FFF;
+    border: 1px solid red;
 }

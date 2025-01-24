@@ -60,15 +60,35 @@ class Mesa{
 
         lista[indexCliente].productos = productosCliente;
         this._clientes = lista;
-        console.log(this._clientes);
     }    
+    //Para borrar la mesa reiniciamos el array de clientes a 0, para que no hay ningún cliente sentado
+    borrarMesa(){
+        this._clientes = []
+    }
+    //Función que me calcula el total del precio de los productos para actualizar la interfaz
+    calcularTotalCuenta(){
+        let clientes = this._clientes;
+        /*let total = clientes.map(cliente => cliente.productos).map(lista => lista.reduce(function (acumulado, valor, indice, vector){
+            return acumulado + valor;
+        })).reduce(function (acumulado, valor, indice, vector){
+            return acumulado + valor
+        });*/
+        let total = clientes.map(cliente => cliente.productos).map(productos => productos.map(producto => producto[1])).map(precios => precios.reduce(function(sumatoria, total){
+                return sumatoria + total
+        })).reduce(function(sumatoria, num){
+            return sumatoria + num;
+        });
+        return total;
+    }
 }
+
+
 
 class Cliente{
     //Constructor de la clase cliente
     constructor(idCliente){
         this._idCliente = idCliente;
-        this._productos = [];
+        this._productos = [["null", 0]];
     }
 
     get idCliente(){
@@ -110,7 +130,7 @@ function addEvents(){
         mesa.addEventListener("click", () => {
             //Imprimimos en las opciones el numero de la mesa
             let h1 = document.querySelector(".opciones h1")
-            h1.innerHTML = `${mesa.innerHTML}`;
+            h1.innerHTML = `Mesa ${mesa.innerHTML}`;
 
             //Sacamos una lista con las opciones
             let opciones = document.querySelectorAll("div.op");
@@ -139,6 +159,8 @@ function anadirProducto(){
     let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
     //Llamamos a la función y le metemos el producto
     restaurante[indexMesa].addProducto(producto, idCliente);
+    let cuenta = document.querySelector(`#${idMesa} div.cuenta`)
+    cuenta.innerHTML = restaurante[indexMesa].calcularTotalCuenta().toFixed(2) + "€";
     //Sacamos el output
     let output = document.querySelector("h2.output");
     output.innerHTML=`El cliente nº ${idCliente} de la mesa ${idMesa} ha pedido: ${producto}`
@@ -173,6 +195,26 @@ function iniciarMesa(){
     }else{
         //Imprimimos el resultado
         let output = document.querySelector("h2.output");
-        output.innerHTML=`<b>Error</b> ya hay gente en la mesa ${idMesa.substring(2)}`
+        output.innerHTML=`<b>Error</b> ya hay gente en la mesa ${idMesa.substring(2)}`;
+    }
+}
+
+function cerrarMesa(){
+    //Sacamos la ubicación de la mesa
+    let boton = document.querySelector(".borrar");
+    let idMesa = boton.getAttribute("target");
+
+    //Sacamos la etiqueta correspondiente a esa mesa
+    let mesaHTML = document.querySelector(`#${idMesa}`);
+    //Si la mesa ya está iniciada
+    if(mesaHTML.getAttribute("started") == "true"){
+        //Sacamos el indice de la mesa
+        let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
+        restaurante[indexMesa].borrarMesa();
+        console.log(restaurante);
+    }//Si no está iniciada, lo imprimimos
+    else{
+        let output = document.querySelector("h2.output");
+        output.innerHTML=`<b>Error</b> La mesa ${idMesa.substring(2)} está vacía`;
     }
 }

@@ -163,7 +163,7 @@ function anadirProducto(){
     cuenta.innerHTML = restaurante[indexMesa].calcularTotalCuenta().toFixed(2) + "€";
     //Sacamos el output
     let output = document.querySelector("h2.output");
-    output.innerHTML=`El cliente nº ${idCliente} de la mesa ${idMesa} ha pedido: ${producto}`
+    output.innerHTML=`El cliente nº ${idCliente} de la mesa ${idMesa.substring(2)} ha pedido: ${producto}`
 }
 
 function iniciarMesa(){
@@ -211,6 +211,7 @@ function cerrarMesa(){
         //Sacamos el indice de la mesa
         let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
         restaurante[indexMesa].borrarMesa();
+        mesaHTML.setAttribute("started", "false")
         console.log(restaurante);
     }//Si no está iniciada, lo imprimimos
     else{

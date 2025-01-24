@@ -126,5 +126,9 @@ div.com div{
     right: 0px;
     background-color: rgb(51, 50, 50);
     color: #FFF;
-    border: 1px solid red;
+    border: 3px solid red;
+    padding: 2px;
+}
+div[started = "true"] div{
+    border: 3px solid green;
 }

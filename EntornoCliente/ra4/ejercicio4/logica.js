@@ -148,9 +148,8 @@ console.log(restaurante)
 addEvents();
 
 
-function anadirProducto(){
-    //Pedimos el nombre del producto y el id del cliente al que va asignado
-    let producto = prompt("nombre del producto");
+function anadirProducto(producto){
+    //Pedimos el id del cliente al que va asignado
     let idCliente = parseInt(prompt("id del cliente"));
     //Sacamos el número de la mesa
     let boton = document.querySelector(".addPro");
@@ -164,6 +163,8 @@ function anadirProducto(){
     //Sacamos el output
     let output = document.querySelector("h2.output");
     output.innerHTML=`El cliente nº ${idCliente} de la mesa ${idMesa.substring(2)} ha pedido: ${producto}`
+    //Ocultamos el menú de productos
+    closeProductSelect()
 }
 
 function iniciarMesa(){
@@ -218,4 +219,24 @@ function cerrarMesa(){
         let output = document.querySelector("h2.output");
         output.innerHTML=`<b>Error</b> La mesa ${idMesa.substring(2)} está vacía`;
     }
+}
+
+
+function showProductSelect(){
+    //Sacamos el contenedor de los productos
+    let wrapper = document.querySelector("div.productSelect");
+    //Sacamos las listas de las clases
+    let classList = wrapper.classList;
+    //Le quitamos la clase hidden
+    classList.remove("hidden");
+}
+
+function closeProductSelect(){
+    //Sacamos el contenedor de los productos
+    let wrapper = document.querySelector("div.productSelect");
+    //Sacamos las listas de las clases
+    let classList = wrapper.classList;
+    //Le quitamos la clase hidden
+    classList.add("hidden");
+
 }

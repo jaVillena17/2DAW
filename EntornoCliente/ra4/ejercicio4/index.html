@@ -40,10 +40,22 @@
         <div class="op"><span>Cambiar Ubicación</span></div>
         <div class="op"><span>Ver nº de Clientes</span></div>
         <div class="op start" onclick="iniciarMesa()"><span>Iniciar Mesa</span></div>
-        <div class="op addPro" onclick="anadirProducto()"><span>Añadir Producto</span></div>
+        <div class="op addPro" onclick="showProductSelect()"><span>Añadir Producto</span></div>
         <div class="op"><span>Imprimir Comanda</span></div>
         <div class="op"><span>Dividir la Cuenta</span></div>
         <div class="op borrar" onclick="cerrarMesa()"><span>Borrar Mesa</span></div>
+    </div>
+
+
+    <div class="productSelect hidden">
+        <div class="productos">
+            <button onclick="anadirProducto('gambas')">Gambas</button>
+            <button onclick="anadirProducto('mejillones')">Mejillones</button>
+            <button onclick="anadirProducto('zamburiñas')">Zamburiñas</button>
+            <button onclick="anadirProducto('cerveza victoria')">Cerveza Victoria</button>
+            <button onclick="anadirProducto('vino blanco')">Vino Blanco</button>
+        </div>
+        <button class="cancelar" onclick="closeProductSelect()">Cancelar</button>
     </div>
     <script src="logica.js"></script>
 </body>

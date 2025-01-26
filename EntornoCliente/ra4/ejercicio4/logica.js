@@ -229,14 +229,30 @@ function showProductSelect(){
     let classList = wrapper.classList;
     //Le quitamos la clase hidden
     classList.remove("hidden");
+    //Le ponemos un evento que si haces click en alguna mesa, se salga del menú de opciones
+    let target = document.querySelector("div.restaurante")
+    target.addEventListener("click", closeProductSelect)
+    //Ocultamos las opciones
+    let opciones = document.querySelectorAll("div.op");
+    opciones.forEach(boton => boton.classList.add("hidden"));
+    //Ocultamos el texto de las opciones
+    let texto = document.querySelector(".opciones h1");
+    texto.classList.add("hidden");
 }
 
 function closeProductSelect(){
+    console.log("asdf")
     //Sacamos el contenedor de los productos
     let wrapper = document.querySelector("div.productSelect");
     //Sacamos las listas de las clases
     let classList = wrapper.classList;
     //Le quitamos la clase hidden
     classList.add("hidden");
+    //Le quitamos la clase hidden tambien a todos los botones
+    let opciones = document.querySelectorAll("div.op");
+    opciones.forEach(boton => boton.classList.remove("hidden"));
+    //LE quitamos el hidden al texto
+    let texto = document.querySelector(".opciones h1");
+    texto.classList.remove("hidden");
 
 }

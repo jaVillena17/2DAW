@@ -162,9 +162,14 @@ function anadirProducto(producto){
     cuenta.innerHTML = restaurante[indexMesa].calcularTotalCuenta().toFixed(2) + "€";
     //Sacamos el output
     let output = document.querySelector("h2.output");
-    output.innerHTML=`El cliente nº ${idCliente} de la mesa ${idMesa.substring(2)} ha pedido: ${producto}`
+    output.innerHTML=`El cliente nº ${idCliente} de la mesa ${idMesa.substring(2)} ha pedido: ${producto}`;
+    //Actualizamos la cuenta total de la mesa en el menú
+    let h1 = document.querySelector(".opciones h1");
+    let mesaHTHML = document.querySelector(`div#${idMesa}`);
+    h1.innerHTML = `Mesa ${mesaHTHML.innerHTML}`
     //Ocultamos el menú de productos
-    closeProductSelect()
+    closeProductSelect();
+
 }
 
 function iniciarMesa(){
@@ -211,9 +216,20 @@ function cerrarMesa(){
     if(mesaHTML.getAttribute("started") == "true"){
         //Sacamos el indice de la mesa
         let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
+        //Borramos la mesa
         restaurante[indexMesa].borrarMesa();
+        //Le quitamos el atributo de que está iniciado
         mesaHTML.setAttribute("started", "false")
-        console.log(restaurante);
+        //Reiniciamos la cuenta de esa mesa a 0
+        let cuenta = document.querySelector(`div#${idMesa} div.cuenta`);
+        cuenta.innerHTML = "0,00€"
+        //Actualizamos la cuenta total de la mesa en el menú
+        let h1 = document.querySelector(".opciones h1");
+        let mesaHTHML = document.querySelector(`div#${idMesa}`);
+        h1.innerHTML = `Mesa ${mesaHTHML.innerHTML}`
+        //Imprimimos el output
+        let output = document.querySelector("h2.output");
+        output.innerHTML=`La mesa ${idMesa.substring(2)} se ha vaciado`;
     }//Si no está iniciada, lo imprimimos
     else{
         let output = document.querySelector("h2.output");
@@ -254,5 +270,97 @@ function closeProductSelect(){
     //LE quitamos el hidden al texto
     let texto = document.querySelector(".opciones h1");
     texto.classList.remove("hidden");
+}
+
+function obtenerUbicacion(){
+    //Sacamos el atributo target con el id de la mesa de la cual queremos obtener la ubicación
+    let button = document.querySelector("div.get");
+    let idMesa = button.getAttribute("target");
+    //Sacamos la posicion de la mesa en el array restaurante
+    let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
+    //Usamos el get para obtener la ubicacion
+    let ubicacion = restaurante[indexMesa].ubicacion;
+    //Sacamos la salida de la mesa seleccionada
+    let output = document.querySelector("h2.output");
+    output.innerHTML=`Le mesa seleccionada se encuentra en la ubicacion ${ubicacion.substring(2)}`;
+}
+
+function moverMesa(){
+    //Sacamos el atributo target con el id de la mesa de la cual queremos obtener la ubicación
+    let button = document.querySelector("div.move");
+    let idMesaOrigen = button.getAttribute("target");
+    //Solicitamos a que mesa quiere cambiarse con un promt
+    let idMesaDestino = parseInt(prompt("Escriba el número de mesa destino"));
+
+    if(idMesaDestino >= 1 && idMesaDestino <= 15){
+        idMesaDestino = "id" + idMesaDestino;
+        //Sacamos los indices de ambas mesas en el array restaurante
+        let indexOrigen = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesaOrigen);
+        let indexDestino = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesaDestino);
+        //Guardamos en una variable temporal la array de clientes de la mesa destino
+        let tmp = restaurante[indexDestino].clientes;
+        //Intercambiamos ambos arrays de productos
+        restaurante[indexDestino].clientes = restaurante[indexOrigen].clientes
+        restaurante[indexOrigen].clientes = tmp;
+        //Actualizamos la interfaz
+        let cuentaOrigen = document.querySelector(`div#${idMesaOrigen} div.cuenta`);
+        let cuentaDestino = document.querySelector(`div#${idMesaDestino} div.cuenta`);
+        tmp = cuentaOrigen.innerHTML;
+        cuentaOrigen.innerHTML = cuentaDestino.innerHTML;
+        cuentaDestino.innerHTML = tmp;
+        //Cambiamos los estilos para las mesas iniciadas
+        //Sacamos el aributo started de ambas mesas
+        let htmlOrigen = document.querySelector(`div#${idMesaOrigen}`);
+        let htmlDestino = document.querySelector(`div#${idMesaDestino}`);
+        let startedOrigen = htmlOrigen.getAttribute("started");
+        let startedDestino = htmlDestino.getAttribute("started");
+        if(startedOrigen == "true" && startedDestino == "false"){
+            htmlOrigen.setAttribute("started", "false");
+            htmlDestino.setAttribute("started", "true");
+        }else if(startedOrigen == "false" && startedDestino == "true"){
+            htmlOrigen.setAttribute("started", "true");
+            htmlDestino.setAttribute("started", "false");
+        }
+
+        //Sacamos la salida de información
+        let output = document.querySelector("h2.output");
+        output.innerHTML=`La mesa ${idMesaOrigen.substring(2)} y la mesa ${idMesaDestino.substring(2)} han sido movidas con éxito`;
+    }else{
+        //Sacamos la salida de información
+        let output = document.querySelector("h2.output");
+        output.innerHTML=`La mesa ${idMesaDestino.substring(2)} no existe, amigo. Espabila`;
+    }
+}
+
+function verClientes(){
+    //Sacamos los datos de la mesa otra vez
+    let boton = document.querySelector("div.ver");
+    let idMesa = boton.getAttribute("target");
+
+    //Buscamos el indice de esa mesa en el array restaurante
+    let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
+    //Sacamos el tamaño del array de clientes
+    let numClientes = restaurante[indexMesa].clientes.length;
+
+    //Sacamos la salida de información
+    let output = document.querySelector("h2.output");
+    output.innerHTML=`En la mesa ${idMesa.substring(2)} hay un total de ${numClientes} clientes sentados`;
+}
+
+function imprimirComanda(){
+    //Sacamos los datos de la mesa otra vez, otra vez
+    let boton = document.querySelector("div.print");
+    let idMesa = boton.getAttribute("target");
+
+    //Buscamos el indice de esa mesa en el array restaurante
+    let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
+
+    //Sacamos la mesa en concreto
+    let mesa = restaurante[indexMesa];
+    let clientes = mesa.clientes;
+    //A TOMAR POR CULO COÑO
+    clientes.map(cliente => cliente.productos).forEach((producto) => {
+        
+    })
 
 }

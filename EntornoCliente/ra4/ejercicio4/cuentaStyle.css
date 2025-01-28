@@ -1,0 +1,17 @@
+h1{
+    text-align: left;
+    float: right;
+}
+img{
+    float: left;
+    width: 100px;
+}
+table{
+    clear: both;
+}
+td, th{
+    font-size: 24px;
+}
+td.nombre{
+    text-transform: capitalize;
+}

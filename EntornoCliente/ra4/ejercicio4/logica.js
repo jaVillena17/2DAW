@@ -359,8 +359,16 @@ function imprimirComanda(){
     let mesa = restaurante[indexMesa];
     let clientes = mesa.clientes;
     //A TOMAR POR CULO COÑO
-    clientes.map(cliente => cliente.productos).forEach((producto) => {
-        
+    let cadena = "<table><tr><th>Producto</th><th></th><th>Precio/u</th></tr>"
+    clientes.map(cliente => cliente.productos).forEach((productos) => {
+        productos.forEach((producto) => {
+            if(producto[0] != "null") cadena += `<tr><td class="nombre">${producto[0]}</td><td>${".".repeat(45)}</td><td>${producto[1].toFixed(2)}€</td></tr>`
+        })
     })
+    cadena += "</table>";
+
+    let miVentana = window.open("cuenta.html", "","width=500, height=1000");
+    miVentana.moveTo(150,150)
+    miVentana.opener.cuenta = cadena;
 
 }

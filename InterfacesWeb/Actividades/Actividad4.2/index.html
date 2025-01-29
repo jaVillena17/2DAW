@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Javier Villena Fernández. Actividad 4.2</h1><hr>
+    <div class="vidContainer">
+        <video src="https://cdn.teachertube.com/mp4video604/355204.mp4" width="720px" height="400px" id="video"></video>
+        <div class="butContainer">
+            <button onclick="reset()">Reiniciar</button>
+            <button onclick="backward()">&laquo;</button>
+            <button onclick="play()" class="play">&#9658;</button>
+            <button onclick="forward()">&raquo;</button>
+            <button onclick="mute()" class="mute">Silenciar Audio</button>
+            <div>Volumen</div>
+            <button onclick="volumeDown()" class="volDown">-</button>
+            <button onclick="volumeUp()" class="volUp">+</button>
+        </div>
+    </div>
+    
+    <script src="logica.js"></script>
+</body>
+</html>

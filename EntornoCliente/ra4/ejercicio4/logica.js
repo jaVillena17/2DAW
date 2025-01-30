@@ -65,19 +65,28 @@ class Mesa{
     borrarMesa(){
         this._clientes = []
     }
+
+    //Función que calcula el importe a pagar por cliente
+    dividirCliente(indiceCli) {
+        //Sacamos el cliente de la lista con su indice
+        let productos = this._clientes[indiceCli].productos;
+
+        //Stream normalito
+        let total = productos.map(producto => producto[1])
+        .reduce((sumatoria, total) => sumatoria + total);
+
+        //Retornamos el total
+        return total;
+    }
     //Función que me calcula el total del precio de los productos para actualizar la interfaz
     calcularTotalCuenta(){
         let clientes = this._clientes;
-        /*let total = clientes.map(cliente => cliente.productos).map(lista => lista.reduce(function (acumulado, valor, indice, vector){
-            return acumulado + valor;
-        })).reduce(function (acumulado, valor, indice, vector){
-            return acumulado + valor
-        });*/
-        let total = clientes.map(cliente => cliente.productos).map(productos => productos.map(producto => producto[1])).map(precios => precios.reduce(function(sumatoria, total){
-                return sumatoria + total
-        })).reduce(function(sumatoria, num){
-            return sumatoria + num;
-        });
+        //Stream guapísimo para sacar el total
+        let total = clientes.map(cliente => cliente.productos)
+        .map(productos => productos.map(producto => producto[1]))
+        .map(precios => precios.reduce((sumatoria, total) => sumatoria + total))
+        .reduce((sumatoria, num) => sumatoria + num);
+        //Devolvermos el valor total
         return total;
     }
 }
@@ -183,21 +192,30 @@ function iniciarMesa(){
         //Pedimos el número de clientes que se sientan en la mesa
         let numClientes = parseInt(prompt("Introduce el número de clientes que se han sentado en la mesa"));
 
-        //Mediante un bucle for, creamos tantos clientes como haya introducido y lo metemos en un array de clientes
-        let listaClientes = [];
-        for (let i = 0; i < numClientes; i++) {
-            let clicli = new Cliente(i+1);
-            listaClientes.push(clicli);
-        }
-        //Sacamos la posicion de la mesa en el array restaurante
-        let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
-        restaurante[indexMesa].clientes = listaClientes;
-        console.log(restaurante);
 
-        //Imprimimos el resultado
-        let output = document.querySelector("h2.output");
-        output.innerHTML=`Se han sentado ${numClientes} personas en la mesa ${idMesa.substring(2)}`
-        mesaHTML.setAttribute("started","true")
+        //Si el número no es negativo o 0, ejecutamos el codigo
+        if(numClientes > 0){
+            //Mediante un bucle for, creamos tantos clientes como haya introducido y lo metemos en un array de clientes
+            let listaClientes = [];
+            for (let i = 0; i < numClientes; i++) {
+                let clicli = new Cliente(i+1);
+                listaClientes.push(clicli);
+            }
+            //Sacamos la posicion de la mesa en el array restaurante
+            let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
+            restaurante[indexMesa].clientes = listaClientes;
+            console.log(restaurante);
+
+            //Imprimimos el resultado
+            let output = document.querySelector("h2.output");
+            output.innerHTML=`Se han sentado ${numClientes} personas en la mesa ${idMesa.substring(2)}`
+            mesaHTML.setAttribute("started","true")
+        }else{
+            //Imprimimos el resultado
+            let output = document.querySelector("h2.output");
+            output.innerHTML=`<b>Error</b>, no puedes sentar un número negativo de personas`;
+        }
+        
     }else{
         //Imprimimos el resultado
         let output = document.querySelector("h2.output");
@@ -239,21 +257,36 @@ function cerrarMesa(){
 
 
 function showProductSelect(){
-    //Sacamos el contenedor de los productos
-    let wrapper = document.querySelector("div.productSelect");
-    //Sacamos las listas de las clases
-    let classList = wrapper.classList;
-    //Le quitamos la clase hidden
-    classList.remove("hidden");
-    //Le ponemos un evento que si haces click en alguna mesa, se salga del menú de opciones
-    let target = document.querySelector("div.restaurante")
-    target.addEventListener("click", closeProductSelect)
-    //Ocultamos las opciones
-    let opciones = document.querySelectorAll("div.op");
-    opciones.forEach(boton => boton.classList.add("hidden"));
-    //Ocultamos el texto de las opciones
-    let texto = document.querySelector(".opciones h1");
-    texto.classList.add("hidden");
+    //Sacamos la mesa y boton
+    let boton = document.querySelector(".addPro");
+    let idMesa = boton.getAttribute("target");
+    //Sacamos el elemento html con esa id de mesa
+    let htmlMesa = document.querySelector(`div#${idMesa}`);
+    //Sacamos el att started de la mesa, si es true ejecutamos el codigo, si es false, imprimimos el error
+    let started = htmlMesa.getAttribute("started");
+
+    if(started == "true"){
+        //Sacamos el contenedor de los productos
+        let wrapper = document.querySelector("div.productSelect");
+        //Sacamos las listas de las clases
+        let classList = wrapper.classList;
+        //Le quitamos la clase hidden
+        classList.remove("hidden");
+        //Le ponemos un evento que si haces click en alguna mesa, se salga del menú de opciones
+        let target = document.querySelector("div.restaurante")
+        target.addEventListener("click", closeProductSelect)
+        //Ocultamos las opciones
+        let opciones = document.querySelectorAll("div.op");
+        opciones.forEach(boton => boton.classList.add("hidden"));
+        //Ocultamos el texto de las opciones
+        let texto = document.querySelector(".opciones h1");
+        texto.classList.add("hidden");
+    }else{
+        let output = document.querySelector("h2.output");
+        output.innerHTML=`<b>Error</b> La mesa ${idMesa.substring(2)} está vacía`;
+    }
+
+    
 }
 
 function closeProductSelect(){
@@ -359,16 +392,60 @@ function imprimirComanda(){
     let mesa = restaurante[indexMesa];
     let clientes = mesa.clientes;
     //A TOMAR POR CULO COÑO
-    let cadena = "<table><tr><th>Producto</th><th></th><th>Precio/u</th></tr>"
+    let cadena = `<p>Mesa ${idMesa.substring(2)}</p><table><tr><th>Producto</th><th></th><th>Precio/u</th></tr>`
     clientes.map(cliente => cliente.productos).forEach((productos) => {
         productos.forEach((producto) => {
             if(producto[0] != "null") cadena += `<tr><td class="nombre">${producto[0]}</td><td>${".".repeat(45)}</td><td>${producto[1].toFixed(2)}€</td></tr>`
         })
     })
-    cadena += "</table>";
-
+    //Imprimos el total de la cuenta con IVA
+    let total = restaurante[indexMesa].calcularTotalCuenta().toFixed(2);
+    cadena += `<tr><td class="ta-right">Total s/iva</td><td>${".".repeat(45)}</td><td>${(total - (total*0.21)).toFixed(2)}€</td></tr>`
+    cadena += `<tr><td>iva(21%)</td><td>${".".repeat(45)}</td><td>${(total*0.21).toFixed(2)}€</td></tr>`
+    cadena += `<tr><td><b>Total</b></td><td>${".".repeat(45)}</td><td>${total}€</td></tr>`
+    cadena += "</table><p class='foot'>Muchas Gracias por su visita<br>Ctra. el Morche, 43, 29793 El Morche, Málaga<br></p>";
+    //Abrimos la nueva ventana
     let miVentana = window.open("cuenta.html", "","width=500, height=1000");
-    miVentana.moveTo(150,150)
+    miVentana.moveTo(150,150);
     miVentana.opener.cuenta = cadena;
+}
 
+function imprimirComandaCliente(){
+    //Sacamos los datos de la mesa otra vez, otra vez
+    let boton = document.querySelector("div.print");
+    let idMesa = boton.getAttribute("target");
+
+    //Buscamos el indice de esa mesa en el array restaurante
+    let indexMesa = restaurante.map(mesa => mesa.ubicacion).indexOf(idMesa);
+
+    //Sacamos la mesa en concreto
+    let mesa = restaurante[indexMesa];
+
+    //Preguntamos el cliente por el que dividir la comanda
+    let indiceCliente = parseInt(prompt(`Introduzca el cliente del que quieres sacar la comanda. En la mesa actual hay sentados ${mesa.clientes.length} clientes`)) - 1;
+    //Obtenemos el cliente
+    let cliente = mesa.clientes[indiceCliente];
+
+    if(indiceCliente >= 0  && indiceCliente <= mesa.clientes.length - 1){
+        //Iniciamos la cadena
+        let cadena = `<p>Mesa ${idMesa.substring(2)} Cliente ${indiceCliente+1}</p><table><tr><th>Producto</th><th></th><th>Precio/u</th></tr>`
+        //Recorremos el array productos del cliente metiendo los valores en la cadena como una tabla
+        cliente.productos.forEach(producto => {
+            if(producto[0] != "null") cadena += `<tr><td class="nombre">${producto[0]}</td><td>${".".repeat(45)}</td><td>${producto[1].toFixed(2)}€</td></tr>`
+        })
+        //Terminamos la tabla con el total y el footer
+        let total = mesa.dividirCliente(indiceCliente).toFixed(2);
+        cadena += `<tr><td class="ta-right">Total s/iva</td><td>${".".repeat(45)}</td><td>${(total - (total*0.21)).toFixed(2)}€</td></tr>`
+        cadena += `<tr><td>iva(21%)</td><td>${".".repeat(45)}</td><td>${(total*0.21).toFixed(2)}€</td></tr>`
+        cadena += `<tr><td><b>Total</b></td><td>${".".repeat(45)}</td><td>${total}€</td></tr>`
+        cadena += "</table><p class='foot'>Muchas Gracias por su visita<br>Ctra. el Morche, 43, 29793 El Morche, Málaga<br></p>";
+        //Abrimos la nueva ventana
+        let miVentana = window.open("cuenta.html", "","width=500, height=1000");
+        miVentana.moveTo(150,150);
+        miVentana.opener.cuenta = cadena;
+    }else{
+        //Sacamos la salida del error
+        let output = document.querySelector("h2.output");
+        output.innerHTML=`Error, no hay ${indiceCliente + 1} clientes en la mesa. Hay un total de ${mesa.clientes.length} clientes`;
+    }
 }

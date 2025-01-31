@@ -2,14 +2,21 @@ function play(){
     //Sacamos el video y el boton
     let video = document.querySelector("video#video");
     let button = document.querySelector("button.play");
+    //Sacamos el body
+    let body = document.querySelector("body")
     //Dependiendo si el video está pausado o no, lo pausamos o reporducimos
     if(video.paused){
         video.play();
         button.innerHTML = "&#9208;"
+        //Cambiamos el color del fondo a modo oscuro
+        body.classList.add("dark")
     }else{
         video.pause();
         button.innerHTML = "&#9658;"
+        //Quitamos la clase
+        body.classList.remove("dark")
     }
+    //Cambiar Color del fondo
 }
 
 function reset(){
@@ -62,12 +69,12 @@ function volumeDown(){
     let volumen = Math.round(video.volume*10);
     if(volumen == 10){
         volumen--;
-        document.querySelector("button.volUp").setAttribute("disabled", "false")
+        document.querySelector("button.volUp").setAttribute("dis", "false")
     }else if(volumen > 1){
         volumen--;
     }else{
         volumen = 0;
-        button.setAttribute("disabled", "true")
+        button.setAttribute("dis", "true")
     }
     video.volume = volumen/10;
     console.log(video.volume)
@@ -81,14 +88,15 @@ function volumeUp(){
     let volumen = Math.round(video.volume*10);
     if(volumen == 1){
         volumen++;
-        document.querySelector("button.volDown").setAttribute("disabled", "false");
+        document.querySelector("button.volDown").setAttribute("dis", "false");
     }else if(volumen < 10){
         volumen++;
     }else{
         volumen = 10;
-        button.setAttribute("disabled", "true");
+        button.setAttribute("dis", "true");
         console.log(volumen)
     }
     video.volume = volumen/10;
     console.log(video.volume)
 }
+

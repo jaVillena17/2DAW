@@ -37,11 +37,37 @@ button:hover{
     background-color: #2980b9;
 }
 
-button[disabled = "true"]{
+button[dis = "true"]{
     background-color: #95a5a6;
     color: black;
 }
 
-button[disabled = "true"]:active{
+button[dis= "true"]:active{
     cursor: not-allowed;
+}
+
+body.dark{
+    background-color: #252527;
+}
+@media (max-width: 720px){
+    div.butContainer{
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button, div.butContainer div{
+        width: 250px;
+        text-align: center;
+    }
+    div.vidContainer{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    video{
+        width: 80%;
+    }
+    
 }

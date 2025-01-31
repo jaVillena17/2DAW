@@ -1,0 +1,31 @@
+h1{
+    text-align: left;
+    float: right;
+    font-size: 24px;
+}
+img{
+    float: left;
+    width: 100px;
+}
+table{
+    clear: both;
+}
+td, th{
+    font-size: 15px;
+    padding-top: 15px;
+    text-align: left;
+}
+td.nombre{
+    text-transform: capitalize;
+}
+p{
+    text-align: center;
+}
+p.foot{
+    text-align: center;
+    font-style: italic;
+    font-size: 10px;
+}
+td:nth-child(3){
+    text-align: right;
+}

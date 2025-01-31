@@ -1,0 +1,73 @@
+*{
+    box-sizing: border-box;
+}
+div.vidContainer{
+    display: block;
+    width: 740px;
+    margin: 0 auto;
+    background-color: rgb(9, 9, 56);
+    padding: 10px;
+}
+video{
+    margin: 0;
+}
+div.butContainer{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(9, 9, 56);
+}
+button, div.butContainer div{
+    padding: 10px 15px;
+    color: #fff;
+    margin: 10px;
+    font-weight: bold;
+    background-color: #3498db;
+    border: none;
+    border-radius: 10px;
+}
+div.butContainer div{
+    background-color: rgb(9, 9, 56);
+    border: none;
+}
+
+button:active{
+    cursor: pointer;
+}
+button:hover{
+    background-color: #2980b9;
+}
+
+button[dis = "true"]{
+    background-color: #95a5a6;
+    color: black;
+}
+
+button[dis= "true"]:active{
+    cursor: not-allowed;
+}
+
+body.dark{
+    background-color: #252527;
+}
+@media (max-width: 720px){
+    div.butContainer{
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    button, div.butContainer div{
+        width: 250px;
+        text-align: center;
+    }
+    div.vidContainer{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    video{
+        width: 80%;
+    }
+    
+}

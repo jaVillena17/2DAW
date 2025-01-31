@@ -35,22 +35,22 @@
     
     
     <div class="opciones">
-        <h1>Mesa</h1>
-        <div class="op out"><span>Obtener Ubicación</span></div>
-        <div class="op out"><span>Cambiar Ubicación</span></div>
-        <div class="op out"><span>Ver nº de Clientes</span></div>
-        <div class="op out start" onclick="iniciarMesa()"><span>Iniciar Mesa</span></div>
-        <div class="op addPro" onclick="showProductSelect()"><span>Añadir Producto</span></div>
-        <div class="op out"><span>Imprimir Comanda</span></div>
-        <div class="op out"><span>Dividir la Cuenta</span></div>
-        <div class="op out borrar" onclick="cerrarMesa()"><span>Borrar Mesa</span></div>
+        <h1>Mesa 1 0,00€</h1>
+        <div class="op get" onclick="obtenerUbicacion()" target="id1"><span>Obtener Ubicación</span></div>
+        <div class="op move" onclick="moverMesa()" target="id1"><span>Cambiar Ubicación</span></div>
+        <div class="op ver" onclick="verClientes()" target="id1"><span>Ver Clientes</span></div>
+        <div class="op start" onclick="iniciarMesa()" target="id1"><span>Iniciar Mesa</span></div>
+        <div class="op addPro" onclick="showProductSelect()" target="id1"><span>Añadir Producto</span></div>
+        <div class="op print" onclick="imprimirComanda()" target="id1"><span>Imprimir Comanda</span></div>
+        <div class="op cliente" onclick="imprimirComandaCliente()" target="id1"><span>Dividir la Cuenta</span></div>
+        <div class="op borrar" onclick="cerrarMesa()" target="id1"><span>Borrar Mesa</span></div>
 
         <div class="productSelect hidden">
             <div class="productos">
                 <button onclick="anadirProducto('gambas')">Gambas</button>
                 <button onclick="anadirProducto('mejillones')">Mejillones</button>
                 <button onclick="anadirProducto('zamburiñas')">Zamburiñas</button>
-                <button onclick="anadirProducto('cerveza victoria')">Cerveza Victoria</button>
+                <button onclick="anadirProducto('cerveza Victoria')">Cerveza Victoria</button>
                 <button onclick="anadirProducto('vino blanco')">Vino Blanco</button>
             </div>
             <button class="cancelar" onclick="closeProductSelect()">Cancelar</button>

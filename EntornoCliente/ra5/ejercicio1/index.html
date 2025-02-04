@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiosko Fernando</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <script src="script.js"></script>
+    
+</head>
+<body>
+    <h1>Kiosko Fernando</h1>   
+    <p>Nuestras delicatessen ahora te las llevamos a casa.</p>   
+    <button class="primary-button">Ver Menú</button>
+    <button class="secondary-button">Registrarse</button>
+    <h2>Los más demandados</h2>
+    <div class="product">
+    <img src="https://cdn-icons-png.flaticon.com/512/468/468339.png" alt="Gambas">
+    <h3>Gamba roja</h3>
+    <p>Gamba roja de Garrucha (150 gramos).</p>
+    <p class="important-text">3,50 €</p>
+    <button class="buy-button">Comprar</button>
+    </div>
+    <div class="product">
+    <img src="https://cdn-icons-png.flaticon.com/512/1137/1137928.png" alt="Mejillones">
+    <h3>Mejillones</h3>
+    <p>Mejillones del Cantábrico (2 unidades).</p>
+    <p class="important-text">2,00 €</p>
+    <button class="buy-button">Comprar</button>
+    </div>
+    <div class="product centered">
+    <img src="https://cdn-icons-png.flaticon.com/512/3751/3751463.png" alt="Prod 3">
+    <h3>Zamburiñas</h3>
+    <p>Zamburiñas gallegas (2 unidades)</p>
+
+
+    <p class="important-text">4,70 €</p>
+    <button class="buy-button">Comprar</button>
+    </div>
+
+    <form action="">
+        <h2>Datos de Contacto</h2><hr>
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre" pattern="[A-Z][a-zA-Z]{2,9}">
+
+        <label for="stApe">Primer Apellido</label>
+        <input type="text" name="stApe" id="stApe" pattern="[A-Z][a-zA-Z]{3,6}">
+
+        <label for="ndApe">Segundo Apellido</label>
+        <input type="text" name="ndApe" id="ndApe" pattern="[A-Z][a-zA-Z]{3,6}">
+
+        <label for="tel">Teléfono</label>
+        <input type="text" name="tel" id="tel" pattern="+\d{2}\s-d{3}-d{3}-d{3}">
+
+        <label for="email">Correo Electrónico</label>
+        <input type="email" name="email" id="email" pattern="^\w*\.?-?\w*\.?-?\w*@\w*-?\w*((.com)|(.com.es)|(.site))?$">
+
+        <label for="address">Dirección</label>
+        <input type="text" name="address" id="address" maxlength="200">
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

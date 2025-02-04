@@ -49,6 +49,44 @@ button[dis= "true"]:active{
 body.dark{
     background-color: #252527;
 }
+
+div.audioContainer{
+    position: absolute;
+    right: 30px;
+    top: 0;
+    height: 80px;
+    padding: 5px;
+    text-align: center;
+    overflow: hidden;
+}
+
+div.audioContainer button{
+    margin: 0;
+}
+
+p.playing{
+    width: 400px;
+    position: absolute;
+    animation-name: brmmm;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes brmmm{
+    from{
+        right: -350px;
+    }to{
+        right: 100px;
+    }
+}
+
+audio{
+    display: none;
+}
+
+
 @media (max-width: 720px){
     div.butContainer{
         flex-direction:column;
@@ -68,6 +106,5 @@ body.dark{
     }
     video{
         width: 80%;
-    }
-    
+    } 
 }

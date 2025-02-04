@@ -100,3 +100,36 @@ function volumeUp(){
     console.log(video.volume)
 }
 
+function randomAudio(){
+    let audio = document.querySelector("audio");
+    let button = document.querySelector(".audioContainer button")
+    let parrafo = document.querySelector("div.audioContainer p");
+
+    if(audio.paused){
+        let azar = Math.ceil(Math.random()*3);
+    
+        switch(azar){
+            case 1:
+                audio.setAttribute("src","https://sound-effects-media.bbcrewind.co.uk/mp3/NHU05104275.mp3");
+                parrafo.innerHTML = "<b>Reproduciendo: </b>Naturaleza"
+                break;
+            case 2:
+                audio.setAttribute("src","https://sound-effects-media.bbcrewind.co.uk/mp3/07076051.mp3");
+                parrafo.innerHTML = "<b>Reproduciendo: </b>Industria"
+                break;
+            case 3:
+                audio.setAttribute("src","https://sound-effects-media.bbcrewind.co.uk/mp3/07001043.mp3");
+                parrafo.innerHTML = "<b>Reproduciendo: </b>Base Aérea"
+                break;
+        }
+        audio.play();
+        parrafo.classList.add("playing");
+        button.innerHTML ="Pausar Sonido Ambiente";
+    }else{
+        audio.pause();
+        button.innerHTML = "Iniciar Sonido Ambiente";
+        parrafo.innerHTML = "";
+        parrafo.classList.remove("playing");
+    }
+    
+}

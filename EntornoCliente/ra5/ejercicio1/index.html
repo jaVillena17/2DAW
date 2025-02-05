@@ -39,27 +39,28 @@
     <button class="buy-button">Comprar</button>
     </div>
 
-    <form action="">
+    <form action="www.google.com">
         <h2>Datos de Contacto</h2><hr>
         <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre" pattern="[A-Z][a-zA-Z]{2,9}">
+        <input type="text" name="nombre" id="nombre" pattern="[A-Z][a-zA-Z]*" minlength="3" maxlength="8" required>
 
         <label for="stApe">Primer Apellido</label>
-        <input type="text" name="stApe" id="stApe" pattern="[A-Z][a-zA-Z]{3,6}">
+        <input type="text" name="stApe" id="stApe" pattern="[A-Z][a-zA-Z]{3,6}" required>
 
         <label for="ndApe">Segundo Apellido</label>
         <input type="text" name="ndApe" id="ndApe" pattern="[A-Z][a-zA-Z]{3,6}">
 
         <label for="tel">Teléfono</label>
-        <input type="text" name="tel" id="tel" pattern="+\d{2}\s-d{3}-d{3}-d{3}">
+        <input type="text" name="tel" id="tel" pattern="\+\d{2}\s\d{3}-\d{3}-\d{3}" required>
 
         <label for="email">Correo Electrónico</label>
-        <input type="email" name="email" id="email" pattern="^\w*\.?-?\w*\.?-?\w*@\w*-?\w*((.com)|(.com.es)|(.site))?$">
+        <input type="email" name="email" id="email" pattern="^\w*\.?-?\w*\.?-?\w*@\w*-?\w*((.com)|(.com.es)|(.site))?$" required>
 
         <label for="address">Dirección</label>
-        <input type="text" name="address" id="address" maxlength="200">
-
+        <input type="text" name="address" id="address" maxlength="200" required>
+        <p id="msgError"></p>
         <button type="submit">Enviar</button>
+        <button type="reset" onclick="borrarErrores()">Borrar</button>
     </form>
 </body>
 </html>

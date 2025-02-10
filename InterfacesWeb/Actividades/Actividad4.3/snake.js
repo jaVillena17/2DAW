@@ -12,11 +12,11 @@ const KEY_DOWN = "ArrowDown";
 //Mapa que contiene los tramos de la serpiente, coordenadas, direccion y giro
 let snakeWidth = 1;
 let snake = new Map();
-snake.set(snakeWidth, [72,24,"right", "null"]);
+snake.set(snakeWidth, [72,24,"null", "null"]);
 snakeWidth++;
-snake.set(snakeWidth, [48,24, "right", "null"]);
+snake.set(snakeWidth, [48,24, "null", "null"]);
 snakeWidth++;
-snake.set(snakeWidth, [24,24, "right", "null"]);
+snake.set(snakeWidth, [24,24, "null", "null"]);
 snakeWidth++;
 
 //Creamos un array con los giros
@@ -31,20 +31,20 @@ document.addEventListener("keydown", function(e){
     if(snake.get(2)[2] == "null"){
         switch (lastAction){
             case "ArrowLeft":
-                snake.set(2, [48,24, "left", "null"]);
-                snake.set(3, [24,24, "left", "null"]);
+                snake.set(2, [48,24, "ArrowRight", "null"]);
+                snake.set(3, [24,24, "ArrowRight", "null"]);
                 break;
             case "ArrowRight":
-                snake.set(2, [48,24, "right", "null"]);
-                snake.set(3, [24,24, "right", "null"]);
+                snake.set(2, [48,24, "ArrowRight", "null"]);
+                snake.set(3, [24,24, "ArrowRight", "null"]);
                 break;
             case "ArrowUp":
-                snake.set(2, [48,24, "up", "null"]);
-                snake.set(3, [24,24, "up", "null"]);
+                snake.set(2, [48,24, "ArrowRight", "null"]);
+                snake.set(3, [24,24, "ArrowRight", "null"]);
                 break;
             case "ArrowDown":
-                snake.set(2, [48,24, "down", "null"]);
-                snake.set(3, [24,24, "down", "null"]);
+                snake.set(2, [48,24, "ArrowRight", "null"]);
+                snake.set(3, [24,24, "ArrowRight", "null"]);
                 break;
         }
     }
@@ -67,206 +67,141 @@ function run(){
     }
     
 }
-/*
+
 function move(){
     //Sacamos las coordenadas de la cabeza
     let head = snake.get(1);
     let x = head[0];
     let y = head[1];
+    let direccion = head[2];
 
-    //Movimiento de la cabeza
+    //Control de la cabeza y los giros
     if(x%24 == 0 && y%24 == 0){
-        if(lastAction === KEY_LEFT){
-            x -= 3;
-            snake.set(1, [x,y, "left", "none"]);
-        }else if(lastAction === KEY_RIGHT){
-            x += 3;
-            snake.set(1, [x,y, "right", "none"]);
-        }else if(lastAction === KEY_UP){
-            y -= 3;
-            snake.set(1, [x,y, "up", "none"]);
-            
-        }else if(lastAction === KEY_DOWN){
-            y += 3;
-            snake.set(1, [x,y, "down", "none"]);
+        if(direccion != lastAction){
+            if(lastAction === KEY_LEFT){
+                turns[`${x}, ${y}`] = "ArrowLeft";
+                x -= 3;
+                snake.set(1, [x,y, "ArrowLeft", "none"]);
+            }else if(lastAction === KEY_RIGHT){
+                turns[`${x}, ${y}`] = "ArrowRight";
+                x += 3;
+                snake.set(1, [x,y, "ArrowRight", "none"]);
+                
+            }else if(lastAction === KEY_UP){
+                turns[`${x}, ${y}`] = "ArrowUp";
+                y -= 3;
+                snake.set(1, [x,y, "ArrowUp", "none"]);
+                
+            }else if(lastAction === KEY_DOWN){
+                turns[`${x}, ${y}`] = "ArrowDown";
+                y += 3;
+                snake.set(1, [x,y, "ArrowDown", "none"]);
+                
+            }
+        }else{
+            if(lastAction === KEY_LEFT){
+                x -= 3;
+                snake.set(1, [x,y, "ArrowLeft", "none"]);
+            }else if(lastAction === KEY_RIGHT){
+                x += 3;
+                snake.set(1, [x,y, "ArrowRight", "none"]);
+            }else if(lastAction === KEY_UP){
+                y -= 3;
+                snake.set(1, [x,y, "ArrowUp", "none"]);
+            }else if(lastAction === KEY_DOWN){
+                y += 3;
+                snake.set(1, [x,y, "ArrowDown", "none"]);
+            }
         }
 
-        // Movimiento del resto del cuerpo
-for (let i = 2; i <= snake.size; i++) {
-    // Extraemos las coordenadas actuales del segmento
-    let x = snake.get(i)[0];
-    let y = snake.get(i)[1];
 
-    if (testTurn(i)) {
-        // Si la dirección es igual a la del segmento anterior,
-        // continúa en la misma dirección.
-        if(snake.get(i)[2] == "left"){
-            x -= 3;
-            snake.set(i, [x, y, "left", "none"]);
-        } else if(snake.get(i)[2] == "right"){
-            x += 3;
-            snake.set(i, [x, y, "right", "none"]);
-        } else if(snake.get(i)[2] == "up"){
-            y -= 3;
-            snake.set(i, [x, y, "up", "none"]);
-        } else if(snake.get(i)[2] == "down"){
-            y += 3;
-            snake.set(i, [x, y, "down", "none"]);
-        }
-    } else {
-        // Si la dirección es distinta, es que el segmento
-        // aún no ha girado. Se actualiza la dirección para seguir al anterior.
-        let nextMove = snake.get(i-1)[2];
-        if(snake.get(i)[2] == "left"){
-            x -= 3;
-            snake.set(i, [x, y, nextMove, "none"]);
-        } else if(snake.get(i)[2] == "right"){
-            x += 3;
-            snake.set(i, [x, y, nextMove, "none"]);
-        } else if(snake.get(i)[2] == "up"){
-            y -= 3;
-            snake.set(i, [x, y, nextMove, "none"]);
-        } else if(snake.get(i)[2] == "down"){
-            y += 3;
-            snake.set(i, [x, y, nextMove, "none"]);
-        }
-    }
 
-        }
-    }else{
-        if(snake.get(1)[2] == "left"){
-            x -= 3;
-            snake.set(1, [x,y, "left", "none"]);
-        }else if(snake.get(1)[2] == "right"){
-            x += 3;
-            snake.set(1, [x,y, "right", "none"]);
-        }else if(snake.get(1)[2] == "up"){
-            y -= 3;
-            snake.set(1, [x,y, "up", "none"]);
-        }
-        else if(snake.get(1)[2] == "down"){
-            y += 3;
-            snake.set(1, [x,y, "down", "none"]);
-        }
-
-        //Movimiento del resto del cuerpo
+        //Movimiento del resto del cuerpo en puntos de giro
         for (let i = 2; i <= snake.size; i++) {
+            //Sacamos las coordenadas y las comparamos con los giros
             x = snake.get(i)[0];
             y = snake.get(i)[1];
-            //Sacamos la dirección del segmento anterior
-            if(snake.get(i)[2] == "left"){
+            let dire = snake.get(i)[2]
+
+            //Cadena key del objeto
+            let cadena = `${x}, ${y}`;
+
+
+            if(turns[cadena]){
+                console.log("SAJFNJSD")
+                snake.set(i, [x,y, turns[cadena], "null"]);
+                
+            }
+
+            //Movimiento del resto del cuerpo
+            let move = snake.get(i)[2];
+
+            if(move == "ArrowLeft"){
                 x -= 3;
-                snake.set(i, [x,y, "left", "none"]);
-            }else if(snake.get(i)[2] == "right"){
+                snake.set(i, [x,y, "ArrowLeft", "none"]);
+            }else if(move == "ArrowRight"){
                 x += 3;
-                snake.set(i, [x,y, "right", "none"]);
-            }else if(snake.get(i)[2] == "up"){
+                snake.set(i, [x,y, "ArrowRight", "none"]);
+            }else if(move == "ArrowUp"){
                 y -= 3;
-                snake.set(i, [x,y, "up", "none"]);
+                snake.set(i, [x,y, "ArrowUp", "none"]);
             }
-            else if(snake.get(i)[2] == "down"){
+            else if(move == "ArrowDown"){
                 y += 3;
-                snake.set(i, [x,y, "down", "none"]);
-            }
+                snake.set(i, [x,y, "ArrowDown", "none"]);
+            }     
+        } 
+
+
+    }else{
+        if(snake.get(1)[2] == "ArrowLeft"){
+            x -= 3;
+            snake.set(1, [x,y, "ArrowLeft", "none"]);
+        }else if(snake.get(1)[2] == "ArrowRight"){
+            x += 3;
+            snake.set(1, [x,y, "ArrowRight", "none"]);
+        }else if(snake.get(1)[2] == "ArrowUp"){
+            y -= 3;
+            snake.set(1, [x,y, "ArrowUp", "none"]);
         }
+        else if(snake.get(1)[2] == "ArrowDown"){
+            y += 3;
+            snake.set(1, [x,y, "ArrowDown", "none"]);
+        }
+
+        //Movimiento del resto del cuerpo en puntos de giro
+        for (let i = 2; i <= snake.size; i++) {
+            //Sacamos las coordenadas y las comparamos con los giros
+
+            x = snake.get(i)[0];
+            y = snake.get(i)[1];
+
+            //Movimiento del resto del cuerpo
+            let move = snake.get(i)[2];
+
+
+            if(move == "ArrowLeft"){
+                x -= 3;
+                snake.set(i, [x,y, "ArrowLeft", "none"]);
+                console.log(snake)
+            }else if(move == "ArrowRight"){
+                x += 3;
+                snake.set(i, [x,y, "ArrowRight", "none"]);
+            }else if(move == "ArrowUp"){
+                y -= 3;
+                snake.set(i, [x,y, "ArrowUp", "none"]);
+            }
+            else if(move == "ArrowDown"){
+                y += 3;
+                snake.set(i, [x,y, "ArrowDown", "none"]);
+            }     
+        } 
     }
 
+    //Comprobación de derrota 
     if(head[0] < 0 || head[0] > canvas.width || head[1] < 0 || head[1] > canvas.width){
         runnnin = false;
         alert("Has perdido")
-    }else{ 
-    }
-}
-    */
-function move(){
-    // Movimiento de la cabeza
-    let head = snake.get(1);
-    let x = head[0];
-    let y = head[1];
-    let currentDir = head[2];
-
-    // Verificar si la cabeza está alineada en la grilla
-    if(x % 24 === 0 && y % 24 === 0){
-        let newDir = currentDir;
-        // Si se ha solicitado un cambio y es distinto a la actual, lo aplicamos
-        if(lastAction === KEY_LEFT && currentDir !== "left"){
-            newDir = "left";
-        } else if(lastAction === KEY_RIGHT && currentDir !== "right"){
-            newDir = "right";
-        } else if(lastAction === KEY_UP && currentDir !== "up"){
-            newDir = "up";
-        } else if(lastAction === KEY_DOWN && currentDir !== "down"){
-            newDir = "down";
-        }
-
-        // Si la dirección cambió, registramos el punto de giro
-        if(newDir !== currentDir){
-            turns.set(`${x},${y}`, newDir);
-            currentDir = newDir;
-        }
-
-        // Actualizamos la posición de la cabeza según la dirección actualizada
-        if(currentDir === "left"){
-            x -= 3;
-        } else if(currentDir === "right"){
-            x += 3;
-        } else if(currentDir === "up"){
-            y -= 3;
-        } else if(currentDir === "down"){
-            y += 3;
-        }
-        snake.set(1, [x, y, currentDir, "none"]);
-    } else {
-        // Si no está alineada en la grilla, se mueve en la misma dirección
-        if(currentDir === "left"){
-            x -= 3;
-        } else if(currentDir === "right"){
-            x += 3;
-        } else if(currentDir === "up"){
-            y -= 3;
-        } else if(currentDir === "down"){
-            y += 3;
-        }
-        snake.set(1, [x, y, currentDir, "none"]);
-    }
-
-    // Movimiento del resto del cuerpo
-    for(let i = 2; i <= snake.size; i++){
-        let segment = snake.get(i);
-        let segX = segment[0];
-        let segY = segment[1];
-        let segDir = segment[2];
-
-        // Creamos la clave para la posición actual del segmento
-        let posKey = `${segX},${segY}`;
-        // Si hay un giro registrado en esta posición, actualizamos la dirección
-        if(turns.has(posKey)){
-            segDir = turns.get(posKey);
-            snake.set(i, [segX, segY, segDir, "none"]);
-            // Si este es el último segmento (la cola), eliminamos el giro registrado
-            if(i === snake.size){
-                turns.delete(posKey);
-            }
-        }
-
-        // Actualizamos la posición del segmento según su dirección actual
-        if(segDir === "left"){
-            segX -= 3;
-        } else if(segDir === "right"){
-            segX += 3;
-        } else if(segDir === "up"){
-            segY -= 3;
-        } else if(segDir === "down"){
-            segY += 3;
-        }
-        snake.set(i, [segX, segY, segDir, "none"]);
-    }
-
-    // Verificación de colisión con los bordes del canvas
-    head = snake.get(1);
-    if(head[0] < 0 || head[0] > canvas.width || head[1] < 0 || head[1] > canvas.height){
-        runnnin = false;
-        alert("Has perdido");
     }
 }
 function testTurn(index){

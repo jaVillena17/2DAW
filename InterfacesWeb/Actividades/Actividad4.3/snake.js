@@ -22,6 +22,12 @@ snakeWidth++;
 //Creamos un array con los giros
 let turns = new Map();
 
+//Coordenadas de la manzana
+let apple = {
+    x : null,
+    y : null
+}
+spawnApple();
 
 document.addEventListener("keydown", function(e){
     if(!(lastAction == KEY_LEFT && e.code == "ArrowRight") && !(lastAction == KEY_RIGHT && e.code == "ArrowLeft") && !(lastAction == KEY_UP && e.code == "ArrowDown") && !(lastAction == KEY_DOWN && e.code == "ArrowUp")){
@@ -74,6 +80,9 @@ function move(){
     let x = head[0];
     let y = head[1];
     let direccion = head[2];
+    //Guardamos los valores iniciales para usar en la función eatApple
+    const currentX = x;
+    const currentY = y;
 
     //Control de la cabeza y los giros
     if(x%24 == 0 && y%24 == 0){
@@ -96,7 +105,6 @@ function move(){
                 turns[`${x}, ${y}`] = "ArrowDown";
                 y += 3;
                 snake.set(1, [x,y, "ArrowDown", "none"]);
-                
             }
         }else{
             if(lastAction === KEY_LEFT){
@@ -113,6 +121,10 @@ function move(){
                 snake.set(1, [x,y, "ArrowDown", "none"]);
             }
         }
+        
+        //Función que controla si en el siguiente movimiento de come una fruta
+        eatApple(currentX, currentY);
+
 
 
 
@@ -126,9 +138,7 @@ function move(){
             //Cadena key del objeto
             let cadena = `${x}, ${y}`;
 
-
             if(turns[cadena]){
-                console.log("SAJFNJSD")
                 snake.set(i, [x,y, turns[cadena], "null"]);
                 
             }
@@ -149,7 +159,15 @@ function move(){
             else if(move == "ArrowDown"){
                 y += 3;
                 snake.set(i, [x,y, "ArrowDown", "none"]);
-            }     
+            }
+
+            //COMENTAR PARA CREAR LA MAGIA
+
+            //Comprobamos si estamos en la cola para eliminar el giro del mapa de giros
+            if(i == snake.size){
+                //Esto por lo visto elimina una clave de un objeto
+                delete turns[cadena];
+            }
         } 
 
 
@@ -183,7 +201,6 @@ function move(){
             if(move == "ArrowLeft"){
                 x -= 3;
                 snake.set(i, [x,y, "ArrowLeft", "none"]);
-                console.log(snake)
             }else if(move == "ArrowRight"){
                 x += 3;
                 snake.set(i, [x,y, "ArrowRight", "none"]);
@@ -210,6 +227,64 @@ function testTurn(index){
     return parte[2] == previo[2]
 }
 
+function eatApple(x, y){
+    //Sacamos la direccion del siguiente movimiento
+    let nextMove = snake.get(1)[2];
+
+    //Creamos las variables x e y donde comprobaremos si hay fruta (partiendo de la posicion inicial de la cabeza antes del siguiente movimiento)
+    let nextX = x;
+    let nextY = y;
+    
+    //Con un switch, aumentamos la siguiente coordenada en función del siguiente move
+    switch (nextMove){
+        case "ArrowLeft":
+            nextX -= 24;
+            break;
+        case "ArrowRight":
+            nextX += 24;
+            break;
+        case "ArrowUp":
+            nextY -= 24
+            break;
+        case "ArrowDown":
+            nextY += 24;
+            break
+    }
+    
+    //Comparamos dichas coordenadas con las coordenadas de la manzana
+    if(apple.x == nextX && apple.y == nextY){
+        spawnApple()
+    }
+}
+
+//Función que genera una fruta de forma aletoria
+function spawnApple(){
+    //Generamos dos números aleatorios múltiplos de 24, entre 0 y 480
+    //Lo que quiere decir, generamos un número aleatorio entre 0 y 19 Y multiplicaremos 24 por dicho número
+    let randomX = Math.floor(Math.random() * 19) * 24;
+    let randomY = Math.floor(Math.random() * 19) * 24;
+    
+    //Comprobar si hay una serpiente en esas coordenadas
+    if(!spotSnake(randomX, randomY)){
+        //Si no hay serpiente guardamos las coordenadas
+        apple.x = randomX;
+        apple.y = randomY;
+    }else{
+        //Si hay serpiente en esas coordenadas, llamamos a la función otra vez
+        spawnApple()
+    }
+}
+
+//funcion que me dice si hay alguna parte de la serpiente en las coordenadas metidas por parámetro
+function spotSnake(x, y){
+    //Creamos una variable booleana donde guardaremos si encontramos coincidencia
+    let found = false;
+    snake.forEach((bodyPart) => {
+        if(bodyPart[0] == x && bodyPart[1] == y) found = true
+    })
+    return found;
+}
+
 function printCanvas(){
     let image = new Image();
     image.src = "./Assets/background.png";
@@ -218,6 +293,7 @@ function printCanvas(){
     snake.forEach(tramo => {
         ctx.fillRect(tramo[0],tramo[1],24,24);
     })
+    //Imprimir la fruta en las coordenadas
     ctx.fillStyle='red';
-    ctx.fillRect(240,240,24,24);
+    ctx.fillRect(apple.x,apple.y,24,24);
 }

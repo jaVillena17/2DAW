@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 canvas{
     width: 500px;
     height: 500px;
@@ -8,4 +11,32 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+div.result{
+    width: 500px;
+    height: 75px;
+    border: 1px solid black;
+    border-bottom: none;
+    background-color: rgb(100, 100, 100);
+    padding: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+div.result img{
+    width: 55px;
+}
+
+div.result span{
+    color: white;
+    font-weight: bold;
+    font-size: 50px;
+    margin-left: 5px;
+}
+
+div.result span.PB{
+    width: 200px;
+    margin-left: 130px;
 }

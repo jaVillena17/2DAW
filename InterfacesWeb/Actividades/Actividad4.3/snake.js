@@ -29,6 +29,16 @@ let apple = {
 }
 spawnApple();
 
+//Contador de manzanas comidas
+let feedCounter = 0;
+
+//Personal record
+let record = window.localStorage.getItem('record')
+if(record){
+    let pb = document.querySelector("span.PB");
+    pb.innerHTML = `PB: ${record}`
+}
+
 document.addEventListener("keydown", function(e){
     if(!(lastAction == KEY_LEFT && e.code == "ArrowRight") && !(lastAction == KEY_RIGHT && e.code == "ArrowLeft") && !(lastAction == KEY_UP && e.code == "ArrowDown") && !(lastAction == KEY_DOWN && e.code == "ArrowUp")){
         lastAction = e.code;
@@ -84,6 +94,8 @@ function move(){
     const currentX = x;
     const currentY = y;
 
+    let crash = false;
+
     //Control de la cabeza y los giros
     if(x%24 == 0 && y%24 == 0){
         if(direccion != lastAction){
@@ -123,10 +135,58 @@ function move(){
         }
         
         //Función que controla si en el siguiente movimiento de come una fruta
-        eatApple(currentX, currentY);
+        if(eatApple(currentX, currentY)){
+            //Añadimos una posición más a la serpiente
+            //debemos ponerlo en las coordenadas -24 con respecto a la cola
+            //Sacamos las coordenadas de la cola y la dirección
+            const tailX = snake.get(snakeWidth-1)[0];
+            const tailY = snake.get(snakeWidth-1)[1];
+            const tailMove = snake.get(snakeWidth-1)[2];
 
+            switch(tailMove){
+                case "ArrowLeft":
+                    snake.set(snakeWidth, [tailX+24, tailY, tailMove, "null"]);
+                    break;
+                case "ArrowRight":
+                    snake.set(snakeWidth, [tailX-24, tailY, tailMove, "null"]);
+                    break;
+                case "ArrowUp":
+                    snake.set(snakeWidth, [tailX, tailY+24, tailMove, "null"]);
+                    break;
+                case "ArrowDown":
+                    snake.set(snakeWidth, [tailX, tailY-24, tailMove, "null"]);
+                    break
+            }
+            //Aumentamos el tamaño de la serpiente
+            snakeWidth++;
+        }
 
+        //Otro switch mas para las coordenadas que se le van a pasar a la función que busca el choque
+            //Creamos las variables x e y donde comprobaremos si hay fruta (partiendo de la posicion inicial de la cabeza antes del siguiente movimiento)
+            let nextX = currentX;
+            let nextY = currentY;
 
+            //Variable booleana donde ejecutamos la función para encontrar si se choca, definida como false de forma inicial
+            
+            if(head[2] != "null"){
+                
+                //Con un switch, aumentamos la siguiente coordenada en función del siguiente move
+                switch (snake.get(1)[2]){
+                    case "ArrowLeft":
+                        nextX -= 24;
+                        break;
+                    case "ArrowRight":
+                        nextX += 24;
+                        break;
+                    case "ArrowUp":
+                        nextY -= 24
+                        break;
+                    case "ArrowDown":
+                        nextY += 24;
+                        break
+                }
+                crash = spotSnake(nextX, nextY);
+            }
 
         //Movimiento del resto del cuerpo en puntos de giro
         for (let i = 2; i <= snake.size; i++) {
@@ -214,11 +274,16 @@ function move(){
             }     
         } 
     }
+    
 
     //Comprobación de derrota 
-    if(head[0] < 0 || head[0] > canvas.width || head[1] < 0 || head[1] > canvas.width){
+    if(head[0] < 0 || head[0] > canvas.width || head[1] < 0 || head[1] > canvas.width || crash){
         runnnin = false;
         alert("Has perdido")
+        let record = window.localStorage.getItem('record')
+        if(!record || record < feedCounter){
+            window.localStorage.set('record', feedCounter)
+        }
     }
 }
 function testTurn(index){
@@ -253,7 +318,14 @@ function eatApple(x, y){
     
     //Comparamos dichas coordenadas con las coordenadas de la manzana
     if(apple.x == nextX && apple.y == nextY){
-        spawnApple()
+        feedCounter++;
+        //Actualizamos la interfaz
+        let feed = document.querySelector("div.result span");
+        feed.innerHTML = `x${feedCounter}`
+        spawnApple();
+        return true;
+    }else{
+        return false;
     }
 }
 
@@ -294,6 +366,7 @@ function printCanvas(){
         ctx.fillRect(tramo[0],tramo[1],24,24);
     })
     //Imprimir la fruta en las coordenadas
-    ctx.fillStyle='red';
-    ctx.fillRect(apple.x,apple.y,24,24);
+    let manzana = new Image();
+    manzana.src = "./Assets/apple.png"
+    ctx.drawImage(manzana, apple.x, apple.y)
 }

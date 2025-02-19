@@ -29,6 +29,17 @@ let apple = {
 }
 spawnApple();
 
+// Array con piedras
+let piedras = [];
+//Contador de piedras spawnear
+let blockCoutner = 2;
+//Generamos las piedras
+for (let i = 0; i < blockCoutner; i++) {
+    spawnBlock()   
+}
+
+
+
 //Contador de manzanas comidas
 let feedCounter = 0;
 
@@ -159,6 +170,10 @@ function move(){
             }
             //Aumentamos el tamaño de la serpiente
             snakeWidth++;
+        }else if(spotBlock(currentX, currentY)){
+            runnnin = false;
+            alert("Has perdido")
+            location.reload();
         }
 
         //Otro switch mas para las coordenadas que se le van a pasar a la función que busca el choque
@@ -282,8 +297,9 @@ function move(){
         alert("Has perdido")
         let record = window.localStorage.getItem('record')
         if(!record || record < feedCounter){
-            window.localStorage.set('record', feedCounter)
+            window.localStorage.setItem('record', feedCounter)
         }
+        location.reload();
     }
 }
 function testTurn(index){
@@ -319,10 +335,22 @@ function eatApple(x, y){
     //Comparamos dichas coordenadas con las coordenadas de la manzana
     if(apple.x == nextX && apple.y == nextY){
         feedCounter++;
+        if(feedCounter == 10){
+            alert("Has Ganado!");
+            location.reload();
+        }
         //Actualizamos la interfaz
         let feed = document.querySelector("div.result span");
         feed.innerHTML = `x${feedCounter}`
         spawnApple();
+        // Array con piedras
+        piedras = [];
+        //Contador de piedras spawnear
+        blockCoutner++;
+        //Generamos las piedras
+        for (let i = 0; i < blockCoutner; i++) {
+            spawnBlock()   
+        }
         return true;
     }else{
         return false;
@@ -369,4 +397,63 @@ function printCanvas(){
     let manzana = new Image();
     manzana.src = "./Assets/apple.png"
     ctx.drawImage(manzana, apple.x, apple.y)
+
+    //Imprimir las piedras
+    ctx.fillStyle='rgb(135, 82, 204)';
+    piedras.forEach(piedra => {
+        ctx.fillRect(piedra.x,piedra.y,24,24);
+    })
+}
+
+
+
+
+
+//Cosas Nueva a añadir
+
+function spawnBlock() {
+    let randomX = Math.floor(Math.random() * 19) * 24;
+    let randomY = Math.floor(Math.random() * 19) * 24;
+
+    if (!spotSnake(randomX, randomY) && !(apple.x === randomX && apple.y === randomY) && !spotBlock(randomX, randomY)) {
+        piedras.push({ x: randomX, y: randomY });
+    } else {
+        spawnBlock();
+    }
+}
+
+
+function spotBlock(x, y) {
+    let bool = false;
+
+    //Sacamos la direccion del siguiente movimiento
+    let nextMove = snake.get(1)[2];
+
+    //Creamos las variables x e y donde comprobaremos si hay fruta (partiendo de la posicion inicial de la cabeza antes del siguiente movimiento)
+    let nextX = x;
+    let nextY = y;
+    
+    //Con un switch, aumentamos la siguiente coordenada en función del siguiente move
+    switch (nextMove){
+        case "ArrowLeft":
+            nextX -= 24;
+            break;
+        case "ArrowRight":
+            nextX += 24;
+            break;
+        case "ArrowUp":
+            nextY -= 24
+            break;
+        case "ArrowDown":
+            nextY += 24;
+            break
+    }
+
+    piedras.forEach(piedra => {
+        if(piedra.x == x && piedra.y == y){
+            bool = true;
+        }
+    })
+
+    return bool
 }

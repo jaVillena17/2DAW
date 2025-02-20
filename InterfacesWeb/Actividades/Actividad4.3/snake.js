@@ -8,15 +8,17 @@ const KEY_LEFT = "ArrowLeft";
 const KEY_UP = "ArrowUp";
 const KEY_RIGHT = "ArrowRight";
 const KEY_DOWN = "ArrowDown";
+//Dirección real de la serpiente
+let lastMove = null;
 
 //Mapa que contiene los tramos de la serpiente, coordenadas, direccion y giro
 let snakeWidth = 1;
 let snake = new Map();
-snake.set(snakeWidth, [72,24,"null", "null"]);
+snake.set(snakeWidth, [72,24,"null", "ArrowRight"]);
 snakeWidth++;
-snake.set(snakeWidth, [48,24, "null", "null"]);
+snake.set(snakeWidth, [48,24, "null", "ArrowRight"]);
 snakeWidth++;
-snake.set(snakeWidth, [24,24, "null", "null"]);
+snake.set(snakeWidth, [24,24, "null", "ArrowRight"]);
 snakeWidth++;
 
 //Creamos un array con los giros
@@ -29,6 +31,15 @@ let apple = {
 }
 spawnApple();
 
+// Array con piedras
+let piedras = [];
+//Contador de piedras spawnear
+let blockCoutner = 2;
+//Generamos las piedras
+for (let i = 0; i < blockCoutner; i++) {
+    spawnBlock()   
+}
+
 //Contador de manzanas comidas
 let feedCounter = 0;
 
@@ -40,27 +51,27 @@ if(record){
 }
 
 document.addEventListener("keydown", function(e){
-    if(!(lastAction == KEY_LEFT && e.code == "ArrowRight") && !(lastAction == KEY_RIGHT && e.code == "ArrowLeft") && !(lastAction == KEY_UP && e.code == "ArrowDown") && !(lastAction == KEY_DOWN && e.code == "ArrowUp")){
+    if(!(lastAction == KEY_LEFT && e.code == "ArrowRight") && !(lastAction == KEY_RIGHT && e.code == "ArrowLeft") && !(lastAction == KEY_UP && e.code == "ArrowDown") && !(lastAction == KEY_DOWN && e.code == "ArrowUp") && lastMove != e.code){
         lastAction = e.code;
     }
     
     if(snake.get(2)[2] == "null"){
         switch (lastAction){
             case "ArrowLeft":
-                snake.set(2, [48,24, "ArrowRight", "null"]);
-                snake.set(3, [24,24, "ArrowRight", "null"]);
+                snake.set(2, [48,24, "ArrowRight", "ArrowRight"]);
+                snake.set(3, [24,24, "ArrowRight", "ArrowRight"]);
                 break;
             case "ArrowRight":
-                snake.set(2, [48,24, "ArrowRight", "null"]);
-                snake.set(3, [24,24, "ArrowRight", "null"]);
+                snake.set(2, [48,24, "ArrowRight", "ArrowRight"]);
+                snake.set(3, [24,24, "ArrowRight", "ArrowRight"]);
                 break;
             case "ArrowUp":
-                snake.set(2, [48,24, "ArrowRight", "null"]);
-                snake.set(3, [24,24, "ArrowRight", "null"]);
+                snake.set(2, [48,24, "ArrowRight", "ArrowRight"]);
+                snake.set(3, [24,24, "ArrowRight", "ArrowRight"]);
                 break;
             case "ArrowDown":
-                snake.set(2, [48,24, "ArrowRight", "null"]);
-                snake.set(3, [24,24, "ArrowRight", "null"]);
+                snake.set(2, [48,24, "ArrowRight", "ArrowRight"]);
+                snake.set(3, [24,24, "ArrowRight", "ArrowRight"]);
                 break;
         }
     }
@@ -102,22 +113,25 @@ function move(){
             if(lastAction === KEY_LEFT){
                 turns[`${x}, ${y}`] = "ArrowLeft";
                 x -= 3;
-                snake.set(1, [x,y, "ArrowLeft", "none"]);
+                snake.set(1, [x,y, "ArrowLeft", "ArrowLeft"]);
             }else if(lastAction === KEY_RIGHT){
                 turns[`${x}, ${y}`] = "ArrowRight";
                 x += 3;
-                snake.set(1, [x,y, "ArrowRight", "none"]);
+                snake.set(1, [x,y, "ArrowRight", "ArrowRight"]);
                 
             }else if(lastAction === KEY_UP){
                 turns[`${x}, ${y}`] = "ArrowUp";
                 y -= 3;
-                snake.set(1, [x,y, "ArrowUp", "none"]);
+                snake.set(1, [x,y, "ArrowUp", "ArrowUp"]);
                 
             }else if(lastAction === KEY_DOWN){
                 turns[`${x}, ${y}`] = "ArrowDown";
                 y += 3;
-                snake.set(1, [x,y, "ArrowDown", "none"]);
+                snake.set(1, [x,y, "ArrowDown", "ArrowDown"]);
             }
+            //Ultimo movimiento real de la serpiente
+            lastMove = snake.get(1)[2];
+
         }else{
             if(lastAction === KEY_LEFT){
                 x -= 3;
@@ -159,6 +173,10 @@ function move(){
             }
             //Aumentamos el tamaño de la serpiente
             snakeWidth++;
+        }else if(spotBlock(currentX, currentY)){
+            runnnin = false;
+            alert("Has perdido")
+            location.reload();
         }
 
         //Otro switch mas para las coordenadas que se le van a pasar a la función que busca el choque
@@ -282,8 +300,9 @@ function move(){
         alert("Has perdido")
         let record = window.localStorage.getItem('record')
         if(!record || record < feedCounter){
-            window.localStorage.set('record', feedCounter)
+            window.localStorage.setItem('record', feedCounter)
         }
+        location.reload();
     }
 }
 function testTurn(index){
@@ -319,10 +338,28 @@ function eatApple(x, y){
     //Comparamos dichas coordenadas con las coordenadas de la manzana
     if(apple.x == nextX && apple.y == nextY){
         feedCounter++;
+        if(feedCounter == 10){
+            alert("Has Ganado!");
+            location.reload();
+        }
         //Actualizamos la interfaz
         let feed = document.querySelector("div.result span");
         feed.innerHTML = `x${feedCounter}`
         spawnApple();
+        // Array con piedras
+        piedras = [];
+        //Contador de piedras spawnear
+        blockCoutner++;
+        //Generamos las piedras
+        for (let i = 0; i < blockCoutner; i++) {
+            spawnBlock()   
+        }
+
+        if(feedCounter > record){
+            let pb = document.querySelector("span.PB");
+            pb.innerHTML = `PB: ${feedCounter}`
+        }
+
         return true;
     }else{
         return false;
@@ -358,15 +395,138 @@ function spotSnake(x, y){
 }
 
 function printCanvas(){
+    
     let image = new Image();
-    image.src = "./Assets/background.png";
+    image.src = "./Assets/wallpaper.jpg";
     ctx.drawImage(image, 0 ,0)
-    ctx.fillStyle='rgb(104, 29, 29)';
-    snake.forEach(tramo => {
-        ctx.fillRect(tramo[0],tramo[1],24,24);
-    })
+
+    //Impresión de la cabeza
+    let head = new Image();
+    head.src = "./Assets/headRight.png"
+    let angle = 0;
+    let direccion = snake.get(1)[2];
+
+    switch (direccion){
+        case "ArrowLeft":
+            head.src = "./Assets/headLeft.png"
+            break;
+        case "ArrowRight":
+            head.src = "./Assets/headRight.png"
+            break;
+        case "ArrowUp":
+            head.src = "./Assets/headUp.png"
+            break;
+        case "ArrowDown":
+            head.src = "./Assets/headDown.png"
+            break
+    }
+    ctx.rotate(angle)
+    ctx.drawImage(head, snake.get(1)[0], snake.get(1)[1])
+
+    //Impresión del resto del cuerpo excepto la cola
+    for (let i = 2; i < snake.size; i++) {
+        let body = new Image();
+        body.src = "./Assets/bodyHor.png"
+
+        direccion = snake.get(i)[2];
+
+        switch (direccion){
+            case "ArrowLeft", "ArrowRight":
+                body.src = "./Assets/bodyHor.png"
+                break;
+            case "ArrowUp":
+                body.src = "./Assets/bodyVert.png"
+                break;
+            case "ArrowDown":
+                body.src = "./Assets/bodyVert.png"
+                break;
+        }
+        ctx.drawImage(body, snake.get(i)[0], snake.get(i)[1])
+    }
+
+    //Impresión de la cola
+    let index = snakeWidth-1;
+    let tail = new Image();
+    tail.src = "./Assets/tailRight.png"
+
+    direccion = snake.get(index)[2];
+
+        switch (direccion){
+            case "ArrowLeft":
+                tail.src = "./Assets/tailLeft.png"
+                break;
+            case "ArrowRight":
+                tail.src = "./Assets/tailRight.png"
+                break;
+            case "ArrowUp":
+                tail.src = "./Assets/tailUp.png"
+                break;
+            case "ArrowDown":
+                tail.src = "./Assets/tailDown.png"
+                break;
+        }
+
+    ctx.drawImage(tail, snake.get(index)[0], snake.get(index)[1])
+
+
+
     //Imprimir la fruta en las coordenadas
     let manzana = new Image();
     manzana.src = "./Assets/apple.png"
     ctx.drawImage(manzana, apple.x, apple.y)
+
+    //Imprimir las piedras
+    ctx.fillStyle='rgb(135, 82, 204)';
+    piedras.forEach(piedra => {
+        ctx.fillRect(piedra.x,piedra.y,24,24);
+    })
+}
+
+//Cosas Nueva a añadir
+
+function spawnBlock() {
+    let randomX = Math.floor(Math.random() * 19) * 24;
+    let randomY = Math.floor(Math.random() * 19) * 24;
+
+    if (!spotSnake(randomX, randomY) && !(apple.x === randomX && apple.y === randomY) && !spotBlock(randomX, randomY)) {
+        piedras.push({ x: randomX, y: randomY });
+    } else {
+        spawnBlock();
+    }
+}
+
+
+function spotBlock(x, y) {
+    let bool = false;
+
+    //Sacamos la direccion del siguiente movimiento
+    let nextMove = snake.get(1)[2];
+
+    //Creamos las variables x e y donde comprobaremos si hay fruta (partiendo de la posicion inicial de la cabeza antes del siguiente movimiento)
+    let nextX = x;
+    let nextY = y;
+    
+    //Con un switch, aumentamos la siguiente coordenada en función del siguiente move
+    switch (nextMove){
+        case "ArrowLeft":
+            nextX -= 24;
+            break;
+        case "ArrowRight":
+            nextX += 24;
+            break;
+        case "ArrowUp":
+            nextY -= 24
+            break;
+        case "ArrowDown":
+            nextY += 24;
+            break
+    }
+
+    piedras.forEach(piedra => {
+        if(piedra.x == x && piedra.y == y){
+            bool = true;
+        }
+    })
+
+    return bool
 }

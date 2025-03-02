@@ -192,9 +192,8 @@ function iniciarMesa(){
         //Pedimos el número de clientes que se sientan en la mesa
         let numClientes = parseInt(prompt("Introduce el número de clientes que se han sentado en la mesa"));
 
-
         //Si el número no es negativo o 0, ejecutamos el codigo
-        if(numClientes > 0){
+        if(numClientes > 0 && !isNaN(numClientes)){
             //Mediante un bucle for, creamos tantos clientes como haya introducido y lo metemos en un array de clientes
             let listaClientes = [];
             for (let i = 0; i < numClientes; i++) {
@@ -213,7 +212,7 @@ function iniciarMesa(){
         }else{
             //Imprimimos el resultado
             let output = document.querySelector("h2.output");
-            output.innerHTML=`<b>Error</b>, no puedes sentar un número negativo de personas`;
+            output.innerHTML=`<b>Error</b>, vuelva a intentarlo`;
         }
         
     }else{
@@ -446,6 +445,6 @@ function imprimirComandaCliente(){
     }else{
         //Sacamos la salida del error
         let output = document.querySelector("h2.output");
-        output.innerHTML=`Error, no hay ${indiceCliente + 1} clientes en la mesa. Hay un total de ${mesa.clientes.length} clientes`;
+        output.innerHTML=`Se ha producido un error, vuelva a intentarlo. Actualmente hay ${mesa.clientes.length} clientes en la mesa ${idMesa.substring(2)}`;
     }
 }

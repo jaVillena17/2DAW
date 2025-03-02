@@ -1,0 +1,82 @@
+$colores: (
+    primary-color: #3498db,
+    secondary-color: #e74c3c
+);
+
+$button-styles: (
+    "primary-button" : map-get($colores, primary-color),
+    "secondary-button" : #2ecc71,
+    "buy-button" : #f39c12
+);
+
+$font-family : Arial, Helvetica, sans-serif;
+$base-font-size : 16px;
+
+body{
+    background-color: #f2f2f2;
+    text-align: center;
+    font-family: $font-family;
+}
+h1{
+    font-size: 2rem;
+    color: map-get($colores, primary-color);
+}
+p{
+    font-size: 1.2rem;
+    color: #555;
+}
+button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    transition: 0.3s;
+    height: 50px;
+}
+
+.product{
+    background-color: #FFF;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px auto;
+    width: 75%;
+    &:hover{
+        box-shadow: 5px 5px 30px black;
+    }
+}
+
+img{
+    height: auto;
+    width: 25%;
+    max-width: 100%;
+}
+
+h3{
+    font-size: 1.5rem;
+}
+.important-text{
+    font-weight: bold;
+    color: map-get($colores , secondary-color);
+}
+
+
+@each $style in map-keys($button-styles){
+    .#{$style}{
+        background-color: map-get($button-styles, $style);
+        &:hover{
+            filter: brightness(0.8);
+        }
+    }
+}
+@mixin center-element(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & :not(:last-child){
+        margin-right: 20px
+    }
+}
+.centered{
+    @include center-element();
+    
+}

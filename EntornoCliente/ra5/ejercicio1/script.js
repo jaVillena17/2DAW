@@ -63,3 +63,28 @@ function borrarErrores(){
     let parrafoError = document.querySelector("p#msgError");
     parrafoError.innerHTML = "";
 }
+
+//Segunda parte, promt de login
+let nombre = prompt("Hola! Introduce tu nombre");
+
+let parrafo = document.getElementById("modP");
+//Si hay información con ese nombre ponemos un texto, y si no, pues no pero guardamos el nombre
+if(window.localStorage.getItem(nombre)){
+    parrafo.innerHTML = `¡Bienvenido <b>${nombre}</b>, que delicatessen deseas probar hoy!`
+}else{
+    window.localStorage.setItem(nombre, 1);
+    parrafo.innerHTML = `¡Bienvenido de nuevo <b>${nombre}</b>!, ¿repetimos?`
+}
+
+//Añadimos los eventos a los botones de compra
+let botonesProducto = document.querySelectorAll("button.buy-button")
+
+botonesProducto.forEach(boton => {
+    boton.addEventListener('click', addProduct)
+})
+
+//Función que nos añade los productos y el precio al resumen
+function addProduct(e){
+    let producto = e.target.parentNode;
+    console.log(producto)
+}

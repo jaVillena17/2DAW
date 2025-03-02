@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 form{
-    width: 50%;
+    width: 40%;
     margin: 0 auto;
     padding: 0px 20px;
     background-color: #3498db;
@@ -26,7 +26,9 @@ input[type = "text"], input[type = "email"]{
     margin-top: 5px;
     margin-bottom: 15px;
 }
-
+div.forms{
+    display: flex;
+}
 form button{
     width: 45%;
     background-color: #f39c12;

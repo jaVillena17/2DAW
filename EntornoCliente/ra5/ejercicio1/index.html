@@ -6,12 +6,11 @@
     <title>Kiosko Fernando</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="login.css">
-    <script src="script.js"></script>
     
 </head>
 <body>
     <h1>Kiosko Fernando</h1>   
-    <p>Nuestras delicatessen ahora te las llevamos a casa.</p>   
+    <p id="modP">Nuestras delicatessen ahora te las llevamos a casa.</p>   
     <button class="primary-button">Ver Menú</button>
     <button class="secondary-button">Registrarse</button>
     <h2>Los más demandados</h2>
@@ -38,7 +37,7 @@
     <p class="important-text">4,70 €</p>
     <button class="buy-button">Comprar</button>
     </div>
-
+    <div class="forms">
     <form action="www.google.com">
         <h2>Datos de Contacto</h2><hr>
         <label for="nombre">Nombre</label>
@@ -62,5 +61,30 @@
         <button type="submit">Enviar</button>
         <button type="reset" onclick="borrarErrores()">Borrar</button>
     </form>
+
+    <form>
+        <h2>Datos de Contacto</h2><hr>
+        <label for="nombre">Nombre y Apellidos</label>
+        <input type="text" name="nombre" id="nombre" pattern="[A-Z][a-zA-Z]*" minlength="3" maxlength="8" required>
+
+        <label for="address">Dirección De Entrega</label>
+        <input type="text" name="address" id="address" maxlength="200" required>
+
+        <label for="tel">Teléfono de contacto</label>
+        <input type="text" name="tel" id="tel" pattern="\+\d{2}\s\d{3}-\d{3}-\d{3}" required>
+
+        <label for="address">Productos Seleccionados</label>
+        <input type="text" name="pro" id="productos" maxlength="200" required>
+
+        <label for="address">Precio</label>
+        <input type="text" name="precio" id="precio" maxlength="200" required>
+
+        
+        <p id="msgError"></p>
+        <button type="submit">Enviar</button>
+    </form>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
